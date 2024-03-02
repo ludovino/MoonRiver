@@ -8,6 +8,22 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "River",
+"language": "GDScript",
+"path": "res://Scripts/River.gd"
+}, {
+"base": "Area2D",
+"class": "Star",
+"language": "GDScript",
+"path": "res://Scripts/Star.gd"
+} ]
+_global_script_class_icons={
+"River": "",
+"Star": ""
+}
+
 [application]
 
 config/name="MoonRiver"
