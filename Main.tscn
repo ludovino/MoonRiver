@@ -1,20 +1,293 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Scripts/River.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/SpaceRock.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/PixelSprite.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Player.gd" type="Script" id=4]
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=5]
+[ext_resource path="res://Sprites/Fishernaut.png" type="Texture" id=6]
+[ext_resource path="res://PackedScenes/Lure.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scripts/DrawLine.gd" type="Script" id=8]
+[ext_resource path="res://Sprites/Target.png" type="Texture" id=9]
+
+[sub_resource type="Curve" id=12]
+_data = [ Vector2( 0, 0 ), 0.0, 1.90909, 0, 0, Vector2( 1, 1 ), 2.36169e-07, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=17]
+_data = [ Vector2( 0, 0 ), 0.0, 3.02273, 0, 0, Vector2( 0.5, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -2.86363, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=18]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 2.46591, 0.0, 0, 0 ]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("RodTip:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "cast"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("PixelSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 12, 13, 14 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("RodTip:position")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( -33, -36 ), Vector2( 4, -48 ), Vector2( 41, -39 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("RodTip")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "enable"
+} ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "catch"
+tracks/0/type = "value"
+tracks/0/path = NodePath("PixelSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.001, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 6, 6, 7 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("PixelSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 16, 17 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "loss"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("PixelSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 4, 5 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "reel"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("PixelSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 15 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("RodTip:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 27, -39 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "wait"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("PixelSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 14 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "walk-down"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("PixelSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 1, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "walk-up"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("PixelSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 1, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 8, 9, 10, 11 ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "wind-up"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("PixelSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 12 ]
+}
+
+[sub_resource type="Curve" id=14]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=15]
+min_value = -1.0
+max_value = 0.0
+_data = [ Vector2( 0, 0 ), 0.0, -1.81119, 0, 0, Vector2( 0.704762, -0.272727 ), 0.502392, 0.502392, 0, 0, Vector2( 1, 0 ), 1.2, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=16]
+min_value = -1.0
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.204762, 0.6 ), 0.0, 0.0, 0, 0, Vector2( 0.342857, 0.327273 ), 0.0, 0.0, 0, 0, Vector2( 0.495238, 0.745455 ), 0.0, 0.0, 0, 0, Vector2( 0.657143, 0.163636 ), 0.0, 0.0, 0, 0, Vector2( 0.828571, 0.890909 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 5 )
+player_speed = 16.0
+position_min = 30.0
+position_max = 260.0
+cast_x_curve = SubResource( 12 )
+cast_y_curve = SubResource( 17 )
+aim_lerp_curve = SubResource( 18 )
+aim_min = 35.0
+aim_max = 300.0
+aim_speed = 0.5
 
 [node name="River" type="Node2D" parent="."]
 script = ExtResource( 1 )
 speed = 0.5
 
 [node name="SpaceRock" type="Sprite" parent="."]
-position = Vector2( 160, 158 )
+position = Vector2( 160, 160 )
 texture = ExtResource( 2 )
 
-[node name="PixelSprite" type="Sprite" parent="."]
+[node name="Player" type="Node2D" parent="."]
+position = Vector2( 57, 64 )
+script = ExtResource( 4 )
+
+[node name="PixelSprite" type="Sprite" parent="Player"]
+position = Vector2( -5, -26 )
+texture = ExtResource( 6 )
+hframes = 3
+vframes = 6
+frame = 6
+script = ExtResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
+anims/RESET = SubResource( 1 )
+anims/cast = SubResource( 2 )
+anims/catch = SubResource( 3 )
+anims/idle = SubResource( 4 )
+anims/loss = SubResource( 5 )
+anims/reel = SubResource( 6 )
+anims/wait = SubResource( 7 )
+anims/walk-down = SubResource( 8 )
+anims/walk-up = SubResource( 9 )
+anims/wind-up = SubResource( 11 )
+
+[node name="RodTip" type="Node2D" parent="Player"]
+script = ExtResource( 8 )
+taut = SubResource( 14 )
+slack = SubResource( 15 )
+flying = SubResource( 16 )
+line_color = Color( 0.917647, 0.901961, 0.901961, 1 )
+lure_node_path = NodePath("../Lure")
+y_displacement = 20.0
+sample = 100
+
+[node name="Lure" parent="Player" instance=ExtResource( 7 )]
+
+[node name="Target" type="Sprite" parent="Player"]
+visible = false
+position = Vector2( 27, 1 )
+texture = ExtResource( 9 )
+hframes = 4
 script = ExtResource( 3 )

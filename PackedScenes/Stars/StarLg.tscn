@@ -5,7 +5,7 @@
 [ext_resource path="res://Scripts/PixelSprite.gd" type="Script" id=3]
 
 [sub_resource type="Curve" id=2]
-_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.771429, 0 ), 0.0, 4.375, 0, 1, Vector2( 1, 1 ), 4.375, 0.0, 1, 0 ]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.495238, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="Gradient" id=3]
 colors = PoolColorArray( 0.921569, 1, 1, 0.768627, 0.894531, 1, 1, 1 )
@@ -16,7 +16,7 @@ radius = 3.0
 [node name="StarLg" type="Area2D"]
 position = Vector2( 118, 141 )
 script = ExtResource( 2 )
-pulse_speed = 2.0
+pulse_speed = 0.6
 pulse_graph = SubResource( 2 )
 pulse_gradient = SubResource( 3 )
 score = 100

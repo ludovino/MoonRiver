@@ -17,7 +17,7 @@ radius = 5.5
 [node name="PlanetLg" type="Area2D"]
 position = Vector2( 118, 141 )
 script = ExtResource( 2 )
-pulse_speed = 0.4
+pulse_speed = 0.3
 pulse_graph = SubResource( 2 )
 pulse_gradient = SubResource( 3 )
 score = 150
