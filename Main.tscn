@@ -1,20 +1,20 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/River.gd" type="Script" id=1]
-[ext_resource path="res://Scripts/Star.gd" type="Script" id=2]
-
-[sub_resource type="CircleShape2D" id=1]
-radius = 3.0
+[ext_resource path="res://Sprites/SpaceRock.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/PixelSprite.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Main.gd" type="Script" id=5]
 
 [node name="Main" type="Node2D"]
+script = ExtResource( 5 )
 
 [node name="River" type="Node2D" parent="."]
 script = ExtResource( 1 )
+speed = 0.5
 
-[node name="Star" type="Area2D" parent="."]
-script = ExtResource( 2 )
+[node name="SpaceRock" type="Sprite" parent="."]
+position = Vector2( 160, 158 )
+texture = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Star"]
-shape = SubResource( 1 )
-
-[node name="Sprite" type="Sprite" parent="Star"]
+[node name="PixelSprite" type="Sprite" parent="."]
+script = ExtResource( 3 )

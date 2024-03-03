@@ -13,4 +13,4 @@ func _process(delta: float) -> void:
 	if time >= 1.0:
 		time -= 1.0
 	intensity = pulse_graph.interpolate(time)
-	$Sprite.modulate = pulse_gradient.interpolate(intensity)
+	$Sprite.modulate = pulse_gradient.interpolate(stepify(intensity, 0.1))

@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Sprite",
+"class": "PixelSprite",
+"language": "GDScript",
+"path": "res://Scripts/PixelSprite.gd"
+}, {
 "base": "Node2D",
 "class": "River",
 "language": "GDScript",
@@ -20,6 +25,7 @@ _global_script_classes=[ {
 "path": "res://Scripts/Star.gd"
 } ]
 _global_script_class_icons={
+"PixelSprite": "",
 "River": "",
 "Star": ""
 }
@@ -27,7 +33,19 @@ _global_script_class_icons={
 [application]
 
 config/name="MoonRiver"
+run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/width=320
+window/size/height=320
+window/size/resizable=false
+window/size/fullscreen=true
+window/size/test_width=320
+window/size/test_height=320
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
 
 [gui]
 
@@ -40,4 +58,5 @@ common/enable_pause_aware_picking=true
 [rendering]
 
 quality/driver/driver_name="GLES2"
+environment/default_clear_color=Color( 0.0235294, 0.0156863, 0.00784314, 1 )
 environment/default_environment="res://default_env.tres"

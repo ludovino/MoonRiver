@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Sprites/StarSm.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Star.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/PixelSprite.gd" type="Script" id=3]
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0, 0.227273 ), 0.0, 0.0, 0, 0, Vector2( 0.504762, 0.754545 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.254545 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=3]
+colors = PoolColorArray( 1, 1, 1, 0.643137, 1, 0.949219, 0.949219, 1 )
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 1.5
+
+[node name="StarSm" type="Area2D"]
+position = Vector2( 118, 141 )
+script = ExtResource( 2 )
+pulse_speed = 0.4
+pulse_graph = SubResource( 2 )
+pulse_gradient = SubResource( 3 )
+score = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+script = ExtResource( 3 )
