@@ -6,6 +6,7 @@ export var pulse_graph: Curve
 export var score: int
 export var escape_speed: float
 export var magnitude: float
+export(float, 0, 1.0) var reel_speed_mod: float = 0.9
 
 var time: float
 var intensity: float

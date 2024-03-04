@@ -48,8 +48,6 @@ func _process(delta: float) -> void:
 func set_line(line: Curve):
 	current_line = line
 
-
-
 func disable() -> void:
 	set_process(false)
 	to_be_visible = false

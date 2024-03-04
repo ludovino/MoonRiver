@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://Scripts/River.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/SpaceRock.png" type="Texture" id=2]
@@ -10,8 +10,10 @@
 [ext_resource path="res://Scripts/DrawLine.gd" type="Script" id=8]
 [ext_resource path="res://Sprites/Animations/Target.tres" type="SpriteFrames" id=9]
 [ext_resource path="res://PackedScenes/Stars/StarMd.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Sprites/TensionBar.png" type="Texture" id=11]
 [ext_resource path="res://PackedScenes/Stars/StarSmall.tscn" type="PackedScene" id=12]
 [ext_resource path="res://PackedScenes/Stars/PlanetMd.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scripts/StarHighlight.gd" type="Script" id=14]
 [ext_resource path="res://PackedScenes/Stars/Pulsar.tscn" type="PackedScene" id=15]
 [ext_resource path="res://PackedScenes/Stars/StarLg.tscn" type="PackedScene" id=16]
 [ext_resource path="res://PackedScenes/Stars/PlanetLg.tscn" type="PackedScene" id=17]
@@ -144,7 +146,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=5]
 resource_name = "loss"
-loop = true
+length = 2.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("PixelSprite:frame")
 tracks/0/interp = 1
@@ -152,10 +154,36 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.3, 0.5, 1.1, 1.3, 1.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 4, 5 ]
+"values": [ 15, 13, 15, 14, 5, 4, 5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("RodTip:position")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 27, -39 ), Vector2( 5, -48 ), Vector2( 27, -39 ), Vector2( 41, -39 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "cancel"
+} ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -302,7 +330,7 @@ _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.204762, 0.6 ), 0.0, 0.0, 0
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 5 )
-player_speed = 64.0
+player_speed = 50.0
 position_min = 45.0
 position_max = 260.0
 cast_x_curve = SubResource( 12 )
@@ -313,10 +341,10 @@ aim_min = 35.0
 aim_max = 300.0
 aim_speed = 0.5
 reel_speed = 50.0
-escape_speed_mod = 1.0
+escape_speed_mod = 0.9
 max_tension = 100.0
-tension_decay = 20.0
-tension_multiplier = 10.0
+tension_decay = 50.0
+tension_multiplier = 100.0
 hooks = 3
 
 [node name="FastRiver" type="Node2D" parent="."]
@@ -369,7 +397,7 @@ position = Vector2( -5, -26 )
 texture = ExtResource( 6 )
 hframes = 3
 vframes = 6
-frame = 14
+frame = 5
 script = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
@@ -398,14 +426,37 @@ y_displacement = 20.0
 sample = 100
 
 [node name="Lure" parent="Player" instance=ExtResource( 7 )]
+base_magnitude = 5.0
 
 [node name="Target" type="AnimatedSprite" parent="Player"]
 visible = false
 position = Vector2( 27, 1 )
 frames = ExtResource( 9 )
-frame = 4
+frame = 1
 speed_scale = 2.0
 playing = true
 
 [node name="LureOrigin" type="Node2D" parent="Player"]
 position = Vector2( -36, -14 )
+
+[node name="TensionBar" type="Sprite" parent="Player"]
+position = Vector2( 0, -31 )
+texture = ExtResource( 11 )
+vframes = 2
+
+[node name="TensionBarFill" type="Sprite" parent="Player/TensionBar"]
+position = Vector2( -2, 10 )
+scale = Vector2( 1, -1 )
+texture = ExtResource( 11 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 2, 26, 4, 20 )
+
+[node name="StarHighlight" type="Node2D" parent="Player"]
+position = Vector2( 0, -28 )
+script = ExtResource( 14 )
+
+[node name="Tween" type="Tween" parent="Player/StarHighlight"]
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

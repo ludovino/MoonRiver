@@ -70,6 +70,17 @@ func wait(slack = true) -> void:
 	if(slack):
 		$RodTip.set_line($RodTip.slack)
 
+func land() -> void:
+	cancel()
+	$AnimationPlayer.play("catch")
+
+func break_line() -> void:
+	$Lure.hide()
+	$RodTip.set_line($RodTip.flying)
+	$AnimationPlayer.play("loss")
+	$Tween.interpolate_property($Lure, "position", 
+	$Lure.position, $Lure.position + Vector2(-10, -50), 2, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	$Tween.start()
 func cancel() -> void:
 	casting = false
 	$Lure.hide()

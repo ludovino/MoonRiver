@@ -3,7 +3,7 @@ extends Area2D
 
 var hooked: Star
 var noise = OpenSimplexNoise.new()
-export var frequency = 20.0
+export var frequency = 64.0
 export var base_magnitude = 50.0
 var time = 0.0
 
@@ -16,8 +16,7 @@ func _process(delta: float) -> void:
 	if hooked:
 		var x = noise.get_noise_2d(time, 0)
 		var y = noise.get_noise_2d(0, time)
-		$Offset.position = Vector2(x, y) * hooked.intensity * hooked.magnitude
-		print($Offset.position)
+		$Offset.position = Vector2(x, y) * hooked.intensity * hooked.magnitude * base_magnitude
 
 func hide() -> void:
 	$Sprite.visible = false
@@ -42,4 +41,7 @@ func add_star(star: Star):
 
 func remove_star() -> Star:
 	$Offset.remove_child(hooked)
-	return hooked
+	$Offset.position = Vector2.ZERO
+	var star = hooked
+	hooked = null
+	return star

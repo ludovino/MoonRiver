@@ -31,4 +31,3 @@ func spawn_star(w: float, h: float, y_offset: float):
 	var star = stars[randi() % stars.size()].instance()
 	add_child(star)
 	star.position = Vector2(rand_range(-0.5 * w, 0.5 * w), rand_range(-0.5 * h, 0.5 * h) + y_offset)
-	print("spawn", star.position)

@@ -18,6 +18,7 @@ pulse_graph = SubResource( 2 )
 score = 150
 escape_speed = 30.0
 magnitude = 7.0
+reel_speed_mod = 0.546
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -25,7 +26,7 @@ shape = SubResource( 1 )
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 1 )
 animation = "large"
-frame = 1
+frame = 10
 speed_scale = 0.2
 playing = true
 script = ExtResource( 3 )
