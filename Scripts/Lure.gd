@@ -1,6 +1,23 @@
+class_name Lure
 extends Area2D
 
 var hooked: Star
+var noise = OpenSimplexNoise.new()
+export var frequency = 20.0
+export var base_magnitude = 50.0
+var time = 0.0
+
+func _ready() -> void:
+	noise.seed = randi()
+	noise.period = 10
+
+func _process(delta: float) -> void:
+	time += delta * frequency
+	if hooked:
+		var x = noise.get_noise_2d(time, 0)
+		var y = noise.get_noise_2d(0, time)
+		$Offset.position = Vector2(x, y) * hooked.intensity * hooked.magnitude
+		print($Offset.position)
 
 func hide() -> void:
 	$Sprite.visible = false
@@ -17,10 +34,12 @@ func disable() -> void:
 	monitorable = false
 
 func add_star(star: Star):
-	add_child(star)
+	hide()
 	hooked = star
+	hooked.get_parent().remove_child(hooked)
+	$Offset.add_child(hooked)
 	hooked.position = Vector2.ZERO
 
 func remove_star() -> Star:
-	remove_child(hooked)
+	$Offset.remove_child(hooked)
 	return hooked

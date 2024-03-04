@@ -16,16 +16,15 @@ script = ExtResource( 2 )
 pulse_speed = 0.4
 pulse_graph = SubResource( 4 )
 score = 120
-escape_speed = 25.0
-magnitude = 5.0
+escape_speed = 35.0
+magnitude = 11.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 1 )
-animation = "small"
-frame = 3
-speed_scale = 0.3
+animation = "ring"
+frame = 2
 playing = true
 script = ExtResource( 3 )

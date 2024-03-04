@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/PlanetLg.png-b57abc2e3ee2b4613c6d392223aab237.stex"
+path="res://.import/planetRing.png-fdddd5845d2a1e2071275d605c052627.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/PlanetLg.png"
-dest_files=[ "res://.import/PlanetLg.png-b57abc2e3ee2b4613c6d392223aab237.stex" ]
+source_file="res://Sprites/planetRing.png"
+dest_files=[ "res://.import/planetRing.png-fdddd5845d2a1e2071275d605c052627.stex" ]
 
 [params]
 
