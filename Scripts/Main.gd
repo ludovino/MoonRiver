@@ -40,6 +40,8 @@ var lure_origin: Node2D
 var tension_bar: Node2D
 var bar_fill: Node2D
 var star_highlight: StarHighlight
+var sfx: AudioStreamPlayer
+
 
 func _ready() -> void:
 	randomize()
@@ -49,6 +51,7 @@ func _ready() -> void:
 	tension_bar = $Player/TensionBar
 	bar_fill = $Player/TensionBar/TensionBarFill
 	star_highlight = $Player/StarHighlight
+	sfx = $SfxPlayer
 	tension_bar.visible = false
 
 func _process(delta: float) -> void:
@@ -136,6 +139,7 @@ func _process_wait(delta: float) -> void:
 	tension_bar.visible = true
 	player.wait(false)
 	lure.add_star(highest_scoring)
+	highest_scoring.hook()
 	
 
 func _process_fight(delta):
@@ -193,6 +197,7 @@ func land_star():
 	tension_bar.visible = false
 	player.land()
 	var star = lure.remove_star()
+	star.unhook()
 	star_highlight.add_star(star)
 	add_score(star.score)
 

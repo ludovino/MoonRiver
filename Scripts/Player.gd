@@ -61,7 +61,8 @@ func release_cast() -> void:
 	$RodTip.set_line($RodTip.flying)
 	
 func reel(taut: bool) -> void:
-	$AnimationPlayer.play("reel")
+	if $AnimationPlayer.current_animation != "reel":
+		$AnimationPlayer.play("reel")
 	if(taut):
 		$RodTip.set_line($RodTip.taut)
 

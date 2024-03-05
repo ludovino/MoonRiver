@@ -5,7 +5,7 @@
 [ext_resource path="res://Scripts/Lure.gd" type="Script" id=3]
 
 [sub_resource type="CircleShape2D" id=10]
-radius = 1.5
+radius = 2.5
 
 [node name="Lure" type="Area2D"]
 position = Vector2( 59, 2 )

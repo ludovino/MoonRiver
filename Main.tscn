@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://Scripts/River.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/SpaceRock.png" type="Texture" id=2]
@@ -18,6 +18,11 @@
 [ext_resource path="res://PackedScenes/Stars/StarLg.tscn" type="PackedScene" id=16]
 [ext_resource path="res://PackedScenes/Stars/PlanetLg.tscn" type="PackedScene" id=17]
 [ext_resource path="res://PackedScenes/Stars/PlanetRing.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Sounds/Failure.wav" type="AudioStream" id=19]
+[ext_resource path="res://Sounds/Cast.wav" type="AudioStream" id=20]
+[ext_resource path="res://Sounds/LineSnap.wav" type="AudioStream" id=21]
+[ext_resource path="res://Sounds/Reel.wav" type="AudioStream" id=22]
+[ext_resource path="res://Sounds/Success.wav" type="AudioStream" id=23]
 
 [sub_resource type="Curve" id=12]
 _data = [ Vector2( 0, 0 ), 0.0, 1.90909, 0, 0, Vector2( 1, 1 ), 2.36169e-07, 0.0, 0, 0 ]
@@ -113,6 +118,20 @@ tracks/3/keys = {
 "update": 0,
 "values": [ Vector2( -36, 14 ), Vector2( -33, -40 ), Vector2( 15, -47 ) ]
 }
+tracks/4/type = "audio"
+tracks/4/path = NodePath("SfxPlayer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 20 )
+} ],
+"times": PoolRealArray( 0.2 )
+}
 
 [sub_resource type="Animation" id=24]
 tracks/0/type = "value"
@@ -126,6 +145,20 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ 6, 6, 7 ]
+}
+tracks/1/type = "audio"
+tracks/1/path = NodePath("SfxPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 23 )
+} ],
+"times": PoolRealArray( 0.2 )
 }
 
 [sub_resource type="Animation" id=4]
@@ -185,10 +218,28 @@ tracks/2/keys = {
 "method": "cancel"
 } ]
 }
+tracks/3/type = "audio"
+tracks/3/path = NodePath("SfxPlayer")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 21 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 19 )
+} ],
+"times": PoolRealArray( 0.2, 1.5 )
+}
 
 [sub_resource type="Animation" id=6]
 resource_name = "reel"
-length = 0.2
+loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("PixelSprite:frame")
 tracks/0/interp = 1
@@ -212,6 +263,20 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( 27, -39 ) ]
+}
+tracks/2/type = "audio"
+tracks/2/path = NodePath("SfxPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 22 )
+} ],
+"times": PoolRealArray( 0 )
 }
 
 [sub_resource type="Animation" id=7]
@@ -397,7 +462,7 @@ position = Vector2( -5, -26 )
 texture = ExtResource( 6 )
 hframes = 3
 vframes = 6
-frame = 5
+frame = 15
 script = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
@@ -432,7 +497,7 @@ base_magnitude = 5.0
 visible = false
 position = Vector2( 27, 1 )
 frames = ExtResource( 9 )
-frame = 1
+frame = 3
 speed_scale = 2.0
 playing = true
 
@@ -453,10 +518,16 @@ region_enabled = true
 region_rect = Rect2( 2, 26, 4, 20 )
 
 [node name="StarHighlight" type="Node2D" parent="Player"]
-position = Vector2( 0, -28 )
+position = Vector2( 0.5, -28 )
 script = ExtResource( 14 )
 
 [node name="Tween" type="Tween" parent="Player/StarHighlight"]
 
+[node name="SfxPlayer" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource( 22 )
+volume_db = -9.087
+
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="SfxPlayer" type="AudioStreamPlayer" parent="."]
