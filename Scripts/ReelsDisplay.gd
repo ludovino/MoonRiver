@@ -29,4 +29,4 @@ func remove_reels(count: int):
 	var reels = get_children()
 	var high_index = get_child_count() -1
 	for i in range(0, count):
-		reels[high_index -i].queue_free()
+		var reel = reels[high_index -i].queue_free()

@@ -23,6 +23,7 @@ func _ready() -> void:
 	audio_source = AudioStreamPlayer.new()
 	audio_source.pitch_scale = audio_pitch_modulate
 	audio_source.volume_db = 1.0
+	audio_source.bus = "Sfx"
 	add_child(audio_source)
 
 func hook():

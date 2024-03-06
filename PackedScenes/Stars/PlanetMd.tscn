@@ -17,7 +17,7 @@ position = Vector2( 118, 141 )
 script = ExtResource( 2 )
 pulse_speed = 0.4
 pulse_graph = SubResource( 4 )
-score = 120
+score = 250
 escape_speed = 25.0
 magnitude = 5.0
 catch = ExtResource( 4 )
@@ -31,7 +31,6 @@ shape = SubResource( 1 )
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 1 )
 animation = "small"
-frame = 4
 speed_scale = 0.3
 playing = true
 script = ExtResource( 3 )

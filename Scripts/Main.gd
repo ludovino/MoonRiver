@@ -44,7 +44,6 @@ var sfx: AudioStreamPlayer
 
 
 func _ready() -> void:
-	randomize()
 	lure = $Player/Lure
 	player = $Player
 	target = $Player/Target

@@ -7,7 +7,7 @@
 [ext_resource path="res://Sounds/PlanetStruggle.wav" type="AudioStream" id=5]
 
 [sub_resource type="Curve" id=2]
-_data = [ Vector2( 0.319048, 0.181818 ), 0.0, 4.40559, 0, 1, Vector2( 0.504762, 1 ), 4.40559, -1.68227, 1, 1, Vector2( 0.985714, 0.190909 ), -1.68227, 0.0, 1, 0 ]
+_data = [ Vector2( 0.319048, 0.181818 ), 0.0, 4.40559, 0, 1, Vector2( 0.504762, 1 ), 4.40559, -0.697553, 1, 1, Vector2( 0.752381, 0.827273 ), 0.0, 0.0, 0, 0, Vector2( 0.985714, 0.190909 ), -2.72728, 0.0, 1, 0 ]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 5.5
@@ -17,7 +17,7 @@ position = Vector2( 118, 141 )
 script = ExtResource( 2 )
 pulse_speed = 0.3
 pulse_graph = SubResource( 2 )
-score = 150
+score = 500
 escape_speed = 30.0
 magnitude = 7.0
 catch = ExtResource( 4 )
@@ -30,7 +30,7 @@ shape = SubResource( 1 )
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 1 )
 animation = "large"
-frame = 9
+frame = 4
 speed_scale = 0.2
 playing = true
 script = ExtResource( 3 )
