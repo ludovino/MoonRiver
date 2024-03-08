@@ -1,0 +1,223 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Sounds/RocketBoostLoop.wav" type="AudioStream" id=1]
+[ext_resource path="res://Sounds/Afterburner.wav" type="AudioStream" id=2]
+[ext_resource path="res://Sprites/Intro/Screen3/Ship.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Animations/Jets.tres" type="SpriteFrames" id=4]
+[ext_resource path="res://Sounds/Steam.wav" type="AudioStream" id=5]
+[ext_resource path="res://Sprites/Intro/Screen3/Rock.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Intro/Screen3/Shadow.png" type="Texture" id=7]
+[ext_resource path="res://Scripts/Cutscene.gd" type="Script" id=8]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Landing"
+length = 9.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Ship:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.3, 3.7, 7.7 ),
+"transitions": PoolRealArray( 0.659754, 0.870551, 0.784584, 1 ),
+"update": 0,
+"values": [ Vector2( -32, -28 ), Vector2( 75.2075, 48.0594 ), Vector2( 95, 70 ), Vector2( 169, 127 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Ship/Boost1:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2.3, 3.6, 4.2, 6.2, 7.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Ship/Boost2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 2.3, 3.6, 4.2, 6.2, 7.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true, false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Rock/Shadow:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 3.6, 4.2, 6.2, 7.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -44, -73 ), Vector2( -35, -73 ), Vector2( 4, -71 ), Vector2( 22, -71 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Rock/Shadow:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 3.6, 4.2, 6.2, 7.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 0.6, 0.6 ), Vector2( 1, 1 ), Vector2( 1.4, 1 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Rock/Shadow:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 3.6, 4.2, 6.2, 7.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false, true, false ]
+}
+tracks/6/type = "audio"
+tracks/6/path = NodePath("Booster")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 1 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 2 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 2 )
+}, {
+"end_offset": 0.9,
+"start_offset": 0.0,
+"stream": ExtResource( 1 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 5 )
+} ],
+"times": PoolRealArray( 0, 3.6, 3.8, 6.2, 7.3 )
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Ship:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 116, 77 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Rock/Shadow:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -44, -73 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Rock/Shadow:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.5, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Rock/Shadow:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[node name="Landing" type="Node2D"]
+script = ExtResource( 8 )
+
+[node name="Rock" type="Sprite" parent="."]
+position = Vector2( 155, 228 )
+texture = ExtResource( 6 )
+
+[node name="Shadow" type="Sprite" parent="Rock"]
+visible = false
+modulate = Color( 0.392157, 0.211765, 0.294118, 1 )
+position = Vector2( -44, -73 )
+scale = Vector2( 0.5, 1 )
+texture = ExtResource( 7 )
+
+[node name="Ship" type="Sprite" parent="."]
+position = Vector2( 116, 77 )
+texture = ExtResource( 3 )
+
+[node name="Boost1" type="AnimatedSprite" parent="Ship"]
+position = Vector2( -27, 29 )
+rotation = -1.5708
+frames = ExtResource( 4 )
+animation = "booster"
+playing = true
+
+[node name="Boost2" type="AnimatedSprite" parent="Ship"]
+position = Vector2( 51, 29 )
+rotation = -1.5708
+frames = ExtResource( 4 )
+animation = "booster"
+playing = true
+
+[node name="Booster" type="AudioStreamPlayer" parent="."]
+volume_db = -8.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Landing"
+anims/Landing = SubResource( 1 )
+anims/RESET = SubResource( 2 )
+
+[node name="StarsL" type="CPUParticles2D" parent="."]
+position = Vector2( 154, 325 )
+z_index = -1
+amount = 16
+lifetime = 20.0
+preprocess = 10.0
+emission_shape = 2
+emission_rect_extents = Vector2( 160, 1 )
+direction = Vector2( 0, -1 )
+spread = 0.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 32.0
+initial_velocity_random = 0.5
+scale_amount = 2.0
+scale_amount_random = 1.0

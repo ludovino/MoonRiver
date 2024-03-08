@@ -1,0 +1,248 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Scripts/Shaker.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Intro/Screen2/Panels.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Intro/Screen2/PanelLights.png" type="Texture" id=3]
+[ext_resource path="res://Sounds/RocketBoostLoop.wav" type="AudioStream" id=4]
+[ext_resource path="res://Sounds/Alert.wav" type="AudioStream" id=5]
+[ext_resource path="res://Sounds/Afterburner.wav" type="AudioStream" id=6]
+[ext_resource path="res://Sprites/Intro/Screen2/HudAlert.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Intro/Screen2/Hud.png" type="Texture" id=8]
+[ext_resource path="res://Scripts/Cutscene.gd" type="Script" id=9]
+
+[sub_resource type="Curve" id=2]
+max_value = 5.0
+_data = [ Vector2( 0, 1.36364 ), 0.0, 4.39962, 0, 0, Vector2( 1, 5 ), 8.8539, 0.0, 0, 0 ]
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Panels:frequency")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 90.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Panels:magnitude")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 4.0 ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "ShipControls"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Panels/Hud/HudAlert:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.4, 0.5, 1.4, 1.5, 2.4, 2.5, 3.4, 3.5, 4.4, 4.5, 5.4, 5.5, 6.4, 6.5, 7.4, 7.5, 8.4, 8.5, 9.4, 9.5 ),
+"transitions": PoolRealArray( 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.662745 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.662745 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.662745 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.662745 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.662745 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.662745 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.662745 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.662745 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.662745 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.662745 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Panels/PanelLights:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.4, 0.5, 1.4, 1.5, 2.4, 2.5, 3.4, 3.5, 4.4, 4.5, 5.4, 5.5, 6.4, 6.5, 7.4, 7.5, 8.4, 8.5, 9.4, 9.5 ),
+"transitions": PoolRealArray( 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.0666667 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.0666667 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.0666667 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.0666667 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.0666667 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.0666667 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.0666667 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.0666667 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.0666667 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.0666667 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "audio"
+tracks/2/path = NodePath("Rocket")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.8,
+"stream": ExtResource( 4 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.8,
+"stream": ExtResource( 4 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.8,
+"stream": ExtResource( 4 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.8,
+"stream": ExtResource( 4 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 6 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 6 )
+}, {
+"end_offset": 0.7,
+"start_offset": 0.6,
+"stream": ExtResource( 4 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 6 )
+} ],
+"times": PoolRealArray( 0, 1.5, 3, 5, 6.9, 7.3, 8.2, 9.6 )
+}
+tracks/3/type = "audio"
+tracks/3/path = NodePath("Alert")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 5 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 5 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 5 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 5 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 5 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 5 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 5 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 5 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 5 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 5 )
+} ],
+"times": PoolRealArray( 0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5, 7.5, 8.5, 9.5 )
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Stars:speed_scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 3.2, 8.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.1 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Panels:frequency")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 3.2, 6.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 90.0, 90.0, 40.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Panels:magnitude")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 7.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 4.0, 0.0 ]
+}
+
+[node name="ShipControls" type="Node2D"]
+script = ExtResource( 9 )
+
+[node name="Stars" type="CPUParticles2D" parent="."]
+position = Vector2( 152, 114 )
+z_index = -1
+preprocess = 0.5
+speed_scale = 0.388
+direction = Vector2( 0, -1 )
+spread = 113.94
+gravity = Vector2( 0, 0 )
+initial_velocity = 187.81
+initial_velocity_random = 0.21
+radial_accel = 100.0
+radial_accel_random = 0.55
+scale_amount_random = 0.5
+scale_amount_curve = SubResource( 2 )
+
+[node name="Panels" type="Sprite" parent="."]
+position = Vector2( 159, 160 )
+texture = ExtResource( 2 )
+script = ExtResource( 1 )
+frequency = 90.0
+magnitude = 4.0
+
+[node name="PanelLights" type="Sprite" parent="Panels"]
+modulate = Color( 1, 1, 1, 0.988477 )
+texture = ExtResource( 3 )
+
+[node name="Hud" type="Sprite" parent="Panels"]
+position = Vector2( -2, -53 )
+texture = ExtResource( 8 )
+
+[node name="HudAlert" type="Sprite" parent="Panels/Hud"]
+modulate = Color( 1, 1, 1, 0.995836 )
+position = Vector2( -26, -3 )
+texture = ExtResource( 7 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "ShipControls"
+anims/RESET = SubResource( 3 )
+anims/ShipControls = SubResource( 1 )
+
+[node name="Rocket" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -8.0
+
+[node name="Alert" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )

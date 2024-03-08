@@ -1,0 +1,129 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scripts/Shaker.gd" type="Script" id=1]
+[ext_resource path="res://Sounds/RocketBoostLoop.wav" type="AudioStream" id=2]
+[ext_resource path="res://Sprites/Intro/Screen3/Ship.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Animations/Jets.tres" type="SpriteFrames" id=4]
+[ext_resource path="res://Scripts/Cutscene.gd" type="Script" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Flight"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Scene:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 2, 7 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -360 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "audio"
+tracks/1/path = NodePath("Rockets")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 2 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 2 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 2 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 2 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 2 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 2 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 2 )
+} ],
+"times": PoolRealArray( 0, 2, 4.1, 6.2, 8.5, 10.6, 12.7 )
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Rockets:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -20.0, -6.0 ]
+}
+
+[node name="Flight" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="Scene" type="Node2D" parent="."]
+position = Vector2( 0, -360 )
+
+[node name="StarsR" type="CPUParticles2D" parent="Scene"]
+position = Vector2( 390, 160 )
+scale = Vector2( 2, 1 )
+z_index = -1
+emission_shape = 2
+emission_rect_extents = Vector2( 1, 160 )
+direction = Vector2( -1, 0 )
+spread = 0.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 600.0
+initial_velocity_random = 0.57
+scale_amount = 2.0
+scale_amount_random = 1.0
+
+[node name="StarsR2" type="CPUParticles2D" parent="Scene"]
+position = Vector2( 390, 488 )
+scale = Vector2( 2, 1 )
+z_index = -1
+emission_shape = 2
+emission_rect_extents = Vector2( 1, 160 )
+direction = Vector2( -1, 0 )
+spread = 0.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 600.0
+initial_velocity_random = 0.57
+scale_amount = 2.0
+scale_amount_random = 1.0
+
+[node name="Ship" type="Sprite" parent="Scene"]
+position = Vector2( 148, 144 )
+texture = ExtResource( 3 )
+script = ExtResource( 1 )
+frequency = 32.0
+magnitude = 3.0
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Scene/Ship"]
+position = Vector2( -73, 2 )
+frames = ExtResource( 4 )
+frame = 2
+playing = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Flight"
+anims/Flight = SubResource( 1 )
+
+[node name="Rockets" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = -20.0
+autoplay = true
