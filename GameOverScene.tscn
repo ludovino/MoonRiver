@@ -1,35 +1,478 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://menu_theme.tres" type="Theme" id=1]
-[ext_resource path="res://Sprites/GameOver.png" type="Texture" id=2]
+[ext_resource path="res://TitleText.tres" type="Theme" id=2]
 [ext_resource path="res://GameOverScene.gd" type="Script" id=3]
+[ext_resource path="res://Sprites/Intro/Screen3/Ship.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Animations/Jets.tres" type="SpriteFrames" id=6]
+[ext_resource path="res://Sounds/RocketBoostLoop.wav" type="AudioStream" id=7]
+[ext_resource path="res://Sounds/Afterburner.wav" type="AudioStream" id=8]
 
-[node name="GameOverScene" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-theme = ExtResource( 1 )
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Node2D/Ship:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -75, 157 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CenterContainer:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -30 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Node2D/Ship/AnimatedSprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 2, 2 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "high_score"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Node2D/StarsR:speed_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3.1, 10 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.5, 1.0, 3.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Node2D/Ship:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 4.8, 5.3, 7 ),
+"transitions": PoolRealArray( 0.5, -2, 1.18921, 1 ),
+"update": 0,
+"values": [ Vector2( -73, 113 ), Vector2( 147, 113 ), Vector2( 126, 113 ), Vector2( 507, 113 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CenterContainer/VBoxContainer/BigText:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "You win!" ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CenterContainer:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 5.6, 6.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("CenterContainer:rect_position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 5.6, 6.6 ),
+"transitions": PoolRealArray( -2, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -30 ), Vector2( 0, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Sfx:volume_db")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 4.8, 5.6, 8.6 ),
+"transitions": PoolRealArray( 1, 1, 2, 1 ),
+"update": 0,
+"values": [ -15.0, -11.0, -4.0, -80.0 ]
+}
+tracks/6/type = "audio"
+tracks/6/path = NodePath("Sfx")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 7 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 7 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 7 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 7 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 7 )
+} ],
+"times": PoolRealArray( 0, 2.1, 3.3, 5.5, 7.7 )
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Node2D/Ship/AnimatedSprite:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 5.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Vector2( 1, 1 ), Vector2( 2, 2 ) ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "low_score"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Node2D/StarsR:speed_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.05, 0.01 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Node2D/Ship:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 4, 5, 10 ),
+"transitions": PoolRealArray( 0.5, 2, 2, 2 ),
+"update": 0,
+"values": [ Vector2( -73, 113 ), Vector2( 147, 113 ), Vector2( 147, 113 ), Vector2( -70, 113 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CenterContainer/VBoxContainer/BigText:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "Game Over" ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CenterContainer:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 5.6, 6.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("CenterContainer:rect_position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 5.6, 6.6 ),
+"transitions": PoolRealArray( -2, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -30 ), Vector2( 0, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Node2D/Ship/AnimatedSprite:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 1, 1.4, 2, 2.1, 2.3, 2.5, 2.9, 3.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true, false, true, false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Sfx:volume_db")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 1.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -11.0, 0.0 ]
+}
+tracks/7/type = "audio"
+tracks/7/path = NodePath("Sfx")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 7 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 8 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 8 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.07,
+"stream": ExtResource( 8 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.1,
+"stream": ExtResource( 8 )
+} ],
+"times": PoolRealArray( -1.7, 0.9, 1.9, 2.2, 2.9 )
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "mid_score"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Node2D/StarsR:speed_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3.1, 10 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.5, 0.5, 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Node2D/Ship:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 4.8 ),
+"transitions": PoolRealArray( 0.5, 2 ),
+"update": 0,
+"values": [ Vector2( -73, 113 ), Vector2( 147, 113 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CenterContainer/VBoxContainer/BigText:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "You win" ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CenterContainer:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 5.6, 6.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("CenterContainer:rect_position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 5.6, 6.6 ),
+"transitions": PoolRealArray( -2, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -30 ), Vector2( 0, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Node2D/Ship/AnimatedSprite:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 1, 1.4, 2, 2.1, 2.3, 2.5, 2.9, 3.2, 3.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true, false, true, false, true ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Sfx:volume_db")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 1.6, 9.8 ),
+"transitions": PoolRealArray( 1, 2, 1 ),
+"update": 0,
+"values": [ -11.0, 0.0, -80.0 ]
+}
+tracks/7/type = "audio"
+tracks/7/path = NodePath("Sfx")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 7 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 8 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 8 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.07,
+"stream": ExtResource( 8 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.1,
+"stream": ExtResource( 8 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 7 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 7 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 7 )
+} ],
+"times": PoolRealArray( -1.7, 0.9, 1.9, 2.2, 2.9, 3.3, 5.5, 7.7 )
+}
+
+[node name="GameOverScene" type="Node2D"]
 script = ExtResource( 3 )
 
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="StarsR" type="CPUParticles2D" parent="Node2D"]
+position = Vector2( 332, 160 )
+scale = Vector2( 2, 1 )
+z_index = -1
+amount = 16
+lifetime = 0.7
+speed_scale = 3.0
+emission_shape = 2
+emission_rect_extents = Vector2( 1, 160 )
+direction = Vector2( -1, 0 )
+spread = 0.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 600.0
+initial_velocity_random = 0.57
+scale_amount = 2.0
+scale_amount_random = 1.0
+
+[node name="Ship" type="Sprite" parent="Node2D"]
+modulate = Color( 0.886275, 0.447059, 0.521569, 1 )
+position = Vector2( -75, 157 )
+texture = ExtResource( 5 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Node2D/Ship"]
+position = Vector2( -57, 2 )
+scale = Vector2( 2, 2 )
+frames = ExtResource( 6 )
+frame = 2
+playing = true
+offset = Vector2( -16, 0 )
+
 [node name="CenterContainer" type="CenterContainer" parent="."]
+margin_top = -30.0
 margin_right = 320.0
-margin_bottom = 320.0
+margin_bottom = 290.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 margin_left = 88.0
-margin_top = 70.0
+margin_top = 55.0
 margin_right = 231.0
-margin_bottom = 250.0
+margin_bottom = 265.0
 
-[node name="GameOver" type="TextureRect" parent="CenterContainer/VBoxContainer"]
+[node name="BigText" type="Label" parent="CenterContainer/VBoxContainer"]
 margin_right = 143.0
-margin_bottom = 84.0
-texture = ExtResource( 2 )
-stretch_mode = 4
+margin_bottom = 114.0
+theme = ExtResource( 2 )
+text = "You win!"
+align = 1
+valign = 1
+autowrap = true
+percent_visible = -0.125
 
 [node name="ScoreCtn" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
-margin_top = 94.0
+margin_top = 124.0
 margin_right = 143.0
-margin_bottom = 108.0
+margin_bottom = 138.0
 
 [node name="Score" type="Label" parent="CenterContainer/VBoxContainer/ScoreCtn"]
 margin_right = 143.0
@@ -38,9 +481,9 @@ text = "Fuel Units Gathered: 69"
 valign = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
-margin_top = 118.0
+margin_top = 148.0
 margin_right = 143.0
-margin_bottom = 144.0
+margin_bottom = 174.0
 
 [node name="PlayAgain" type="Button" parent="CenterContainer/VBoxContainer/CenterContainer"]
 margin_left = 35.0
@@ -50,9 +493,9 @@ theme = ExtResource( 1 )
 text = "Play Again"
 
 [node name="CenterContainer2" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
-margin_top = 154.0
+margin_top = 184.0
 margin_right = 143.0
-margin_bottom = 180.0
+margin_bottom = 210.0
 
 [node name="MainMenu" type="Button" parent="CenterContainer/VBoxContainer/CenterContainer2"]
 margin_left = 35.0
@@ -60,6 +503,18 @@ margin_right = 108.0
 margin_bottom = 26.0
 theme = ExtResource( 1 )
 text = "Main Menu"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "mid_score"
+anims/RESET = SubResource( 2 )
+anims/high_score = SubResource( 4 )
+anims/low_score = SubResource( 1 )
+anims/mid_score = SubResource( 3 )
+
+[node name="Sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+volume_db = -80.0
+bus = "Sfx"
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/CenterContainer/PlayAgain" to="." method="_on_PlayAgain_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/CenterContainer2/MainMenu" to="." method="_on_MainMenu_pressed"]

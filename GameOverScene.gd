@@ -1,5 +1,5 @@
 class_name GameOver
-extends Control
+extends Node
 
 const score_string = "fuel units gathered: %s"
 
@@ -11,6 +11,12 @@ func _ready() -> void:
 
 func set_score(score: int):
 	$CenterContainer/VBoxContainer/ScoreCtn/Score.text = score_string % score
+	if(score > 10000):
+		$AnimationPlayer.play("high_score")
+	elif score > 1000:
+		$AnimationPlayer.play("med_score")
+	else:
+		$AnimationPlayer.play("low_score")
 
 
 func _on_PlayAgain_pressed() -> void:

@@ -14,6 +14,7 @@ var current_time: float = 0.0
 export var speed: float
 
 func _ready() -> void:
+	if initial_stars == 0: return
 	for _i in range(0, initial_stars):
 		spawn_star(width, initial_height, -200)
 
