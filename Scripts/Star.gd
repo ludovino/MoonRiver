@@ -18,6 +18,7 @@ var intensity: float
 var hooked: bool = false
 
 var audio_source: AudioStreamPlayer
+var hook_sound: AudioStreamPlayer
 
 func _ready() -> void:
 	audio_source = AudioStreamPlayer.new()
@@ -27,22 +28,26 @@ func _ready() -> void:
 	add_child(audio_source)
 
 func hook():
-	print("hook")
 	hooked = true
-	audio_source.stream = catch
+	hook_sound = AudioStreamPlayer.new()
+	hook_sound.pitch_scale = audio_pitch_modulate
+	add_child(hook_sound)
+	hook_sound.stream = catch
+	hook_sound.play(0)
+	audio_source.stream = struggle
 	audio_source.play(0)
 
 func unhook():
 	hooked = false
+	audio_source.stop()
 
 func _process(delta: float) -> void:
 	if not hooked:
 		return
-	var prev_intensity = intensity
 	time += delta * pulse_speed
 	if time >= 1.0:
 		time -= 1.0
-	intensity = pulse_graph.interpolate(time)
-	if prev_intensity < 0.25 and intensity >= 0.25:
 		audio_source.stream = struggle
 		audio_source.play(0)
+	intensity = pulse_graph.interpolate(time)
+	audio_source.volume_db = (intensity * 30) - 30
