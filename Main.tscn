@@ -1,7 +1,8 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=48 format=2]
 
 [ext_resource path="res://Scripts/River.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/SpaceRock.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/TensionBar.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=4]
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=5]
 [ext_resource path="res://Sprites/Fishernaut.png" type="Texture" id=6]
@@ -561,25 +562,38 @@ base_magnitude = 5.0
 visible = false
 position = Vector2( 27, 1 )
 frames = ExtResource( 9 )
-frame = 4
+frame = 1
 speed_scale = 2.0
 playing = true
 
 [node name="LureOrigin" type="Node2D" parent="Player"]
 position = Vector2( -36, -14 )
 
-[node name="TensionBar" type="Sprite" parent="Player"]
-position = Vector2( 0, -31 )
-texture = ExtResource( 11 )
-vframes = 2
+[node name="BarParent" type="Node2D" parent="Player"]
+position = Vector2( 0, -19 )
 
-[node name="TensionBarFill" type="Sprite" parent="Player/TensionBar"]
-position = Vector2( -2, 10 )
-scale = Vector2( 1, -1 )
+[node name="TensionBar" type="NinePatchRect" parent="Player/BarParent"]
+margin_left = 4.0
+margin_right = 12.0
+margin_bottom = 24.0
+grow_horizontal = 0
+grow_vertical = 0
+rect_rotation = 180.0
+input_pass_on_modal_close_click = false
 texture = ExtResource( 11 )
-centered = false
-region_enabled = true
-region_rect = Rect2( 2, 26, 4, 20 )
+region_rect = Rect2( 0, 0, 8, 24 )
+patch_margin_left = 1
+patch_margin_top = 1
+patch_margin_right = 1
+patch_margin_bottom = 1
+script = ExtResource( 3 )
+
+[node name="BarFill" type="ColorRect" parent="Player/BarParent/TensionBar"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 6.0
+margin_bottom = 22.0
+rect_pivot_offset = Vector2( 2, 20 )
 
 [node name="StarHighlight" type="Node2D" parent="Player"]
 position = Vector2( 0.5, -28 )

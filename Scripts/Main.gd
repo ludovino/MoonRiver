@@ -37,7 +37,7 @@ var lure: Lure
 var player: Player
 var target: Node2D
 var lure_origin: Node2D
-var tension_bar: Node2D
+var tension_bar: TensionBar
 var bar_fill: Node2D
 var star_highlight: StarHighlight
 var sfx: AudioStreamPlayer
@@ -47,11 +47,10 @@ func _ready() -> void:
 	lure = $Player/Lure
 	player = $Player
 	target = $Player/Target
-	tension_bar = $Player/TensionBar
-	bar_fill = $Player/TensionBar/TensionBarFill
+	tension_bar = $Player/BarParent/TensionBar
 	star_highlight = $Player/StarHighlight
 	sfx = $SfxPlayer
-	tension_bar.visible = false
+	tension_bar.hide()
 
 func _process(delta: float) -> void:
 	match current_state:
@@ -135,7 +134,7 @@ func _process_wait(delta: float) -> void:
 		if overlap.score > highest_scoring.score:
 			highest_scoring = overlap
 	current_state = state.fight
-	tension_bar.visible = true
+	tension_bar.show()
 	player.wait(false)
 	lure.add_star(highest_scoring)
 	highest_scoring.hook()
@@ -189,11 +188,11 @@ func add_score(points: int):
 func set_tension(t: float):
 	tension = t
 	emit_signal("tension_change", t)
-	bar_fill.scale.y = clamp(- t / max_tension, -1.0, 0.0)
+	tension_bar.set_tension(clamp(t / max_tension, 0.0, 1.0))
 
 func land_star():
 	set_tension(0)
-	tension_bar.visible = false
+	tension_bar.hide()
 	player.land()
 	var star = lure.remove_star()
 	star.unhook()
@@ -202,7 +201,7 @@ func land_star():
 
 func lose_hook():
 	set_tension(0)
-	tension_bar.visible = false
+	tension_bar.hide()
 	lure.remove_star().queue_free()
 	player.break_line()
 	hooks -= 1
