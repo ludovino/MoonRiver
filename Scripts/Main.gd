@@ -34,6 +34,8 @@ var score:int = 0
 var current_state = state.move
 
 var lure: Lure
+var timer_display: Label
+var game_timer: Timer
 var player: Player
 var target: Node2D
 var lure_origin: Node2D
@@ -45,6 +47,9 @@ var sfx: AudioStreamPlayer
 
 func _ready() -> void:
 	lure = $Player/Lure
+	game_timer = $GameTime
+	game_timer.connect("timeout", self, "_out_of_time")
+	timer_display = $Control/CenterContainer/VFlowContainer/Timer
 	player = $Player
 	target = $Player/Target
 	tension_bar = $Player/BarParent/TensionBar
@@ -53,6 +58,10 @@ func _ready() -> void:
 	tension_bar.hide()
 
 func _process(delta: float) -> void:
+	var minutes = str(int(game_timer.time_left / 60))
+	var seconds = str(int(game_timer.time_left) % 60)
+	timer_display.text = minutes + ":" + seconds
+	
 	match current_state:
 		state.move:
 			_process_move(delta)
@@ -66,7 +75,10 @@ func _process(delta: float) -> void:
 			_process_lose()
 		state.land:
 			_process_land()
-
+			
+func _out_of_time() -> void:
+	emit_signal("game_over", score)
+	
 func _process_move(delta: float) -> void:
 	# cast
 	if Input.is_action_just_pressed("action"):
