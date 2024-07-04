@@ -7,7 +7,7 @@
 [ext_resource path="res://Sounds/StarBite.wav" type="AudioStream" id=5]
 
 [sub_resource type="Curve" id=2]
-_data = [ Vector2( 0.314286, 0 ), 0.0, 5.52632, 0, 1, Vector2( 0.495238, 1 ), 5.52632, -42.0, 1, 1, Vector2( 0.519048, 0 ), -42.0, 0.0, 1, 1, Vector2( 0.552381, 0 ), 0.0, 14.0, 1, 1, Vector2( 0.623809, 1 ), 14.0, 0.0, 1, 0, Vector2( 0.971429, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+_data = [ Vector2( 0.42381, 0 ), 0.0, 5.12195, 0, 1, Vector2( 0.619048, 1 ), 5.12195, -69.9999, 1, 1, Vector2( 0.633333, 0 ), -69.9999, 0.0, 1, 1, Vector2( 0.738095, 0 ), -2.60909, 17.5, 0, 1, Vector2( 0.795238, 1 ), 17.5, 0.0, 1, 0, Vector2( 0.971429, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 3.0
@@ -17,13 +17,13 @@ position = Vector2( 118, 141 )
 script = ExtResource( 2 )
 pulse_speed = 1.1
 pulse_graph = SubResource( 2 )
-score = 200
-escape_speed = 28.0
-magnitude = 3.0
+score = 100
+escape_speed = 30.0
+magnitude = 5.0
 catch = ExtResource( 5 )
 struggle = ExtResource( 4 )
 audio_pitch_modulate = 1.5
-reel_speed_mod = 0.653
+reel_speed_mod = 0.8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -31,6 +31,7 @@ shape = SubResource( 1 )
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 1 )
 animation = "pulsar"
+frame = 2
 speed_scale = 0.7
 playing = true
 script = ExtResource( 3 )

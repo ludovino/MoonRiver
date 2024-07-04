@@ -8,7 +8,7 @@
 
 [sub_resource type="Animation" id=1]
 resource_name = "Flight"
-length = 10.0
+length = 5.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Scene:position")
 tracks/0/interp = 1
@@ -16,7 +16,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 2, 7 ),
+"times": PoolRealArray( 0, 3.7 ),
 "transitions": PoolRealArray( 0.5, 1 ),
 "update": 0,
 "values": [ Vector2( 0, -360 ), Vector2( 0, 0 ) ]
@@ -45,7 +45,7 @@ tracks/1/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 2 )
 }, {
-"end_offset": 0.0,
+"end_offset": 0.576207,
 "start_offset": 0.0,
 "stream": ExtResource( 2 )
 }, {
@@ -57,7 +57,7 @@ tracks/1/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 2 )
 } ],
-"times": PoolRealArray( 0, 2, 4.1, 6.2, 8.5, 10.6, 12.7 )
+"times": PoolRealArray( 0, 0.5, 0.8, 2.9, 5.2, 7.3, 9.4 )
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Rockets:volume_db")
@@ -66,7 +66,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 7 ),
+"times": PoolRealArray( 0, 3.7 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ -20.0, -6.0 ]
@@ -116,7 +116,6 @@ magnitude = 3.0
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Scene/Ship"]
 position = Vector2( -73, 2 )
 frames = ExtResource( 4 )
-frame = 1
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

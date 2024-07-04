@@ -17,12 +17,12 @@ position = Vector2( 118, 141 )
 script = ExtResource( 2 )
 pulse_speed = 0.3
 pulse_graph = SubResource( 2 )
-score = 500
+score = 250
 escape_speed = 30.0
 magnitude = 7.0
 catch = ExtResource( 4 )
 struggle = ExtResource( 5 )
-reel_speed_mod = 0.546
+reel_speed_mod = 0.6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

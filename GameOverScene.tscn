@@ -443,7 +443,6 @@ texture = ExtResource( 5 )
 position = Vector2( -57, 2 )
 scale = Vector2( 2, 2 )
 frames = ExtResource( 6 )
-frame = 1
 playing = true
 offset = Vector2( -16, 0 )
 
