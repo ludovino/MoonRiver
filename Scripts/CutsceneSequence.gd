@@ -12,7 +12,10 @@ func _ready() -> void:
 	_next()
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventKey and event.is_pressed() and !event.echo:
+	if event is InputEventKey\
+	and event.is_pressed()\
+	and !event.echo\
+	and !event.is_action("pause"):
 		_next()
 
 func _next():

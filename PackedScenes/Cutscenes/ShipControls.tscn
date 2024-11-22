@@ -40,6 +40,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [ 4.0 ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
 
 [sub_resource type="Animation" id=1]
 resource_name = "ShipControls"
@@ -196,8 +208,21 @@ tracks/6/keys = {
 "update": 0,
 "values": [ 4.0, 0.0 ]
 }
+tracks/7/type = "value"
+tracks/7/path = NodePath(".:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( -2, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -120 ), Vector2( 0, 0 ) ]
+}
 
 [node name="ShipControls" type="Node2D"]
+scale = Vector2( 2, 2 )
 script = ExtResource( 9 )
 
 [node name="Stars" type="CPUParticles2D" parent="."]
@@ -241,6 +266,8 @@ anims/ShipControls = SubResource( 1 )
 [node name="Rocket" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 volume_db = -8.0
+bus = "Sfx"
 
 [node name="Alert" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
+bus = "Sfx"

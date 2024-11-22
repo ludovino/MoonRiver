@@ -11,7 +11,6 @@ func _ready() -> void:
 	difference = start_height - $BarFill.rect_size.y;
 
 func show() -> void:
-	rect_global_position = get_parent().global_position.floor()
 	visible = true
 
 func hide() -> void:
@@ -24,3 +23,6 @@ func set_tension_max(new_tension_max: float) -> void:
 func set_tension(new_tension_percent: float) -> void:
 	var px = new_tension_percent * (rect_size.y - difference)
 	$BarFill.rect_size.y = floor(px)
+
+func set_danger(danger_level: float) -> void:
+	modulate = lerp(Color.white, Color.red, danger_level)

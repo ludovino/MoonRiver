@@ -1,3 +1,4 @@
+tool
 class_name River
 extends Node2D
 
@@ -19,6 +20,9 @@ func _ready() -> void:
 		spawn_star(width, initial_height, -200)
 
 func _process(delta: float) -> void:
+	if Engine.editor_hint:
+		update()
+		return
 	current_time += delta
 	if current_time > spawn_time:
 		current_time = 0.0
@@ -27,6 +31,11 @@ func _process(delta: float) -> void:
 		star.position += Vector2.UP * speed * delta
 		if star.global_position.y < -10:
 			star.queue_free()
+
+func _draw() -> void:
+		var start = global_position + Vector2.LEFT * width / 2.0
+		var end = global_position + Vector2.RIGHT * width / 2.0
+		draw_line(start, end, Color.white, 2.0)
 
 func spawn_star(w: float, h: float, y_offset: float):
 	var star = stars[randi() % stars.size()].instance()

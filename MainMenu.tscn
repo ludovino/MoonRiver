@@ -47,30 +47,6 @@ tracks/2/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ) ]
 }
-tracks/3/type = "value"
-tracks/3/path = NodePath("Play:rect_position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 189, 111 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("Play:modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ) ]
-}
 
 [sub_resource type="Animation" id=2]
 resource_name = "main"
@@ -85,7 +61,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 15 ),
 "transitions": PoolRealArray( 0.5, 1 ),
 "update": 0,
-"values": [ Vector2( 158, 318 ), Vector2( 161, 158 ) ]
+"values": [ Vector2( 158, 360 ), Vector2( 161, 200 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("River:position")
@@ -97,7 +73,7 @@ tracks/1/keys = {
 "times": PoolRealArray( -0.1, 14.9 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 157, 420 ), Vector2( 157, 388 ) ]
+"values": [ Vector2( 320, 420 ), Vector2( 320, 388 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Title:position")
@@ -109,7 +85,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 3.4 ),
 "transitions": PoolRealArray( -2, 1 ),
 "update": 0,
-"values": [ Vector2( 211, 24 ), Vector2( 211, 90 ) ]
+"values": [ Vector2( 320, 24 ), Vector2( 320, 90 ) ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Title:modulate")
@@ -123,30 +99,6 @@ tracks/3/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
-tracks/4/type = "value"
-tracks/4/path = NodePath("Play:rect_position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0, 0.6 ),
-"transitions": PoolRealArray( -2, 1 ),
-"update": 0,
-"values": [ Vector2( 189, 111 ), Vector2( 189, 151 ) ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("Play:modulate")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 0.5 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource( 3 )
@@ -157,21 +109,34 @@ position = Vector2( 211, 90 )
 z_index = 1
 texture = ExtResource( 9 )
 
-[node name="Play" type="Button" parent="."]
-modulate = Color( 1, 1, 1, 0 )
-margin_left = 189.0
-margin_top = 111.0
-margin_right = 229.0
-margin_bottom = 137.0
+[node name="Menu" type="Control" parent="Title"]
+margin_left = -26.0
+margin_top = 14.0
+margin_right = 14.0
+margin_bottom = 54.0
+theme = ExtResource( 2 )
+
+[node name="Play" type="Button" parent="Title/Menu"]
+margin_top = 47.0
+margin_right = 40.0
+margin_bottom = 73.0
 theme = ExtResource( 2 )
 text = "Play"
 
+[node name="Quit" type="Button" parent="Title/Menu"]
+margin_top = 80.0
+margin_right = 40.0
+margin_bottom = 106.0
+theme = ExtResource( 2 )
+theme_type_variation = "Quit"
+text = "Quit"
+
 [node name="River" type="Node2D" parent="."]
-position = Vector2( 157, 419.787 )
+position = Vector2( 320, 388 )
 z_index = -3
 script = ExtResource( 4 )
 stars = [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ]
-width = 320.0
+width = 640.0
 height = 10.0
 initial_height = 600.0
 initial_stars = 30.0
@@ -188,4 +153,5 @@ autoplay = "main"
 anims/RESET = SubResource( 1 )
 anims/main = SubResource( 2 )
 
-[connection signal="pressed" from="Play" to="." method="_on_Play_pressed"]
+[connection signal="pressed" from="Title/Menu/Play" to="." method="_on_Play_pressed"]
+[connection signal="pressed" from="Title/Menu/Quit" to="." method="_on_Quit_pressed"]

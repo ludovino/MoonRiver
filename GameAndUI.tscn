@@ -1,20 +1,25 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://GameRoot.gd" type="Script" id=1]
 [ext_resource path="res://Sounds/8-bit-ooame-lofi.mp3" type="AudioStream" id=2]
+[ext_resource path="res://menu_theme.tres" type="Theme" id=3]
+[ext_resource path="res://Scripts/Volume.gd" type="Script" id=4]
 
 [node name="GameRoot" type="Control"]
+pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
 
 [node name="ViewportContainer" type="ViewportContainer" parent="."]
-margin_right = 320.0
-margin_bottom = 320.0
+pause_mode = 1
+margin_right = 640.0
+margin_bottom = 360.0
 stretch = true
 
 [node name="Viewport" type="Viewport" parent="ViewportContainer"]
-size = Vector2( 320, 320 )
+pause_mode = 1
+size = Vector2( 640, 360 )
 handle_input_locally = false
 render_target_update_mode = 3
 
@@ -22,3 +27,114 @@ render_target_update_mode = 3
 stream = ExtResource( 2 )
 autoplay = true
 bus = "Music"
+
+[node name="PauseMenu" type="Control" parent="."]
+pause_mode = 2
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 3 )
+
+[node name="CenterContainer" type="CenterContainer" parent="PauseMenu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/CenterContainer"]
+margin_left = 256.0
+margin_top = 98.0
+margin_right = 384.0
+margin_bottom = 262.0
+alignment = 1
+
+[node name="Resume" type="Button" parent="PauseMenu/CenterContainer/VBoxContainer"]
+margin_right = 128.0
+margin_bottom = 26.0
+size_flags_horizontal = 5
+text = "Resume"
+
+[node name="Volume" type="GridContainer" parent="PauseMenu/CenterContainer/VBoxContainer"]
+margin_top = 36.0
+margin_right = 128.0
+margin_bottom = 92.0
+columns = 2
+script = ExtResource( 4 )
+
+[node name="Master" type="Label" parent="PauseMenu/CenterContainer/VBoxContainer/Volume"]
+margin_top = 1.0
+margin_right = 44.0
+margin_bottom = 15.0
+text = "Master"
+
+[node name="MasterSlider" type="HSlider" parent="PauseMenu/CenterContainer/VBoxContainer/Volume"]
+margin_left = 48.0
+margin_right = 128.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 80, 0 )
+min_value = 0.01
+max_value = 1.0
+step = 0.01
+value = 0.01
+tick_count = 10
+ticks_on_borders = true
+
+[node name="Sfx" type="Label" parent="PauseMenu/CenterContainer/VBoxContainer/Volume"]
+margin_top = 21.0
+margin_right = 44.0
+margin_bottom = 35.0
+text = "Sfx"
+
+[node name="SfxSlider" type="HSlider" parent="PauseMenu/CenterContainer/VBoxContainer/Volume"]
+margin_left = 48.0
+margin_top = 20.0
+margin_right = 128.0
+margin_bottom = 36.0
+rect_min_size = Vector2( 80, 0 )
+min_value = 0.01
+max_value = 1.0
+step = 0.01
+value = 0.01
+tick_count = 10
+ticks_on_borders = true
+
+[node name="Music" type="Label" parent="PauseMenu/CenterContainer/VBoxContainer/Volume"]
+margin_top = 41.0
+margin_right = 44.0
+margin_bottom = 55.0
+text = "Music"
+
+[node name="MusicSlider" type="HSlider" parent="PauseMenu/CenterContainer/VBoxContainer/Volume"]
+margin_left = 48.0
+margin_top = 40.0
+margin_right = 128.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 80, 0 )
+min_value = 0.01
+max_value = 1.0
+step = 0.01
+value = 0.01
+tick_count = 10
+ticks_on_borders = true
+
+[node name="MainMenu" type="Button" parent="PauseMenu/CenterContainer/VBoxContainer"]
+margin_top = 102.0
+margin_right = 128.0
+margin_bottom = 128.0
+size_flags_horizontal = 5
+text = "Main Menu"
+
+[node name="Quit" type="Button" parent="PauseMenu/CenterContainer/VBoxContainer"]
+margin_top = 138.0
+margin_right = 128.0
+margin_bottom = 164.0
+size_flags_horizontal = 5
+text = "Quit"
+
+[connection signal="pressed" from="PauseMenu/CenterContainer/VBoxContainer/Resume" to="." method="_on_resume"]
+[connection signal="drag_ended" from="PauseMenu/CenterContainer/VBoxContainer/Volume/MasterSlider" to="PauseMenu/CenterContainer/VBoxContainer/Volume" method="_save_settings"]
+[connection signal="value_changed" from="PauseMenu/CenterContainer/VBoxContainer/Volume/MasterSlider" to="PauseMenu/CenterContainer/VBoxContainer/Volume" method="_on_MasterSlider_value_changed"]
+[connection signal="drag_ended" from="PauseMenu/CenterContainer/VBoxContainer/Volume/SfxSlider" to="PauseMenu/CenterContainer/VBoxContainer/Volume" method="_save_settings"]
+[connection signal="value_changed" from="PauseMenu/CenterContainer/VBoxContainer/Volume/SfxSlider" to="PauseMenu/CenterContainer/VBoxContainer/Volume" method="_on_SfxSlider_value_changed"]
+[connection signal="drag_ended" from="PauseMenu/CenterContainer/VBoxContainer/Volume/MusicSlider" to="PauseMenu/CenterContainer/VBoxContainer/Volume" method="_save_settings"]
+[connection signal="value_changed" from="PauseMenu/CenterContainer/VBoxContainer/Volume/MusicSlider" to="PauseMenu/CenterContainer/VBoxContainer/Volume" method="_on_MusicSlider_value_changed"]
+[connection signal="pressed" from="PauseMenu/CenterContainer/VBoxContainer/MainMenu" to="." method="_to_main_menu"]
+[connection signal="pressed" from="PauseMenu/CenterContainer/VBoxContainer/Quit" to="." method="_on_quit"]

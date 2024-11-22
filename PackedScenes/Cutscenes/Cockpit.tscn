@@ -183,6 +183,8 @@ max_value = 4.0
 _data = [ Vector2( 0, 4 ), 0.0, -7.85476, 0, 0, Vector2( 1, 1 ), -0.585341, 0.0, 0, 0 ]
 
 [node name="Cockpit" type="Node2D"]
+position = Vector2( 0, -40 )
+scale = Vector2( 2, 2 )
 script = ExtResource( 11 )
 
 [node name="Ship" type="Node2D" parent="."]
@@ -201,7 +203,8 @@ position = Vector2( 0, 26 )
 texture = ExtResource( 8 )
 
 [node name="Fishernaut" type="Sprite" parent="Ship"]
-position = Vector2( 162, 158 )
+position = Vector2( 162, 121 )
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 script = ExtResource( 1 )
 frequency = 40.0
@@ -229,9 +232,11 @@ anims/cockpit = SubResource( 1 )
 [node name="Rocket" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 volume_db = -4.0
+bus = "Sfx"
 
 [node name="Alert" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
+bus = "Sfx"
 
 [node name="StarsL" type="CPUParticles2D" parent="."]
 position = Vector2( -107, 112 )

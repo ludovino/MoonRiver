@@ -49,18 +49,18 @@ func _ready() -> void:
 	lure = $Player/Lure
 	game_timer = $GameTime
 	game_timer.connect("timeout", self, "_out_of_time")
-	timer_display = $Control/CenterContainer/VFlowContainer/Timer
+	timer_display = $Control/VBoxContainer/Timer
 	player = $Player
 	target = $Player/Target
-	tension_bar = $Player/BarParent/TensionBar
+	tension_bar = $Control/TensionBar
 	star_highlight = $Player/StarHighlight
 	sfx = $SfxPlayer
 	tension_bar.hide()
 
 func _process(delta: float) -> void:
-	var minutes = str(int(game_timer.time_left / 60))
-	var seconds = str(int(game_timer.time_left) % 60)
-	timer_display.text = minutes + ":" + seconds
+	var minutes = int(game_timer.time_left / 60)
+	var seconds = int(game_timer.time_left) % 60
+	timer_display.text = "%02d:%02d" % [minutes, seconds]
 	
 	match current_state:
 		state.move:
@@ -115,7 +115,7 @@ func _process_cast(delta: float) -> void:
 	if distance > 1.0:
 		distance = 2.0 - distance
 	distance = aim_lerp_curve.interpolate_baked(distance)
-	distance = distance * (position_max - position_min) + position_min
+	distance = distance * (aim_max - aim_min) + aim_min
 	target.position.x = distance
 	
 func _process_wait(delta: float) -> void:
@@ -162,20 +162,22 @@ func _process_fight(delta):
 		player.reel(true)
 		t += intensity * delta * tension_multiplier
 		lure.position.x -= reel_speed * delta * inv * reel_speed_mod
+		tension_bar.set_danger(intensity)
 	else:
+		tension_bar.set_danger(0.0)
 		player.wait(false)
 		t -= tension_decay * delta
 		lure.position.x += escape * delta * inv
 	
 	set_tension(t)
 	 
-	if lure.position.x < position_min:
+	if lure.position.x < aim_min:
 		$Timer.start(2.0)
 		current_state = state.land
 		land_star()
 		return
 	
-	if tension > max_tension or lure.position.x > position_max + 20:
+	if tension > max_tension or lure.position.x > aim_max + 20:
 		$Timer.start(2.5)
 		current_state = state.lose
 		lose_hook()

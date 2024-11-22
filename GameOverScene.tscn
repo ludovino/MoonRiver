@@ -46,6 +46,42 @@ tracks/2/keys = {
 "update": 0,
 "values": [ Vector2( 2, 2 ) ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Node2D/Ship/AnimatedSprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("CenterContainer/VBoxContainer/CenterContainer/PlayAgain:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("CenterContainer/VBoxContainer/CenterContainer2/MainMenu:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
 
 [sub_resource type="Animation" id=4]
 resource_name = "high_score"
@@ -69,10 +105,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 4.8, 5.3, 7 ),
+"times": PoolRealArray( 0, 4.8, 5.3, 9 ),
 "transitions": PoolRealArray( 0.5, -2, 1.18921, 1 ),
 "update": 0,
-"values": [ Vector2( -73, 113 ), Vector2( 147, 113 ), Vector2( 126, 113 ), Vector2( 507, 113 ) ]
+"values": [ Vector2( -73, 113 ), Vector2( 147, 113 ), Vector2( 126, 113 ), Vector2( 800, 113 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("CenterContainer/VBoxContainer/BigText:text")
@@ -163,6 +199,42 @@ tracks/7/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ Vector2( 1, 1 ), Vector2( 2, 2 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Node2D/Ship/AnimatedSprite:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("CenterContainer/VBoxContainer/CenterContainer/PlayAgain:disabled")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 6.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("CenterContainer/VBoxContainer/CenterContainer2/MainMenu:disabled")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0, 6.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
 }
 
 [sub_resource type="Animation" id=1]
@@ -281,6 +353,30 @@ tracks/7/keys = {
 "stream": ExtResource( 8 )
 } ],
 "times": PoolRealArray( -1.7, 0.9, 1.9, 2.2, 2.9 )
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("CenterContainer/VBoxContainer/CenterContainer/PlayAgain:disabled")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 6.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("CenterContainer/VBoxContainer/CenterContainer2/MainMenu:disabled")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 6.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -412,21 +508,46 @@ tracks/7/keys = {
 } ],
 "times": PoolRealArray( -1.7, 0.9, 1.9, 2.2, 2.9, 3.3, 5.5, 7.7 )
 }
+tracks/8/type = "value"
+tracks/8/path = NodePath("CenterContainer/VBoxContainer/CenterContainer2/MainMenu:disabled")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 6.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("CenterContainer/VBoxContainer/CenterContainer/PlayAgain:disabled")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 6.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
 
 [node name="GameOverScene" type="Node2D"]
 script = ExtResource( 3 )
 
 [node name="Node2D" type="Node2D" parent="."]
+position = Vector2( 0, 40 )
 
 [node name="StarsR" type="CPUParticles2D" parent="Node2D"]
-position = Vector2( 332, 160 )
+position = Vector2( 640, 140 )
 scale = Vector2( 2, 1 )
 z_index = -1
 amount = 16
 lifetime = 0.7
-speed_scale = 3.0
+speed_scale = 0.724638
 emission_shape = 2
-emission_rect_extents = Vector2( 1, 160 )
+emission_rect_extents = Vector2( 1, 180 )
 direction = Vector2( -1, 0 )
 spread = 0.0
 gravity = Vector2( 0, 0 )
@@ -443,25 +564,27 @@ texture = ExtResource( 5 )
 position = Vector2( -57, 2 )
 scale = Vector2( 2, 2 )
 frames = ExtResource( 6 )
+frame = 2
 playing = true
 offset = Vector2( -16, 0 )
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
+modulate = Color( 1, 1, 1, 0.6 )
 margin_top = -30.0
-margin_right = 320.0
-margin_bottom = 290.0
+margin_right = 640.0
+margin_bottom = 330.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 88.0
-margin_top = 55.0
-margin_right = 231.0
-margin_bottom = 265.0
+margin_left = 248.0
+margin_top = 75.0
+margin_right = 391.0
+margin_bottom = 285.0
 
 [node name="BigText" type="Label" parent="CenterContainer/VBoxContainer"]
 margin_right = 143.0
 margin_bottom = 114.0
 theme = ExtResource( 2 )
-text = "You win!"
+text = "You win"
 align = 1
 valign = 1
 autowrap = true
@@ -487,6 +610,7 @@ margin_left = 35.0
 margin_right = 107.0
 margin_bottom = 26.0
 theme = ExtResource( 1 )
+disabled = true
 text = "Play Again"
 
 [node name="CenterContainer2" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
@@ -499,6 +623,7 @@ margin_left = 35.0
 margin_right = 108.0
 margin_bottom = 26.0
 theme = ExtResource( 1 )
+disabled = true
 text = "Main Menu"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -510,7 +635,7 @@ anims/mid_score = SubResource( 3 )
 
 [node name="Sfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
-volume_db = -80.0
+volume_db = -25.1755
 bus = "Sfx"
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/CenterContainer/PlayAgain" to="." method="_on_PlayAgain_pressed"]

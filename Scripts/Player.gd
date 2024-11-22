@@ -82,6 +82,7 @@ func break_line() -> void:
 	$Tween.interpolate_property($Lure, "position", 
 	$Lure.position, $Lure.position + Vector2(-10, -50), 2, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	$Tween.start()
+
 func cancel() -> void:
 	casting = false
 	$Lure.hide()
