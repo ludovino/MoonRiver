@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Shaker.gd" type="Script" id=1]
-[ext_resource path="res://Sounds/RocketBoostLoop.wav" type="AudioStream" id=2]
+[ext_resource path="res://Sounds/RocketBoostConstant.wav" type="AudioStream" id=2]
 [ext_resource path="res://Sprites/Intro/Screen3/Ship.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/Animations/Jets.tres" type="SpriteFrames" id=4]
 [ext_resource path="res://Scripts/Cutscene.gd" type="Script" id=5]

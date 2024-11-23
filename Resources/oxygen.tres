@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/Upgrade.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+prog_name = "oxygen_level"
+costs = [ 100, 200, 500, 1500, 3000, 10000 ]

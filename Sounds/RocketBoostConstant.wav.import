@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/RocketBoostLoop.wav-e083c19ddbb6f28010e8233af648da2d.sample"
+path="res://.import/RocketBoostConstant.wav-040fbe57bb0517cc33276ec6b46f7546.sample"
 
 [deps]
 
-source_file="res://Sounds/RocketBoostLoop.wav"
-dest_files=[ "res://.import/RocketBoostLoop.wav-e083c19ddbb6f28010e8233af648da2d.sample" ]
+source_file="res://Sounds/RocketBoostConstant.wav"
+dest_files=[ "res://.import/RocketBoostConstant.wav-040fbe57bb0517cc33276ec6b46f7546.sample" ]
 
 [params]
 

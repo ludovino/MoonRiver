@@ -19,10 +19,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://GameOverScene.gd"
 }, {
+"base": "Node2D",
+"class": "LevelSelect",
+"language": "GDScript",
+"path": "res://Scripts/LevelSelect.gd"
+}, {
 "base": "Area2D",
 "class": "Lure",
 "language": "GDScript",
 "path": "res://Scripts/Lure.gd"
+}, {
+"base": "Control",
+"class": "Map",
+"language": "GDScript",
+"path": "res://PackedScenes/Map.gd"
 }, {
 "base": "Sprite",
 "class": "PixelSprite",
@@ -33,6 +43,11 @@ _global_script_classes=[ {
 "class": "Player",
 "language": "GDScript",
 "path": "res://Scripts/Player.gd"
+}, {
+"base": "Resource",
+"class": "Progression",
+"language": "GDScript",
+"path": "res://Scripts/Progression.gd"
 }, {
 "base": "GridContainer",
 "class": "ReelsDisplay",
@@ -58,18 +73,27 @@ _global_script_classes=[ {
 "class": "TensionBar",
 "language": "GDScript",
 "path": "res://Scripts/TensionBar.gd"
+}, {
+"base": "Resource",
+"class": "Upgrade",
+"language": "GDScript",
+"path": "res://Scripts/Upgrade.gd"
 } ]
 _global_script_class_icons={
 "AnimatedSpriteRng": "",
 "GameOver": "",
+"LevelSelect": "",
 "Lure": "",
+"Map": "",
 "PixelSprite": "",
 "Player": "",
+"Progression": "",
 "ReelsDisplay": "",
 "River": "",
 "Star": "",
 "StarHighlight": "",
-"TensionBar": ""
+"TensionBar": "",
+"Upgrade": ""
 }
 
 [application]
@@ -152,7 +176,6 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
-quality/driver/driver_name="GLES2"
 2d/snapping/use_gpu_pixel_snap=true
 environment/default_clear_color=Color( 0.0235294, 0.0156863, 0.00784314, 1 )
 environment/default_environment="res://default_env.tres"

@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/RocketBoostConstantLoop.wav-094f528fc8d517b18af067c1587d9559.sample"
+
+[deps]
+
+source_file="res://Sounds/RocketBoostConstantLoop.wav"
+dest_files=[ "res://.import/RocketBoostConstantLoop.wav-094f528fc8d517b18af067c1587d9559.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=3
+edit/loop_begin=0
+edit/loop_end=-200
+compress/mode=0
