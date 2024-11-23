@@ -49,10 +49,10 @@ func _ready() -> void:
 	lure = $Player/Lure
 	game_timer = $GameTime
 	game_timer.connect("timeout", self, "_out_of_time")
-	timer_display = $Control/VBoxContainer/Timer
+	timer_display = $SideBar/VBoxContainer/Timer
 	player = $Player
 	target = $Player/Target
-	tension_bar = $Control/TensionBar
+	tension_bar = $TensionBar
 	star_highlight = $Player/StarHighlight
 	sfx = $SfxPlayer
 	tension_bar.hide()
@@ -114,7 +114,7 @@ func _process_cast(delta: float) -> void:
 	var distance = fmod(cast_time, 2.0)
 	if distance > 1.0:
 		distance = 2.0 - distance
-	distance = aim_lerp_curve.interpolate_baked(distance)
+	distance = ease(distance, 2.5)
 	distance = distance * (aim_max - aim_min) + aim_min
 	target.position.x = distance
 	

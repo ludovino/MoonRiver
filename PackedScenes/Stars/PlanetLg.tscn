@@ -30,7 +30,7 @@ shape = SubResource( 1 )
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 1 )
 animation = "large"
-frame = 11
+frame = 10
 speed_scale = 0.2
 playing = true
 script = ExtResource( 3 )

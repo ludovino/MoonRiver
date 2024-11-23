@@ -1,0 +1,429 @@
+[gd_scene load_steps=41 format=2]
+
+[ext_resource path="res://Sprites/Map/map-ship-console.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/Upgrades/oxygen.png" type="Texture" id=2]
+[ext_resource path="res://PackedScenes/level_select_theme.tres" type="Theme" id=3]
+[ext_resource path="res://Sprites/planet-sprite-focus-sheet.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/planet-sprite-sheet.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/planet-disabled-sprite-sheet.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Upgrades/tension.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Upgrades/rod.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/Upgrades/engine.png" type="Texture" id=9]
+
+[sub_resource type="Curve" id=1]
+max_value = 5.0
+_data = [ Vector2( 0, 1.36364 ), 0.0, 1.56507, 0, 0, Vector2( 1, 5 ), 7.44284, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.0726257 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1 )
+
+[sub_resource type="Shader" id=5]
+code = "// NOTE: Shader automatically converted from Godot Engine 3.5.3.stable's CanvasItemMaterial.
+
+shader_type canvas_item;
+render_mode blend_mix,unshaded;
+
+uniform float lod: hint_range(0.0, 5) = 0.0;
+
+void fragment(){
+	vec4 color = vec4(.0);
+	for(int i = 0; i < 3; i++){
+		for(int j = 0; j < 3; j++){
+			vec2 offset = SCREEN_PIXEL_SIZE * (vec2(float(i), float(j)) - 1.0) * lod;
+			color += textureLod(SCREEN_TEXTURE, SCREEN_UV + offset, lod) * 0.1111111;
+		}
+	}
+	COLOR = mix(color, COLOR, 0.7);
+}"
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = SubResource( 5 )
+shader_param/lod = 5.0
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 5 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 4 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 6 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 5 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 4 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 6 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 5 )
+region = Rect2( 64, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 4 )
+region = Rect2( 64, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 6 )
+region = Rect2( 64, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 5 )
+region = Rect2( 128, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 4 )
+region = Rect2( 128, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 6 )
+region = Rect2( 128, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 128, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 128, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 128, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 5 )
+region = Rect2( 64, 128, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 4 )
+region = Rect2( 64, 128, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 6 )
+region = Rect2( 64, 128, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 5 )
+region = Rect2( 128, 128, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 4 )
+region = Rect2( 128, 128, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 6 )
+region = Rect2( 128, 128, 64, 64 )
+
+[node name="LevelSelect" type="Node2D"]
+
+[node name="Map-ship-console" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Stars" type="CPUParticles2D" parent="."]
+position = Vector2( 299, 205 )
+z_index = -1
+amount = 32
+lifetime = 2.0
+preprocess = 0.5
+speed_scale = 0.4
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 435.51
+initial_velocity_random = 0.21
+radial_accel = 100.0
+radial_accel_random = 0.55
+scale_amount_random = 0.5
+scale_amount_curve = SubResource( 1 )
+color_ramp = SubResource( 2 )
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 640.0
+margin_bottom = 360.0
+theme = ExtResource( 3 )
+
+[node name="Map" type="ColorRect" parent="Control"]
+material = SubResource( 6 )
+margin_left = 29.0
+margin_top = 18.0
+margin_right = 427.0
+margin_bottom = 329.0
+rect_pivot_offset = Vector2( 194, 155 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="Panel" type="Panel" parent="Control/Map"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -5.0
+margin_top = -5.0
+margin_right = 5.0
+margin_bottom = 5.0
+
+[node name="screen-clip" type="Control" parent="Control/Map/Panel"]
+margin_left = 5.0
+margin_top = 6.0
+margin_right = 393.0
+margin_bottom = 316.0
+rect_clip_content = true
+
+[node name="Map" type="Control" parent="Control/Map/Panel/screen-clip"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -311.0
+margin_right = 391.0
+margin_bottom = -1.0
+rect_pivot_offset = Vector2( 0, 310 )
+
+[node name="Rock" type="TextureButton" parent="Control/Map/Panel/screen-clip/Map"]
+margin_left = 2.0
+margin_top = 190.0
+margin_right = 66.0
+margin_bottom = 254.0
+texture_normal = SubResource( 7 )
+texture_hover = SubResource( 8 )
+texture_disabled = SubResource( 9 )
+texture_focused = SubResource( 8 )
+
+[node name="Pebbles" type="TextureButton" parent="Control/Map/Panel/screen-clip/Map"]
+margin_left = 12.0
+margin_top = 133.0
+margin_right = 76.0
+margin_bottom = 197.0
+texture_normal = SubResource( 10 )
+texture_hover = SubResource( 11 )
+texture_disabled = SubResource( 12 )
+texture_focused = SubResource( 11 )
+
+[node name="Donut" type="TextureButton" parent="Control/Map/Panel/screen-clip/Map"]
+margin_left = 53.0
+margin_top = 62.0
+margin_right = 117.0
+margin_bottom = 126.0
+texture_normal = SubResource( 13 )
+texture_hover = SubResource( 14 )
+texture_disabled = SubResource( 15 )
+texture_focused = SubResource( 14 )
+
+[node name="Moon" type="TextureButton" parent="Control/Map/Panel/screen-clip/Map"]
+margin_left = 133.0
+margin_top = 98.0
+margin_right = 197.0
+margin_bottom = 162.0
+texture_normal = SubResource( 16 )
+texture_hover = SubResource( 17 )
+texture_disabled = SubResource( 18 )
+texture_focused = SubResource( 17 )
+
+[node name="Cracked" type="TextureButton" parent="Control/Map/Panel/screen-clip/Map"]
+margin_left = 188.0
+margin_top = 200.0
+margin_right = 252.0
+margin_bottom = 264.0
+texture_normal = SubResource( 19 )
+texture_hover = SubResource( 20 )
+texture_disabled = SubResource( 21 )
+
+[node name="Blobs" type="TextureButton" parent="Control/Map/Panel/screen-clip/Map"]
+margin_left = 306.0
+margin_top = 145.0
+margin_right = 370.0
+margin_bottom = 209.0
+texture_normal = SubResource( 22 )
+texture_hover = SubResource( 23 )
+texture_disabled = SubResource( 24 )
+
+[node name="Home" type="TextureButton" parent="Control/Map/Panel/screen-clip/Map"]
+margin_left = 332.0
+margin_top = 7.0
+margin_right = 396.0
+margin_bottom = 71.0
+texture_normal = SubResource( 25 )
+texture_hover = SubResource( 26 )
+texture_disabled = SubResource( 27 )
+
+[node name="PlanetX" type="TextureButton" parent="Control/Map/Panel/screen-clip/Map"]
+margin_left = 232.0
+margin_top = -256.0
+margin_right = 296.0
+margin_bottom = -192.0
+rect_scale = Vector2( 2, 2 )
+texture_normal = SubResource( 28 )
+texture_hover = SubResource( 29 )
+texture_disabled = SubResource( 30 )
+
+[node name="BlackHole" type="TextureButton" parent="Control/Map/Panel/screen-clip/Map"]
+margin_left = 626.0
+margin_top = -278.0
+margin_right = 690.0
+margin_bottom = -214.0
+rect_scale = Vector2( 2, 2 )
+texture_normal = SubResource( 31 )
+texture_hover = SubResource( 32 )
+texture_disabled = SubResource( 33 )
+
+[node name="Launch" type="Button" parent="Control/Map/Panel/screen-clip"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -65.0
+margin_top = -38.0
+margin_right = 63.0
+margin_bottom = -8.0
+rect_pivot_offset = Vector2( 64, 30 )
+text = "LAUNCH"
+
+[node name="Modify" type="ColorRect" parent="Control"]
+material = SubResource( 6 )
+margin_left = 445.0
+margin_top = 20.0
+margin_right = 630.0
+margin_bottom = 327.0
+rect_pivot_offset = Vector2( 0, 150 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="Panel" type="Panel" parent="Control/Modify"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -5.0
+margin_top = -5.0
+margin_right = 5.0
+margin_bottom = 5.0
+
+[node name="CenterContainer" type="CenterContainer" parent="Control/Modify/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 7.0
+margin_right = -7.0
+margin_bottom = -6.0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control/Modify/Panel/CenterContainer"]
+margin_left = 20.0
+margin_top = 51.0
+margin_right = 162.0
+margin_bottom = 253.0
+size_flags_horizontal = 0
+
+[node name="UpgradeLabel" type="Label" parent="Control/Modify/Panel/CenterContainer/VBoxContainer2"]
+margin_right = 142.0
+margin_bottom = 13.0
+text = "Synthesize Upgrades"
+align = 1
+
+[node name="HSeparator" type="HSeparator" parent="Control/Modify/Panel/CenterContainer/VBoxContainer2"]
+margin_top = 17.0
+margin_right = 142.0
+margin_bottom = 21.0
+
+[node name="UnitsCount" type="Label" parent="Control/Modify/Panel/CenterContainer/VBoxContainer2"]
+margin_top = 25.0
+margin_right = 142.0
+margin_bottom = 38.0
+text = "1200 units"
+align = 1
+
+[node name="EnginePower" type="Button" parent="Control/Modify/Panel/CenterContainer/VBoxContainer2"]
+margin_top = 42.0
+margin_right = 142.0
+margin_bottom = 79.0
+text = "0/6"
+icon = ExtResource( 9 )
+
+[node name="VBoxContainer" type="GridContainer" parent="Control/Modify/Panel/CenterContainer/VBoxContainer2"]
+margin_top = 83.0
+margin_right = 142.0
+margin_bottom = 202.0
+columns = 2
+
+[node name="Oxygen" type="Button" parent="Control/Modify/Panel/CenterContainer/VBoxContainer2/VBoxContainer"]
+margin_right = 69.0
+margin_bottom = 37.0
+hint_tooltip = "Increase fishing time"
+size_flags_horizontal = 3
+text = "12000"
+icon = ExtResource( 2 )
+
+[node name="FillSpeed" type="Button" parent="Control/Modify/Panel/CenterContainer/VBoxContainer2/VBoxContainer"]
+margin_left = 73.0
+margin_right = 142.0
+margin_bottom = 37.0
+hint_tooltip = "slower tension increase"
+size_flags_horizontal = 3
+text = "12000"
+icon = ExtResource( 7 )
+
+[node name="DecaySpeed" type="Button" parent="Control/Modify/Panel/CenterContainer/VBoxContainer2/VBoxContainer"]
+margin_top = 41.0
+margin_right = 69.0
+margin_bottom = 78.0
+hint_tooltip = "faster tension decrease"
+size_flags_horizontal = 3
+text = "0/6"
+icon = ExtResource( 7 )
+
+[node name="PullSpeed" type="Button" parent="Control/Modify/Panel/CenterContainer/VBoxContainer2/VBoxContainer"]
+margin_left = 73.0
+margin_top = 41.0
+margin_right = 142.0
+margin_bottom = 78.0
+hint_tooltip = "reel catch faster"
+size_flags_horizontal = 3
+text = "0/6"
+icon = ExtResource( 8 )
+
+[node name="EscapeReduction" type="Button" parent="Control/Modify/Panel/CenterContainer/VBoxContainer2/VBoxContainer"]
+margin_top = 82.0
+margin_right = 69.0
+margin_bottom = 119.0
+hint_tooltip = "reduces pull on line"
+size_flags_horizontal = 3
+text = "0/6"
+icon = ExtResource( 8 )
+
+[node name="IncreasedCatch" type="Button" parent="Control/Modify/Panel/CenterContainer/VBoxContainer2/VBoxContainer"]
+margin_left = 73.0
+margin_top = 82.0
+margin_right = 142.0
+margin_bottom = 119.0
+hint_tooltip = "allows bigger catches"
+size_flags_horizontal = 3
+text = "0/6"
+icon = ExtResource( 9 )
