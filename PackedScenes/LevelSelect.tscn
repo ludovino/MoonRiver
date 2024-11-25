@@ -1,24 +1,17 @@
-[gd_scene load_steps=78 format=2]
+[gd_scene load_steps=72 format=2]
 
 [ext_resource path="res://Sprites/Map/map-ship-console.png" type="Texture" id=1]
-[ext_resource path="res://Sprites/Upgrades/oxygen.png" type="Texture" id=2]
 [ext_resource path="res://PackedScenes/level_select_theme.tres" type="Theme" id=3]
 [ext_resource path="res://Sprites/planet-sprite-focus-sheet.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/planet-sprite-sheet.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/planet-disabled-sprite-sheet.png" type="Texture" id=6]
-[ext_resource path="res://Sprites/Upgrades/tension.png" type="Texture" id=7]
-[ext_resource path="res://Sprites/Upgrades/rod.png" type="Texture" id=8]
-[ext_resource path="res://Sprites/Upgrades/engine.png" type="Texture" id=9]
+[ext_resource path="res://PackedScenes/UI/BuyButton.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Sprites/Map/map-ship.png" type="Texture" id=10]
-[ext_resource path="res://Sprites/SmallPlanet.png" type="Texture" id=11]
 [ext_resource path="res://PackedScenes/blink.gd" type="Script" id=12]
 [ext_resource path="res://Scripts/LevelSelect.gd" type="Script" id=13]
 [ext_resource path="res://PackedScenes/Map.gd" type="Script" id=14]
 [ext_resource path="res://Scripts/Shop.gd" type="Script" id=15]
-[ext_resource path="res://Sprites/Upgrades/escape.png" type="Texture" id=16]
-[ext_resource path="res://Sprites/Upgrades/fill.png" type="Texture" id=17]
 [ext_resource path="res://Sprites/line.png" type="Texture" id=18]
-[ext_resource path="res://Sprites/Upgrades/reel.png" type="Texture" id=19]
 [ext_resource path="res://Resources/fill.tres" type="Resource" id=20]
 [ext_resource path="res://Resources/escape.tres" type="Resource" id=21]
 [ext_resource path="res://Resources/pull.tres" type="Resource" id=22]
@@ -30,6 +23,8 @@
 [ext_resource path="res://starfield_shader.tres" type="Shader" id=28]
 [ext_resource path="res://Sprites/Map/star-field.png" type="Texture" id=29]
 [ext_resource path="res://Sounds/RocketBoostConstantLoop.wav" type="AudioStream" id=30]
+[ext_resource path="res://Sounds/BlipPlanet.wav" type="AudioStream" id=32]
+[ext_resource path="res://Sounds/BlipSelect.wav" type="AudioStream" id=33]
 
 [sub_resource type="Gradient" id=45]
 offsets = PoolRealArray( 0, 0.226087 )
@@ -46,6 +41,7 @@ width = 256
 curve = SubResource( 47 )
 
 [sub_resource type="ParticlesMaterial" id=49]
+resource_local_to_scene = true
 flag_disable_z = true
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
@@ -61,6 +57,7 @@ scale_curve = SubResource( 48 )
 color_ramp = SubResource( 46 )
 
 [sub_resource type="ParticlesMaterial" id=50]
+resource_local_to_scene = true
 flag_disable_z = true
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
@@ -100,7 +97,7 @@ shader_param/lod = 5.0
 offsets = PoolRealArray( 0, 0.141935, 0.303226, 0.477419, 0.677419, 0.819355, 0.980645 )
 colors = PoolColorArray( 0.105882, 0.141176, 0.278431, 1, 0.392157, 0.211765, 0.294118, 1, 0.886275, 0.447059, 0.521569, 1, 1, 0.913725, 0.890196, 1, 1, 1, 1, 1, 0.270588, 0.447059, 0.890196, 1, 0.105882, 0.141176, 0.278431, 1 )
 
-[sub_resource type="GradientTexture2D" id=39]
+[sub_resource type="GradientTexture2D" id=52]
 flags = 2
 gradient = SubResource( 38 )
 width = 512
@@ -113,14 +110,18 @@ period = 200.0
 persistence = 0.962
 lacunarity = 4.0
 
-[sub_resource type="NoiseTexture" id=41]
+[sub_resource type="NoiseTexture" id=53]
 seamless = true
 noise = SubResource( 40 )
 
 [sub_resource type="ShaderMaterial" id=37]
 shader = ExtResource( 28 )
-shader_param/grad = SubResource( 39 )
-shader_param/noise = SubResource( 41 )
+shader_param/time_scale_1 = null
+shader_param/time_scale_2 = null
+shader_param/noise_time_scale = null
+shader_param/noise_uv_scale = null
+shader_param/grad = SubResource( 52 )
+shader_param/noise = SubResource( 53 )
 
 [sub_resource type="StyleBoxFlat" id=42]
 bg_color = Color( 0.0235294, 0.0156863, 0.00784314, 1 )
@@ -248,10 +249,6 @@ gradient = SubResource( 34 )
 width = 4
 height = 4
 fill_to = Vector2( 0.483333, 0.00416667 )
-
-[sub_resource type="AtlasTexture" id=36]
-atlas = ExtResource( 11 )
-region = Rect2( 39, 0, 13, 13 )
 
 [sub_resource type="Animation" id=43]
 resource_name = "Intro"
@@ -523,7 +520,7 @@ tracks/14/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 0.0 ]
+"values": [ -40.0 ]
 }
 tracks/15/type = "value"
 tracks/15/path = NodePath("Rocket:playing")
@@ -535,7 +532,7 @@ tracks/15/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ false ]
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=51]
@@ -772,7 +769,7 @@ margin_right = 402.0
 margin_bottom = 316.0
 rect_clip_content = true
 
-[node name="TextureRect" type="TextureRect" parent="Control/Map/Panel/ScreenClip"]
+[node name="StarBg" type="TextureRect" parent="Control/Map/Panel/ScreenClip"]
 modulate = Color( 1, 1, 1, 0.388235 )
 material = SubResource( 37 )
 margin_top = -37.0
@@ -816,7 +813,6 @@ margin_right = 64.0
 margin_bottom = 272.0
 rect_pivot_offset = Vector2( 32, 23 )
 hint_tooltip = "Lonely Rock"
-focus_neighbour_left = NodePath("../../../../../Modify/Panel/CenterContainer/Shop/EnginePower")
 focus_neighbour_top = NodePath("../Pebbles")
 focus_neighbour_right = NodePath("../Pebbles")
 focus_neighbour_bottom = NodePath("../../Launch")
@@ -957,9 +953,7 @@ rect_scale = Vector2( 2, 2 )
 rect_pivot_offset = Vector2( 31, 31 )
 hint_tooltip = "DANGER - KEEP CLEAR"
 focus_neighbour_left = NodePath("../PlanetX")
-focus_neighbour_right = NodePath("../../../../../Modify/Panel/CenterContainer/Shop/EnginePower")
 focus_neighbour_bottom = NodePath("../../Launch")
-focus_next = NodePath("../../../../../Modify/Panel/CenterContainer/Shop/EnginePower")
 focus_previous = NodePath("../PlanetX")
 texture_normal = SubResource( 31 )
 texture_hover = SubResource( 32 )
@@ -1038,8 +1032,10 @@ script = ExtResource( 12 )
 time = 1.2
 
 [node name="Change" type="AudioStreamPlayer" parent="Control/Map/Panel/ScreenClip/Map"]
+stream = ExtResource( 33 )
 
 [node name="Select" type="AudioStreamPlayer" parent="Control/Map/Panel/ScreenClip/Map"]
+stream = ExtResource( 32 )
 
 [node name="Launch" type="Button" parent="Control/Map/Panel/ScreenClip"]
 anchor_left = 0.5
@@ -1053,10 +1049,7 @@ margin_bottom = -8.0
 rect_pivot_offset = Vector2( 64, 30 )
 focus_neighbour_top = NodePath("../Map/Rock")
 focus_next = NodePath("../Map/Rock")
-focus_previous = NodePath("../../../../Modify/Panel/CenterContainer/Shop/Reels")
 text = "LAUNCH"
-
-[node name="LaunchSound" type="AudioStreamPlayer" parent="Control/Map/Panel/ScreenClip"]
 
 [node name="ScreenFlicker" type="TextureRect" parent="Control/Map/Panel/ScreenClip"]
 margin_right = 397.0
@@ -1093,13 +1086,14 @@ margin_right = -7.0
 margin_bottom = -6.0
 
 [node name="Shop" type="VBoxContainer" parent="Control/Modify/Panel/CenterContainer"]
-margin_left = 13.0
-margin_top = 15.0
-margin_right = 169.0
-margin_bottom = 288.0
+margin_left = 37.0
+margin_top = 122.0
+margin_right = 145.0
+margin_bottom = 182.0
 focus_neighbour_right = NodePath("../../../../Map/Panel/ScreenClip/Map/Rock")
 size_flags_horizontal = 0
 script = ExtResource( 15 )
+button_scene = ExtResource( 9 )
 unlock_res = ExtResource( 23 )
 fill_res = ExtResource( 20 )
 decay_res = ExtResource( 24 )
@@ -1110,112 +1104,31 @@ oxygen_res = ExtResource( 25 )
 reels_res = ExtResource( 27 )
 
 [node name="UpgradeLabel" type="Label" parent="Control/Modify/Panel/CenterContainer/Shop"]
-margin_right = 156.0
+margin_right = 108.0
 margin_bottom = 13.0
 text = "Synthesize Upgrades"
 align = 1
 
 [node name="HSeparator" type="HSeparator" parent="Control/Modify/Panel/CenterContainer/Shop"]
 margin_top = 23.0
-margin_right = 156.0
+margin_right = 108.0
 margin_bottom = 27.0
 
 [node name="UnitsCount" type="Label" parent="Control/Modify/Panel/CenterContainer/Shop"]
 margin_top = 37.0
-margin_right = 156.0
+margin_right = 108.0
 margin_bottom = 50.0
 text = "1200 units"
 align = 1
 
-[node name="EnginePower" type="Button" parent="Control/Modify/Panel/CenterContainer/Shop"]
-margin_top = 60.0
-margin_right = 156.0
-margin_bottom = 97.0
-hint_tooltip = "unlock the next planet"
-text = "15000"
-icon = ExtResource( 9 )
-
 [node name="Grid" type="GridContainer" parent="Control/Modify/Panel/CenterContainer/Shop"]
-margin_top = 107.0
-margin_right = 156.0
-margin_bottom = 226.0
+margin_top = 60.0
+margin_right = 108.0
+margin_bottom = 60.0
 columns = 2
 
-[node name="FillSpeed" type="Button" parent="Control/Modify/Panel/CenterContainer/Shop/Grid"]
-margin_right = 76.0
-margin_bottom = 37.0
-rect_min_size = Vector2( 76, 0 )
-hint_tooltip = "slower tension increase"
-size_flags_horizontal = 3
-text = "12000"
-icon = ExtResource( 17 )
-
-[node name="DecaySpeed" type="Button" parent="Control/Modify/Panel/CenterContainer/Shop/Grid"]
-margin_left = 80.0
-margin_right = 156.0
-margin_bottom = 37.0
-rect_min_size = Vector2( 76, 0 )
-hint_tooltip = "faster tension decrease"
-size_flags_horizontal = 3
-text = "1800"
-icon = ExtResource( 7 )
-
-[node name="PullSpeed" type="Button" parent="Control/Modify/Panel/CenterContainer/Shop/Grid"]
-margin_top = 41.0
-margin_right = 76.0
-margin_bottom = 78.0
-rect_min_size = Vector2( 76, 0 )
-hint_tooltip = "reel catch faster"
-size_flags_horizontal = 3
-text = "350"
-icon = ExtResource( 8 )
-
-[node name="EscapeReduction" type="Button" parent="Control/Modify/Panel/CenterContainer/Shop/Grid"]
-margin_left = 80.0
-margin_top = 41.0
-margin_right = 156.0
-margin_bottom = 78.0
-rect_min_size = Vector2( 76, 0 )
-hint_tooltip = "reduces pull on line"
-size_flags_horizontal = 3
-text = "270"
-icon = ExtResource( 16 )
-
-[node name="IncreasedCatch" type="Button" parent="Control/Modify/Panel/CenterContainer/Shop/Grid"]
-margin_top = 82.0
-margin_right = 76.0
-margin_bottom = 119.0
-rect_min_size = Vector2( 76, 0 )
-hint_tooltip = "allows bigger catches"
-size_flags_horizontal = 3
-text = "1500"
-icon = SubResource( 36 )
-
-[node name="Oxygen" type="Button" parent="Control/Modify/Panel/CenterContainer/Shop/Grid"]
-margin_left = 80.0
-margin_top = 82.0
-margin_right = 156.0
-margin_bottom = 119.0
-rect_min_size = Vector2( 76, 0 )
-hint_tooltip = "additional fishing time"
-size_flags_horizontal = 3
-text = "12000"
-icon = ExtResource( 2 )
-
-[node name="Reels" type="Button" parent="Control/Modify/Panel/CenterContainer/Shop"]
-margin_left = 33.0
-margin_top = 236.0
-margin_right = 123.0
-margin_bottom = 273.0
-rect_min_size = Vector2( 90, 0 )
-hint_tooltip = "additional reels"
-focus_neighbour_right = NodePath("../../../../../Map/Panel/ScreenClip/Map/Rock")
-focus_next = NodePath("../../../../../Map/Panel/ScreenClip/Map/Rock")
-size_flags_horizontal = 4
-text = "15000"
-icon = ExtResource( 19 )
-
 [node name="ShopBoop" type="AudioStreamPlayer" parent="Control/Modify/Panel/CenterContainer/Shop"]
+stream = ExtResource( 33 )
 
 [node name="ScreenFlicker2" type="TextureRect" parent="Control/Modify"]
 anchor_right = 1.0
@@ -1238,8 +1151,13 @@ margin_bottom = 360.0
 mouse_filter = 2
 color = Color( 0.0235294, 0.0156863, 0.00784314, 0 )
 
+[node name="LaunchSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 33 )
+pitch_scale = 1.2
+
 [node name="Rocket" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 30 )
+volume_db = -40.0
 autoplay = true
 bus = "Sfx"
 
@@ -1252,5 +1170,6 @@ bus = "Sfx"
 [connection signal="pressed" from="Control/Map/Panel/ScreenClip/Map/Home" to="." method="_on_Home_pressed"]
 [connection signal="pressed" from="Control/Map/Panel/ScreenClip/Map/PlanetX" to="." method="_on_PlanetX_pressed"]
 [connection signal="pressed" from="Control/Map/Panel/ScreenClip/Map/BlackHole" to="." method="_on_BlackHole_pressed"]
+[connection signal="focus_entered" from="Control/Map/Panel/ScreenClip/Launch" to="." method="_on_Launch_focus_entered"]
 [connection signal="pressed" from="Control/Map/Panel/ScreenClip/Launch" to="." method="_on_Launch_pressed"]
 [connection signal="unlock_purchased" from="Control/Modify/Panel/CenterContainer/Shop" to="Control/Map/Panel/ScreenClip/Map" method="_on_Shop_unlock_purchased"]

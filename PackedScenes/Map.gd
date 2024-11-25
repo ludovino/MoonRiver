@@ -13,6 +13,8 @@ func _ready() -> void:
 	for child in get_children():
 		if child is TextureButton:
 			buttons.append(child)
+			child.connect("focus_entered", self, "_focus_beep")
+			child.connect("pressed", self, "_select_beep")
 		if child is Line2D:
 			lines.append(child)
 	if progress.planets_unlocked >= 7:
@@ -27,19 +29,27 @@ func set_focus(planet : int) -> void:
 	print(buttons)
 	button.grab_focus()
 
+
+func _focus_beep() -> void:
+	$Change.play()
+
+func _select_beep() -> void:
+	$Select.play()
+
 func _update_map() -> void:
 	var planets_unlocked = progress.planets_unlocked
 	for i in range(buttons.size()):
-		buttons[i].disabled = i > planets_unlocked
+		var button = buttons[i] as TextureButton
+		var locked = i > planets_unlocked
+		button.disabled = locked
+		button.focus_mode = FOCUS_NONE if locked else FOCUS_ALL
 	for i in range(lines.size()):
 		lines[i].visible = i < planets_unlocked
 
 func _tween_scale(tween : SceneTreeTween) -> SceneTreeTween:
 	tween.tween_property(self, "rect_scale", Vector2.ONE * 0.5, 0.6)
 	for i in range(7):
-		tween.parallel()
-		tween.tween_property(buttons[i], "rect_scale", Vector2.ONE * 2, 0.6)
-	tween.parallel()
+		tween.parallel().tween_property(buttons[i], "rect_scale", Vector2.ONE * 2, 0.6)
 	tween.tween_property($MapShip, "scale", Vector2.ONE * 2, 0.6)
 	return tween
 
@@ -49,7 +59,6 @@ func _move_ship_indicator(idx : int) -> void:
 	$MapShip.global_position = target_pos
 
 func _on_Shop_unlock_purchased() -> void:
-	#animate purchase
 	_update_map()
 	var updated = buttons[progress.planets_unlocked]
 	var tween = create_tween()

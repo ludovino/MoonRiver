@@ -7,7 +7,7 @@
 [ext_resource path="res://Sounds/StarBite.wav" type="AudioStream" id=5]
 
 [sub_resource type="Curve" id=2]
-_data = [ Vector2( 0.233333, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.733333, 0.827273 ), 0.0, 0.0, 0, 0, Vector2( 0.852381, 0 ), 0.0, 0.0, 0, 0 ]
+_data = [ Vector2( 0.231579, 0.0181818 ), 0.0, 0.0, 0, 0, Vector2( 0.733333, 0.827273 ), 0.0, 0.0, 0, 0, Vector2( 0.85614, 0.0181818 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 2.5
@@ -29,7 +29,7 @@ shape = SubResource( 1 )
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 3 )
 animation = "medium"
-frame = 1
+frame = 2
 speed_scale = 0.7
 playing = true
 script = ExtResource( 1 )

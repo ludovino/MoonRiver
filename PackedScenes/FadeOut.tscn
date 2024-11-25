@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Sounds/Steam.wav" type="AudioStream" id=1]
+[ext_resource path="res://FadeOut.gd" type="Script" id=2]
+
+[node name="FadeOut" type="ColorRect"]
+margin_right = 640.0
+margin_bottom = 360.0
+color = Color( 0.0235294, 0.0156863, 0.00784314, 1 )
+script = ExtResource( 2 )
+
+[node name="Steam" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+autoplay = true
+bus = "Sfx"

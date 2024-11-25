@@ -1,8 +1,12 @@
-[gd_resource type="Resource" load_steps=2 format=2]
+[gd_resource type="Resource" load_steps=3 format=2]
 
 [ext_resource path="res://Scripts/Upgrade.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Upgrades/engine.png" type="Texture" id=2]
 
 [resource]
 script = ExtResource( 1 )
 prog_name = "planets_unlocked"
+display_name = "Engine Power"
+description = "Reach the next planet."
+icon = ExtResource( 2 )
 costs = [ 500, 1500, 4000, 10000, 30000, 100000, 1000000, 5000000 ]

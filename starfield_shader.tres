@@ -8,11 +8,15 @@ render_mode blend_add,unshaded;
 
 uniform sampler2D grad;
 uniform sampler2D noise;
+uniform float time_scale_1;
+uniform float time_scale_2;
+uniform float noise_time_scale;
+uniform float noise_uv_scale;
 
 void fragment() {
-	vec4 col = texture(TEXTURE, .75 * UV + TIME * 0.01) + texture(TEXTURE, vec2(0.1, .75) + .5 * UV - TIME * 0.001);
+	vec4 col = texture(TEXTURE, .75 * UV + TIME * time_scale_1) + texture(TEXTURE, vec2(0.1, .75) + .5 * UV - TIME * time_scale_2);
 	col *= texture(grad, UV + TIME * 0.01);
-	float n_val = texture(noise, UV.yx + TIME * 0.2).r;
+	float n_val = texture(noise, (UV.yx * noise_uv_scale) + TIME * noise_time_scale).r;
 	col.a = col.a * n_val * n_val * 2.0;
 	COLOR = col;
 }"

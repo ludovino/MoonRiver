@@ -7,7 +7,7 @@
 [ext_resource path="res://Sounds/StarBite.wav" type="AudioStream" id=5]
 
 [sub_resource type="Curve" id=2]
-_data = [ Vector2( 0.461905, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.82381, 0.945454 ), -1.65455, -1.65455, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+_data = [ Vector2( 0.463158, 0.0272727 ), 0.0, 0.0, 0, 0, Vector2( 0.796491, 0.827273 ), -1.45091, -1.45091, 0, 0, Vector2( 1, 0.0363636 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 1.5
@@ -18,12 +18,11 @@ script = ExtResource( 2 )
 pulse_speed = 0.2
 pulse_graph = SubResource( 2 )
 score = 10
-escape_speed = 20.0
+escape_speed = 30.0
 magnitude = 9.0
 catch = ExtResource( 5 )
 struggle = ExtResource( 4 )
 audio_pitch_modulate = 1.3
-reel_speed_mod = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -31,6 +30,7 @@ shape = SubResource( 1 )
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 1 )
 animation = "small"
+frame = 1
 speed_scale = 0.25
 playing = true
 script = ExtResource( 3 )

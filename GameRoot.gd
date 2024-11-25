@@ -1,6 +1,10 @@
 extends Control
 
-var main_game = preload("res://Main.tscn")
+var levels = [ 
+	preload("res://Levels/Rock.tscn"), 
+	preload("res://Levels/Pebbles.tscn"),
+	preload("res://Levels/Donut.tscn")
+	]
 var menu = preload("res://MainMenu.tscn")
 var game_over = preload("res://GameOverScene.tscn")
 var intro_scene = preload("res://Cutscene.tscn")
@@ -28,7 +32,6 @@ func _to_main_menu():
 	can_pause = false
 	var scene = menu.instance()
 	swap_scene(scene)
-	scene.first_play = progress.first_play
 	if progress.first_play:
 		scene.connect("play", self, "_on_intro")
 	else:
@@ -46,12 +49,7 @@ func _on_play(level : int):
 	$PauseMenu.hide()
 	can_pause = true
 	current_level = level
-	var scene = main_game.instance()
-	if progress.first_play:
-		scene.connect("play", self, "_on_intro")
-		progress.first_play = false
-	else:
-		scene.connect("play", self, "_on_play")
+	var scene = levels[level].instance()
 	swap_scene(scene)
 	scene.connect("game_over", self, "_to_level_select")
 
@@ -63,11 +61,12 @@ func _on_intro():
 	can_pause = true
 	var scene = intro_scene.instance()
 	swap_scene(scene)
-	scene.connect("finished", self, "_on_play")
+	scene.connect("finished", self, "_on_play", [0])
 
 func _to_level_select(score: int):
 	$PauseMenu.hide()
 	progress.units += score
+	progress.first_play = false
 	if score > 0: ResourceSaver.save("user://progression.tres", progress)
 	can_pause = false
 	var scene = level_select.instance()

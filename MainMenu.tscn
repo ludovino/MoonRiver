@@ -142,6 +142,7 @@ initial_height = 600.0
 initial_stars = 30.0
 spawn_time = 5.0
 speed = 1.0
+color = Color( 1, 0.913725, 0.890196, 1 )
 
 [node name="FishernautTitle" type="Sprite" parent="."]
 position = Vector2( 161, 158 )

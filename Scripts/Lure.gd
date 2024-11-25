@@ -8,6 +8,7 @@ export var base_magnitude = 50.0
 var time = 0.0
 
 func _ready() -> void:
+	add_to_group("lure")
 	noise.seed = randi()
 	noise.period = 10
 
@@ -29,8 +30,8 @@ func enable() -> void:
 	monitorable = true
 
 func disable() -> void:
-	monitoring = false
-	monitorable = false
+	set_deferred("monitoring", false)
+	set_deferred("monitorable", false)
 
 func add_star(star: Star):
 	hide()

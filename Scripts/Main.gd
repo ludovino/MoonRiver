@@ -2,6 +2,9 @@ extends Node
 
 enum state { move, cast, wait, fight, lose, land }
 
+var progress : Progression
+export(Resource) var prog_res : Resource
+
 export var player_speed: float
 export var position_min: float
 export var position_max: float
@@ -16,24 +19,26 @@ export var aim_speed: float
 
 export var reel_speed: float
 export var escape_speed_mod: float
+export var fight_speed_mod: float
 var cast_time: float
 
 export var max_tension: float
 export var tension_decay: float
 export var tension_multiplier: float
+export var score_multiplier: int
 
 export var hooks: int
 
-signal hooks_change
 signal score_change
 signal tension_change
 signal game_over
 
 var tension: float
 var score:int = 0
-var current_state = state.move
+var current_state = null
 
 var lure: Lure
+var reels_display: ReelsDisplay
 var timer_display: Label
 var game_timer: Timer
 var player: Player
@@ -43,9 +48,14 @@ var tension_bar: TensionBar
 var bar_fill: Node2D
 var star_highlight: StarHighlight
 var sfx: AudioStreamPlayer
-
+var fade: PackedScene
 
 func _ready() -> void:
+	fade = load("res://PackedScenes/FadeOut.tscn")
+	if prog_res == null:
+		progress = load("user://progression.tres") as Progression
+	else:
+		progress = prog_res as Progression
 	lure = $Player/Lure
 	game_timer = $GameTime
 	game_timer.connect("timeout", self, "_out_of_time")
@@ -54,14 +64,20 @@ func _ready() -> void:
 	target = $Player/Target
 	tension_bar = $TensionBar
 	star_highlight = $Player/StarHighlight
+	reels_display = $SideBar/VBoxContainer/Center/Reels
 	sfx = $SfxPlayer
+	$Timer.start(1.5)
+	game_timer.start(121.5 + progress.oxygen_level * 30)
+	hooks = 3 + progress.reels_level
+	reels_display.adjust(hooks)
 	tension_bar.hide()
 
 func _process(delta: float) -> void:
 	var minutes = int(game_timer.time_left / 60)
 	var seconds = int(game_timer.time_left) % 60
 	timer_display.text = "%02d:%02d" % [minutes, seconds]
-	
+	$Alert.enabled = game_timer.time_left < 20.0 && game_timer.time_left > 0
+		
 	match current_state:
 		state.move:
 			_process_move(delta)
@@ -75,10 +91,35 @@ func _process(delta: float) -> void:
 			_process_lose()
 		state.land:
 			_process_land()
-			
+		_:
+			if $Timer.is_stopped(): current_state = state.move
+
 func _out_of_time() -> void:
+	_ending_anim_start()
+
+func _ending_anim_start() -> void:
+	$Timer.start(2)
+	$Timer.connect("timeout", self, "_ending_anim_finished")
+	add_child(fade.instance())
+	match current_state:
+		state.move:
+			player.idle()
+		state.cast:
+			player.break_line()
+		state.wait:
+			player.idle()
+		state.fight:
+			lure.remove_star().queue_free()
+			player.break_line()
+		state.lose:
+			player.idle()
+		state.land:
+			player.idle()
+	current_state = null
+
+func _ending_anim_finished() -> void:
 	emit_signal("game_over", score)
-	
+
 func _process_move(delta: float) -> void:
 	# cast
 	if Input.is_action_just_pressed("action"):
@@ -120,10 +161,8 @@ func _process_cast(delta: float) -> void:
 	
 func _process_wait(delta: float) -> void:
 	if Input.is_action_just_pressed("cancel"):
-		player.cancel()
-		current_state = state.move
+		_cancel()
 		return
-	
 	if Input.is_action_just_pressed("action"):
 		player.reel(false)
 	
@@ -141,45 +180,46 @@ func _process_wait(delta: float) -> void:
 	if overlaps.size() == 0:
 		return
 	
-	var highest_scoring = overlaps[0]
-	for overlap in overlaps:
-		if overlap.score > highest_scoring.score:
-			highest_scoring = overlap
-	current_state = state.fight
-	tension_bar.show()
-	player.wait(false)
-	lure.add_star(highest_scoring)
-	highest_scoring.hook()
+	#var highest_scoring = overlaps[0]
+	#for overlap in overlaps:
+	#	if overlap.score > highest_scoring.score:
+	#		highest_scoring = overlap
+	#current_state = state.fight
+	#tension_bar.show()
+	#set_tension(0)
+	#player.wait(false)
+	#lure.add_star(highest_scoring)
+	#highest_scoring.hook()
 	
 
 func _process_fight(delta):
 	var intensity = lure.hooked.intensity
-	var reel_speed_mod = lure.hooked.reel_speed_mod
+	var rs_bonus : float = 1.0 + (progress.pull_level / 6.0)
+	var reel_speed_mod = lure.hooked.reel_speed_mod * rs_bonus * fight_speed_mod
 	var inv = 1.0 - intensity
-	var escape = lure.hooked.escape_speed * escape_speed_mod
+	var es_bonus = 1.0 + ((6.0 - progress.escape_level) / 6.0)
+	var escape : float = lure.hooked.escape_speed * escape_speed_mod * es_bonus
 	var t = tension
 	if Input.is_action_pressed("action"):
 		player.reel(true)
-		t += intensity * delta * tension_multiplier
+		var tf_bonus = 1.0 - (progress.escape_level / 8.0)
+		t += intensity * delta * tension_multiplier * tf_bonus
 		lure.position.x -= reel_speed * delta * inv * reel_speed_mod
 		tension_bar.set_danger(intensity)
 	else:
 		tension_bar.set_danger(0.0)
 		player.wait(false)
-		t -= tension_decay * delta
+		var td_bonus = 1.0 + (progress.decay_level / 6.0)
+		t -= tension_decay * td_bonus * delta
 		lure.position.x += escape * delta * inv
 	
 	set_tension(t)
 	 
 	if lure.position.x < aim_min:
-		$Timer.start(2.0)
-		current_state = state.land
 		land_star()
 		return
 	
 	if tension > max_tension or lure.position.x > aim_max + 20:
-		$Timer.start(2.5)
-		current_state = state.lose
 		lose_hook()
 		return
 	tension = clamp(tension, 0, max_tension)
@@ -187,7 +227,7 @@ func _process_fight(delta):
 func _process_lose():
 	if $Timer.is_stopped():
 		if hooks <= 0:
-			emit_signal("game_over", score)
+			_ending_anim_start()
 			return
 		current_state = state.move
 
@@ -205,20 +245,51 @@ func set_tension(t: float):
 	tension_bar.set_tension(clamp(t / max_tension, 0.0, 1.0))
 
 func land_star():
+	$Timer.start(1.0)
+	current_state = state.land
 	set_tension(0)
 	tension_bar.hide()
 	player.land()
 	var star = lure.remove_star()
 	star.unhook()
 	star_highlight.add_star(star)
-	add_score(star.score)
+	add_score(star.score * score_multiplier)
 
 func lose_hook():
+	$Timer.start(1.8)
+	print("lose")
+	current_state = state.lose
 	set_tension(0)
 	tension_bar.hide()
 	lure.remove_star().queue_free()
 	player.break_line()
 	hooks -= 1
-	emit_signal("hooks_change", hooks)
+	reels_display.adjust(hooks)
 	if hooks == 0:
 		pass
+
+func _catch_star(star : Star) -> void:
+	current_state = state.fight
+	tension_bar.show()
+	set_tension(0)
+	player.wait(false)
+	lure.add_star(star)
+	star.hook()
+
+func _cancel() -> void:
+	$Timer.start(1.1)
+	player.show_cancel()
+	current_state = state.lose
+	
+func _on_Lure_area_entered(area: Area2D) -> void:
+	match current_state:
+		state.wait:
+			if area.is_in_group("star"):
+				call_deferred("_catch_star", area as Star)
+			elif area.is_in_group("cancel_lure"):
+				_cancel()
+		state.fight:
+			if area.is_in_group("star"):
+				pass
+			elif area.is_in_group("cancel_lure"):
+				lose_hook()

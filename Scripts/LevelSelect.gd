@@ -64,8 +64,15 @@ func _on_BlackHole_pressed() -> void:
 	_move_ship()
 
 func _on_Launch_pressed() -> void:
+	$LaunchSound.play()
 	$AnimationPlayer.play("outro")
 
 func _launch_animation_finished() -> void:
 	emit_signal("level_selected", current_planet)
 	
+
+
+func _on_Launch_focus_entered() -> void:
+	var sound = $Control/Modify/Panel/CenterContainer/Shop/ShopBoop
+	sound.pitch_scale = 0.9
+	sound.play()

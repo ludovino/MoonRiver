@@ -7,8 +7,9 @@ func _ready() -> void:
 
 func add_star(star: Node2D):
 	add_child(star)
+	star.position = Vector2(30, 40);
 	tween.interpolate_property(star, "position",
-		Vector2(30, 40), Vector2.ZERO, 0.7,
+		star.position, Vector2.ZERO, 0.7,
 		Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	tween.interpolate_callback(star, 3.5, "queue_free")
 	tween.start()

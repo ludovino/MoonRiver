@@ -6,7 +6,7 @@ export var pulse_graph: Curve
 export var score: int
 export var escape_speed: float
 export var magnitude: float
-
+export var min_level: int = 0 
 export(AudioStreamSample) var catch: AudioStreamSample
 export(AudioStreamSample) var struggle: AudioStreamSample
 export(float, 0.5, 2) var audio_pitch_modulate: float = 1.0
@@ -21,6 +21,7 @@ var audio_source: AudioStreamPlayer
 var hook_sound: AudioStreamPlayer
 
 func _ready() -> void:
+	add_to_group("star")
 	audio_source = AudioStreamPlayer.new()
 	audio_source.pitch_scale = audio_pitch_modulate
 	audio_source.volume_db = 1.0
@@ -40,6 +41,12 @@ func hook():
 func unhook():
 	hooked = false
 	audio_source.stop()
+
+func setup(color : Color, prog_level : int) -> void:
+	modulate = color
+	if prog_level < min_level:
+		modulate.a = 0.1
+		monitorable = false
 
 func _process(delta: float) -> void:
 	if not hooked:

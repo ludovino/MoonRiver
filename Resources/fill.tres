@@ -1,8 +1,12 @@
-[gd_resource type="Resource" load_steps=2 format=2]
+[gd_resource type="Resource" load_steps=3 format=2]
 
 [ext_resource path="res://Scripts/Upgrade.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Upgrades/fill.png" type="Texture" id=2]
 
 [resource]
 script = ExtResource( 1 )
 prog_name = "fill_level"
+display_name = "Tensile Line"
+description = "Tension builds more slowly while reeling."
+icon = ExtResource( 2 )
 costs = [ 100, 200, 500, 1500, 3000, 10000 ]

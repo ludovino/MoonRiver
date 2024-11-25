@@ -7,7 +7,7 @@
 [ext_resource path="res://Sounds/StarBite.wav" type="AudioStream" id=5]
 
 [sub_resource type="Curve" id=2]
-_data = [ Vector2( 0.42381, 0 ), 0.0, 5.12195, 0, 1, Vector2( 0.619048, 1 ), 5.12195, -69.9999, 1, 1, Vector2( 0.633333, 0 ), -69.9999, 0.0, 1, 1, Vector2( 0.738095, 0 ), -2.60909, 17.5, 0, 1, Vector2( 0.795238, 1 ), 17.5, 0.0, 1, 0, Vector2( 0.971429, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+_data = [ Vector2( 0.421053, 0 ), 0.0, 5.05062, 0, 1, Vector2( 0.619048, 1 ), 5.05062, -69.9999, 1, 1, Vector2( 0.633333, 0 ), -69.9999, 0.0, 1, 1, Vector2( 0.738095, 0 ), -2.60909, 17.5, 0, 1, Vector2( 0.795238, 1 ), 17.5, 0.0, 1, 0, Vector2( 0.971429, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 3.0
@@ -17,9 +17,10 @@ position = Vector2( 118, 141 )
 script = ExtResource( 2 )
 pulse_speed = 1.1
 pulse_graph = SubResource( 2 )
-score = 100
+score = 150
 escape_speed = 30.0
 magnitude = 5.0
+min_level = 2
 catch = ExtResource( 5 )
 struggle = ExtResource( 4 )
 audio_pitch_modulate = 1.5
@@ -31,7 +32,7 @@ shape = SubResource( 1 )
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 1 )
 animation = "pulsar"
-frame = 2
+frame = 1
 speed_scale = 0.7
 playing = true
 script = ExtResource( 3 )
