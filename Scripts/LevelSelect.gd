@@ -8,6 +8,7 @@ signal level_selected
 
 func _ready() -> void:
 	map = $Control/Map/Panel/ScreenClip/Map
+	_move_ship()
 
 func _after_intro() -> void:
 	$Control/Map/Panel/ScreenClip/Map.set_focus(current_planet)
@@ -33,33 +34,28 @@ func _on_Donut_pressed() -> void:
 	_focus_launch()
 	_move_ship()
 
-func _on_Moon_pressed() -> void:
+func _on_Cracked_pressed() -> void:
 	current_planet = 3
 	_focus_launch()
 	_move_ship()
 
-func _on_Cracked_pressed() -> void:
+func _on_Blobs_pressed() -> void:
 	current_planet = 4
 	_focus_launch()
 	_move_ship()
 
-func _on_Blobs_pressed() -> void:
+func _on_Home_pressed() -> void:
 	current_planet = 5
 	_focus_launch()
 	_move_ship()
 
-func _on_Home_pressed() -> void:
+func _on_PlanetX_pressed() -> void:
 	current_planet = 6
 	_focus_launch()
 	_move_ship()
 
-func _on_PlanetX_pressed() -> void:
-	current_planet = 7
-	_focus_launch()
-	_move_ship()
-
 func _on_BlackHole_pressed() -> void:
-	current_planet = 8
+	current_planet = 7
 	_focus_launch()
 	_move_ship()
 

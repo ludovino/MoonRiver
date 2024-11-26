@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=2]
+[gd_scene load_steps=69 format=2]
 
 [ext_resource path="res://Sprites/Map/map-ship-console.png" type="Texture" id=1]
 [ext_resource path="res://PackedScenes/level_select_theme.tres" type="Theme" id=3]
@@ -12,14 +12,14 @@
 [ext_resource path="res://PackedScenes/Map.gd" type="Script" id=14]
 [ext_resource path="res://Scripts/Shop.gd" type="Script" id=15]
 [ext_resource path="res://Sprites/line.png" type="Texture" id=18]
-[ext_resource path="res://Resources/fill.tres" type="Resource" id=20]
-[ext_resource path="res://Resources/escape.tres" type="Resource" id=21]
-[ext_resource path="res://Resources/pull.tres" type="Resource" id=22]
-[ext_resource path="res://Resources/planet_unlock.tres" type="Resource" id=23]
-[ext_resource path="res://Resources/decay.tres" type="Resource" id=24]
-[ext_resource path="res://Resources/oxygen.tres" type="Resource" id=25]
-[ext_resource path="res://Resources/catch.tres" type="Resource" id=26]
-[ext_resource path="res://Resources/reel.tres" type="Resource" id=27]
+[ext_resource path="res://Resources/Upgrades/fill.tres" type="Resource" id=20]
+[ext_resource path="res://Resources/Upgrades/escape.tres" type="Resource" id=21]
+[ext_resource path="res://Resources/Upgrades/pull.tres" type="Resource" id=22]
+[ext_resource path="res://Resources/Upgrades/planet_unlock.tres" type="Resource" id=23]
+[ext_resource path="res://Resources/Upgrades/decay.tres" type="Resource" id=24]
+[ext_resource path="res://Resources/Upgrades/oxygen.tres" type="Resource" id=25]
+[ext_resource path="res://Resources/Upgrades/catch.tres" type="Resource" id=26]
+[ext_resource path="res://Resources/Upgrades/reel.tres" type="Resource" id=27]
 [ext_resource path="res://starfield_shader.tres" type="Shader" id=28]
 [ext_resource path="res://Sprites/Map/star-field.png" type="Texture" id=29]
 [ext_resource path="res://Sounds/RocketBoostConstantLoop.wav" type="AudioStream" id=30]
@@ -167,18 +167,6 @@ region = Rect2( 128, 0, 64, 64 )
 [sub_resource type="AtlasTexture" id=15]
 atlas = ExtResource( 6 )
 region = Rect2( 128, 0, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=16]
-atlas = ExtResource( 5 )
-region = Rect2( 0, 64, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=17]
-atlas = ExtResource( 4 )
-region = Rect2( 0, 64, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=18]
-atlas = ExtResource( 6 )
-region = Rect2( 0, 64, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=19]
 atlas = ExtResource( 5 )
@@ -767,7 +755,6 @@ margin_left = 5.0
 margin_top = 6.0
 margin_right = 402.0
 margin_bottom = 316.0
-rect_clip_content = true
 
 [node name="StarBg" type="TextureRect" parent="Control/Map/Panel/ScreenClip"]
 modulate = Color( 1, 1, 1, 0.388235 )
@@ -788,14 +775,18 @@ custom_styles/panel = SubResource( 42 )
 
 [node name="Title" type="Label" parent="Control/Map/Panel/ScreenClip"]
 modulate = Color( 0.53, 0.53, 0.53, 1 )
-margin_left = 136.0
+margin_left = 94.0
 margin_top = 10.0
-margin_right = 209.0
-margin_bottom = 23.0
+margin_right = 207.0
+margin_bottom = 55.0
+grow_horizontal = 2
 rect_scale = Vector2( 2, 1 )
 custom_colors/font_color = Color( 0.270588, 0.447059, 0.890196, 1 )
 custom_colors/font_color_shadow = Color( 0.105882, 0.141176, 0.278431, 1 )
-text = "GALACTIC MAP"
+text = "DESTINATION:
+THE EVERYTHING DONUT"
+align = 1
+autowrap = true
 
 [node name="Map" type="Control" parent="Control/Map/Panel/ScreenClip"]
 modulate = Color( 1, 0.913725, 0.890196, 1 )
@@ -808,11 +799,12 @@ rect_pivot_offset = Vector2( 32, 261 )
 script = ExtResource( 14 )
 
 [node name="Rock" type="TextureButton" parent="Control/Map/Panel/ScreenClip/Map"]
-margin_top = 208.0
-margin_right = 64.0
-margin_bottom = 272.0
-rect_pivot_offset = Vector2( 32, 23 )
-hint_tooltip = "Lonely Rock"
+margin_left = 7.0
+margin_top = 67.0
+margin_right = 71.0
+margin_bottom = 131.0
+rect_pivot_offset = Vector2( 32, 53 )
+hint_tooltip = "Chill Rock"
 focus_neighbour_top = NodePath("../Pebbles")
 focus_neighbour_right = NodePath("../Pebbles")
 focus_neighbour_bottom = NodePath("../../Launch")
@@ -828,7 +820,7 @@ margin_left = 12.0
 margin_top = 133.0
 margin_right = 76.0
 margin_bottom = 197.0
-rect_pivot_offset = Vector2( 21, 33 )
+rect_pivot_offset = Vector2( 23, 33 )
 hint_tooltip = "The Pebbles"
 focus_neighbour_left = NodePath("../Rock")
 focus_neighbour_right = NodePath("../Donut")
@@ -841,62 +833,40 @@ texture_disabled = SubResource( 12 )
 texture_focused = SubResource( 11 )
 
 [node name="Donut" type="TextureButton" parent="Control/Map/Panel/ScreenClip/Map"]
-margin_left = 40.0
-margin_top = 49.0
-margin_right = 104.0
-margin_bottom = 113.0
+margin_left = 99.0
+margin_top = 142.0
+margin_right = 163.0
+margin_bottom = 206.0
 rect_pivot_offset = Vector2( 32, 32 )
-hint_tooltip = "The Donut"
+hint_tooltip = "The Everything Donut"
 focus_neighbour_left = NodePath("../Pebbles")
-focus_neighbour_right = NodePath("../Moon")
 focus_neighbour_bottom = NodePath("../../Launch")
-focus_next = NodePath("../Moon")
 focus_previous = NodePath("../Pebbles")
 texture_normal = SubResource( 13 )
 texture_hover = SubResource( 14 )
 texture_disabled = SubResource( 15 )
 texture_focused = SubResource( 14 )
 
-[node name="Moon" type="TextureButton" parent="Control/Map/Panel/ScreenClip/Map"]
-margin_left = 133.0
-margin_top = 98.0
-margin_right = 197.0
-margin_bottom = 162.0
-rect_pivot_offset = Vector2( 32, 32 )
-hint_tooltip = "Quartermoon Island"
-focus_neighbour_left = NodePath("../Donut")
-focus_neighbour_top = NodePath("../Donut")
-focus_neighbour_right = NodePath("../Cracked")
-focus_neighbour_bottom = NodePath("../../Launch")
-focus_next = NodePath("../Cracked")
-focus_previous = NodePath("../Donut")
-texture_normal = SubResource( 16 )
-texture_hover = SubResource( 17 )
-texture_disabled = SubResource( 18 )
-texture_focused = SubResource( 17 )
-
 [node name="Cracked" type="TextureButton" parent="Control/Map/Panel/ScreenClip/Map"]
-margin_left = 188.0
-margin_top = 200.0
-margin_right = 252.0
-margin_bottom = 264.0
+margin_left = 190.0
+margin_top = 177.0
+margin_right = 254.0
+margin_bottom = 241.0
 rect_pivot_offset = Vector2( 32, 32 )
 hint_tooltip = "Shattered Outlook"
-focus_neighbour_left = NodePath("../Moon")
 focus_neighbour_right = NodePath("../Blobs")
 focus_neighbour_bottom = NodePath("../../Launch")
 focus_next = NodePath("../Blobs")
-focus_previous = NodePath("../Moon")
 texture_normal = SubResource( 19 )
 texture_hover = SubResource( 20 )
 texture_disabled = SubResource( 21 )
 texture_focused = SubResource( 20 )
 
 [node name="Blobs" type="TextureButton" parent="Control/Map/Panel/ScreenClip/Map"]
-margin_left = 306.0
-margin_top = 145.0
-margin_right = 370.0
-margin_bottom = 209.0
+margin_left = 312.0
+margin_top = 109.0
+margin_right = 376.0
+margin_bottom = 173.0
 rect_pivot_offset = Vector2( 29, 38 )
 hint_tooltip = "The Triplets"
 focus_neighbour_left = NodePath("../Cracked")
@@ -961,7 +931,8 @@ texture_disabled = SubResource( 33 )
 texture_focused = SubResource( 32 )
 
 [node name="PebblesLine" type="Line2D" parent="Control/Map/Panel/ScreenClip/Map"]
-points = PoolVector2Array( 33, 227, 32, 189 )
+position = Vector2( 7, -76 )
+points = PoolVector2Array( 27, 225, 32, 189 )
 width = 16.0
 default_color = Color( 1, 1, 1, 1 )
 texture = ExtResource( 18 )
@@ -969,15 +940,8 @@ texture_mode = 1
 joint_mode = 2
 
 [node name="DonutLine" type="Line2D" parent="Control/Map/Panel/ScreenClip/Map"]
-points = PoolVector2Array( 40, 145, 64, 98 )
-width = 16.0
-default_color = Color( 1, 1, 1, 1 )
-texture = ExtResource( 18 )
-texture_mode = 1
-joint_mode = 2
-
-[node name="MoonLine" type="Line2D" parent="Control/Map/Panel/ScreenClip/Map"]
-points = PoolVector2Array( 99, 94, 143, 114 )
+position = Vector2( 22, 37 )
+points = PoolVector2Array( 48, 132, 84, 136 )
 width = 16.0
 default_color = Color( 1, 1, 1, 1 )
 texture = ExtResource( 18 )
@@ -985,7 +949,7 @@ texture_mode = 1
 joint_mode = 2
 
 [node name="CrackedLine" type="Line2D" parent="Control/Map/Panel/ScreenClip/Map"]
-points = PoolVector2Array( 184, 161, 208, 212 )
+points = PoolVector2Array( 151, 185, 197, 202 )
 width = 16.0
 default_color = Color( 1, 1, 1, 1 )
 texture = ExtResource( 18 )
@@ -993,7 +957,7 @@ texture_mode = 1
 joint_mode = 2
 
 [node name="BlobsLine" type="Line2D" parent="Control/Map/Panel/ScreenClip/Map"]
-points = PoolVector2Array( 262, 224, 313, 196 )
+points = PoolVector2Array( 263, 211, 326, 162 )
 width = 16.0
 default_color = Color( 1, 1, 1, 1 )
 texture = ExtResource( 18 )
@@ -1001,7 +965,7 @@ texture_mode = 1
 joint_mode = 2
 
 [node name="HomeLine" type="Line2D" parent="Control/Map/Panel/ScreenClip/Map"]
-points = PoolVector2Array( 338, 173, 360, 62 )
+points = PoolVector2Array( 348, 134, 360, 62 )
 width = 16.0
 default_color = Color( 1, 1, 1, 1 )
 texture = ExtResource( 18 )
@@ -1146,6 +1110,7 @@ anims/RESET = SubResource( 44 )
 anims/outro = SubResource( 51 )
 
 [node name="Fade" type="ColorRect" parent="."]
+visible = false
 margin_right = 640.0
 margin_bottom = 360.0
 mouse_filter = 2
@@ -1164,7 +1129,6 @@ bus = "Sfx"
 [connection signal="pressed" from="Control/Map/Panel/ScreenClip/Map/Rock" to="." method="_on_Rock_pressed"]
 [connection signal="pressed" from="Control/Map/Panel/ScreenClip/Map/Pebbles" to="." method="_on_Pebbles_pressed"]
 [connection signal="pressed" from="Control/Map/Panel/ScreenClip/Map/Donut" to="." method="_on_Donut_pressed"]
-[connection signal="pressed" from="Control/Map/Panel/ScreenClip/Map/Moon" to="." method="_on_Moon_pressed"]
 [connection signal="pressed" from="Control/Map/Panel/ScreenClip/Map/Cracked" to="." method="_on_Cracked_pressed"]
 [connection signal="pressed" from="Control/Map/Panel/ScreenClip/Map/Blobs" to="." method="_on_Blobs_pressed"]
 [connection signal="pressed" from="Control/Map/Panel/ScreenClip/Map/Home" to="." method="_on_Home_pressed"]

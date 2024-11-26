@@ -3,7 +3,9 @@ extends Control
 var levels = [ 
 	preload("res://Levels/Rock.tscn"), 
 	preload("res://Levels/Pebbles.tscn"),
-	preload("res://Levels/Donut.tscn")
+	preload("res://Levels/Donut.tscn"),
+	preload("res://Levels/Cracked.tscn"),
+	preload("res://Levels/Blobs.tscn")
 	]
 var menu = preload("res://MainMenu.tscn")
 var game_over = preload("res://GameOverScene.tscn")

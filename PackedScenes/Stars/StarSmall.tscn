@@ -10,10 +10,12 @@
 _data = [ Vector2( 0.463158, 0.0272727 ), 0.0, 0.0, 0, 0, Vector2( 0.796491, 0.827273 ), -1.45091, -1.45091, 0, 0, Vector2( 1, 0.0363636 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="CircleShape2D" id=1]
+resource_local_to_scene = true
 radius = 1.5
 
 [node name="StarSm" type="Area2D"]
-position = Vector2( 118, 141 )
+collision_layer = 2
+collision_mask = 8
 script = ExtResource( 2 )
 pulse_speed = 0.2
 pulse_graph = SubResource( 2 )
@@ -30,7 +32,6 @@ shape = SubResource( 1 )
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 1 )
 animation = "small"
-frame = 1
 speed_scale = 0.25
 playing = true
 script = ExtResource( 3 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=2]
+[gd_scene load_steps=71 format=2]
 
 [ext_resource path="res://starfield_shader.tres" type="Shader" id=1]
 [ext_resource path="res://Sprites/TensionBar.png" type="Texture" id=2]
@@ -17,14 +17,14 @@
 [ext_resource path="res://Sprites/Map/star-field.png" type="Texture" id=15]
 [ext_resource path="res://Fonts/m6x11.tres" type="DynamicFont" id=16]
 [ext_resource path="res://menu_theme.tres" type="Theme" id=17]
-[ext_resource path="res://PackedScenes/Stars/StarMd.tscn" type="PackedScene" id=18]
-[ext_resource path="res://PackedScenes/Stars/StarLg.tscn" type="PackedScene" id=19]
-[ext_resource path="res://PackedScenes/Stars/PlanetRing.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Resources/Stars/Star.tres" type="Resource" id=18]
+[ext_resource path="res://Resources/Stars/StarMd.tres" type="Resource" id=19]
+[ext_resource path="res://Resources/Stars/StarLg.tres" type="Resource" id=20]
 [ext_resource path="res://PackedScenes/Stars/StarSmall.tscn" type="PackedScene" id=21]
 [ext_resource path="res://PackedScenes/Lure.tscn" type="PackedScene" id=22]
-[ext_resource path="res://PackedScenes/Stars/PlanetLg.tscn" type="PackedScene" id=23]
-[ext_resource path="res://PackedScenes/Stars/Pulsar.tscn" type="PackedScene" id=24]
-[ext_resource path="res://PackedScenes/Stars/PlanetMd.tscn" type="PackedScene" id=25]
+[ext_resource path="res://Resources/Stars/PlanetMd.tres" type="Resource" id=23]
+[ext_resource path="res://Resources/Stars/Pulsar.tres" type="Resource" id=24]
+[ext_resource path="res://Resources/Stars/PlanetLg.tres" type="Resource" id=25]
 [ext_resource path="res://Sprites/Animations/Target.tres" type="SpriteFrames" id=26]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=27]
 [ext_resource path="res://Scripts/River.gd" type="Script" id=28]
@@ -41,6 +41,9 @@
 [ext_resource path="res://Sprites/Levels/Pebble2.tres" type="Texture" id=39]
 [ext_resource path="res://Scripts/Spin.gd" type="Script" id=40]
 [ext_resource path="res://Sprites/Levels/Pebble3.tres" type="Texture" id=41]
+[ext_resource path="res://Resources/Stars/PlanetRing.tres" type="Resource" id=42]
+[ext_resource path="res://Resources/Stars/ShootingStar.tres" type="Resource" id=43]
+[ext_resource path="res://Sprites/Levels/ship.png" type="Texture" id=44]
 
 [sub_resource type="Curve" id=12]
 _data = [ Vector2( 0, 0 ), 0.0, 1.90909, 0, 0, Vector2( 1, 1 ), 2.36169e-07, 0.0, 0, 0 ]
@@ -602,7 +605,8 @@ texture = ExtResource( 15 )
 [node name="SmallRiver" type="Node2D" parent="Rivers"]
 position = Vector2( 427, 386 )
 script = ExtResource( 28 )
-stars = [ ExtResource( 21 ) ]
+star_scene = ExtResource( 21 )
+star_reources = [ ExtResource( 18 ) ]
 width = 420.0
 height = 35.0
 initial_height = 640.0
@@ -614,7 +618,8 @@ color = Color( 1, 0.913725, 0.890196, 1 )
 [node name="SmallRiver2" type="Node2D" parent="Rivers"]
 position = Vector2( 429, 394 )
 script = ExtResource( 28 )
-stars = [ ExtResource( 18 ), ExtResource( 19 ) ]
+star_scene = ExtResource( 21 )
+star_reources = [ ExtResource( 20 ), ExtResource( 19 ) ]
 width = 300.0
 height = 35.0
 initial_height = 640.0
@@ -625,7 +630,8 @@ color = Color( 0.992157, 0.788235, 0.788235, 1 )
 [node name="MedRiver" type="Node2D" parent="Rivers"]
 position = Vector2( 463, 380 )
 script = ExtResource( 28 )
-stars = [ ExtResource( 24 ), ExtResource( 25 ) ]
+star_scene = ExtResource( 21 )
+star_reources = [ ExtResource( 24 ), ExtResource( 23 ) ]
 width = 350.0
 height = 35.0
 spawn_time = 3.0
@@ -635,12 +641,24 @@ color = Color( 0.541176, 0.631373, 0.964706, 1 )
 [node name="BigRiver" type="Node2D" parent="Rivers"]
 position = Vector2( 513, 372 )
 script = ExtResource( 28 )
-stars = [ ExtResource( 20 ), ExtResource( 23 ) ]
+star_scene = ExtResource( 21 )
+star_reources = [ ExtResource( 42 ), ExtResource( 25 ) ]
 width = 250.0
 height = 35.0
 spawn_time = 5.0
 speed = 10.0
 color = Color( 0.945098, 0.94902, 1, 1 )
+
+[node name="ShootingStar" type="Node2D" parent="Rivers"]
+position = Vector2( 542, 402 )
+script = ExtResource( 28 )
+star_scene = ExtResource( 21 )
+star_reources = [ ExtResource( 43 ) ]
+width = 150.0
+height = 35.0
+spawn_time = 60.0
+speed = 25.0
+color = Color( 0.992157, 0.788235, 0.788235, 1 )
 
 [node name="Floor" type="Node2D" parent="."]
 
@@ -655,6 +673,10 @@ texture = SubResource( 46 )
 [node name="Pebble2" type="Sprite" parent="Floor"]
 position = Vector2( 136, 313 )
 texture = ExtResource( 39 )
+
+[node name="Ship" type="Sprite" parent="."]
+position = Vector2( 110, 192 )
+texture = ExtResource( 44 )
 
 [node name="Orbit" type="Node2D" parent="."]
 position = Vector2( -47, 132 )
@@ -680,7 +702,7 @@ texture = ExtResource( 38 )
 position = Vector2( 835, 164 )
 rotation = 0.18326
 script = ExtResource( 40 )
-turns_per_second = -0.0084
+turns_per_second = -0.0063
 
 [node name="Spin" type="Node2D" parent="Orbit2"]
 position = Vector2( 259, -55 )
@@ -700,7 +722,23 @@ texture = ExtResource( 39 )
 position = Vector2( -379, 247 )
 rotation = 0.246091
 script = ExtResource( 40 )
-turns_per_second = 0.0084
+turns_per_second = 0.0126
+
+[node name="Spin2" type="Node2D" parent="Orbit3"]
+position = Vector2( 405.715, -478.247 )
+rotation = -0.062831
+scale = Vector2( 1, 1 )
+script = ExtResource( 40 )
+turns_per_second = 0.027
+
+[node name="Peb2" type="Area2D" parent="Orbit3/Spin2" groups=["cancel_lure"]]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Orbit3/Spin2/Peb2"]
+polygon = PoolVector2Array( -10, -30, 35, -33, 44, -22, 45, -7, 29, 6, 3, 21, -9, 17, -17, 9, -43, 6, -37, -8, -27, -11 )
+
+[node name="PebbleSprite" type="Sprite" parent="Orbit3/Spin2/Peb2/CollisionPolygon2D"]
+position = Vector2( 2, -3 )
+texture = ExtResource( 39 )
 
 [node name="Spin" type="Node2D" parent="Orbit3"]
 position = Vector2( 644, 29 )
@@ -719,7 +757,7 @@ position = Vector2( 2, -3 )
 texture = ExtResource( 41 )
 
 [node name="Player" type="Node2D" parent="."]
-position = Vector2( 156, 64 )
+position = Vector2( 156, 195 )
 script = ExtResource( 27 )
 cast_curve_x = SubResource( 19 )
 cast_curve_y = SubResource( 20 )
@@ -766,7 +804,7 @@ base_magnitude = 5.0
 visible = false
 position = Vector2( 27, 1 )
 frames = ExtResource( 26 )
-frame = 3
+frame = 4
 speed_scale = 2.0
 playing = true
 
@@ -964,8 +1002,6 @@ stream = ExtResource( 36 )
 bus = "Sfx"
 script = ExtResource( 37 )
 enabled = true
-
-[node name="Node2D" type="Node2D" parent="."]
 
 [connection signal="score_change" from="." to="SideBar/VBoxContainer/Points" method="_on_Main_score_change"]
 [connection signal="area_entered" from="Player/Lure" to="." method="_on_Lure_area_entered"]

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/StarData.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Animations/Star.tres" type="SpriteFrames" id=2]
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0.421053, 0 ), 0.0, 5.05062, 0, 1, Vector2( 0.619048, 1 ), 5.05062, -69.9999, 1, 1, Vector2( 0.633333, 0 ), -69.9999, 0.0, 1, 1, Vector2( 0.738095, 0 ), -2.60909, 17.5, 0, 1, Vector2( 0.795238, 1 ), 17.5, 0.0, 1, 0, Vector2( 0.971429, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[resource]
+script = ExtResource( 1 )
+frames = ExtResource( 2 )
+animation = "pulsar"
+radius = 3.0
+pulse_speed = 0.8
+pulse_graph = SubResource( 2 )
+score = 150
+escape_speed = 30.0
+magnitude = 5.0
+min_level = 2
+audio_pitch_modulate = 1.5
+reel_speed_mod = 0.8

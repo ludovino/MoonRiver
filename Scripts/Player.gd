@@ -17,7 +17,6 @@ func _ready() -> void:
 	origin_pos = $LureOrigin.position
 
 func _process(delta: float) -> void:
-	print()
 	if casting:
 		casting_time += clamp(delta * cast_speed, 0.0, 1.0)
 		lure_pos(casting_time, $LureOrigin.position, $Target.position)
@@ -29,7 +28,6 @@ func _process(delta: float) -> void:
 func lure_pos(weight: float, start: Vector2, end: Vector2) -> void:
 	var x = lerp(start.x, end.x, cast_curve_x.interpolate_baked(weight))
 	var y = lerp(start.y, end.y, weight) - cast_curve_y.interpolate(weight) * cast_height
-	print(x, y)
 	$Lure.position = Vector2(x, y)
 
 func walk(up: bool)-> void:

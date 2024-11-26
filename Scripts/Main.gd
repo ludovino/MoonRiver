@@ -1,7 +1,7 @@
 extends Node
 
 enum state { move, cast, wait, fight, lose, land }
-
+enum Layers { DEFAULT = 0, STARS = 1, LURE = 2, EFFECTORS = 4 }
 var progress : Progression
 export(Resource) var prog_res : Resource
 
@@ -160,9 +160,6 @@ func _process_cast(delta: float) -> void:
 	target.position.x = distance
 	
 func _process_wait(delta: float) -> void:
-	if Input.is_action_just_pressed("cancel"):
-		_cancel()
-		return
 	if Input.is_action_just_pressed("action"):
 		player.reel(false)
 	
@@ -176,21 +173,12 @@ func _process_wait(delta: float) -> void:
 			current_state = state.move
 	if(!lure.monitoring):
 		return
+	if Input.is_action_just_pressed("cancel"):
+		_cancel()
+		return
 	var overlaps = lure.get_overlapping_areas()
 	if overlaps.size() == 0:
 		return
-	
-	#var highest_scoring = overlaps[0]
-	#for overlap in overlaps:
-	#	if overlap.score > highest_scoring.score:
-	#		highest_scoring = overlap
-	#current_state = state.fight
-	#tension_bar.show()
-	#set_tension(0)
-	#player.wait(false)
-	#lure.add_star(highest_scoring)
-	#highest_scoring.hook()
-	
 
 func _process_fight(delta):
 	var intensity = lure.hooked.intensity

@@ -2,7 +2,8 @@ tool
 class_name River
 extends Node2D
 
-export(Array, PackedScene) var stars = []
+export(PackedScene) var star_scene : PackedScene
+export(Array, Resource) var star_reources = []
 export(Resource) var prog_res : Resource
 var progress : Progression
 
@@ -18,7 +19,11 @@ export var speed: float
 
 export var color : Color
 
+const bounds = Rect2(-100, -100, 640 + 200, 360 + 200)
+
 func _ready() -> void:
+	if Engine.editor_hint:
+		return
 	if prog_res == null:
 		progress = load("user://progression.tres") as Progression
 	else:
@@ -37,17 +42,22 @@ func _process(delta: float) -> void:
 		spawn_star(width, height, 0)
 	for star in get_children():
 		star.position += Vector2.UP * speed * delta
-		if star.global_position.y < -10:
+		if not bounds.has_point(star.global_position):
 			star.queue_free()
 
 func _draw() -> void:
+	if Engine.editor_hint:
 		var start = Vector2.LEFT * width / 2.0
 		var end = Vector2.RIGHT * width / 2.0
 		draw_line(start, end, Color.white, 2.0)
+		draw_rect(Rect2(Vector2(-width/2.0, 0), Vector2(width, -400)), color, false)
 
 func spawn_star(w: float, h: float, y_offset: float):
-	var star = stars[randi() % stars.size()].instance()
+	var star = star_scene.instance()
+	var data = star_reources[randi() % star_reources.size()] as StarData
 	add_child(star)
 	if star is Star:
-		star.setup(color, progress.catch_level)
+		star.setup(color, progress.catch_level, data)
+		star.add_to_group("star")
+	star.global_rotation = 0.0
 	star.position = Vector2(rand_range(-0.5 * w, 0.5 * w), rand_range(-0.5 * h, 0.5 * h) + y_offset)

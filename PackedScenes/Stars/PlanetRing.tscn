@@ -32,5 +32,6 @@ shape = SubResource( 1 )
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 1 )
 animation = "ring"
+frame = 6
 playing = true
 script = ExtResource( 3 )

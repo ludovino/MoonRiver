@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/StarData.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Animations/Star.tres" type="SpriteFrames" id=2]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.265993, 0 ), 0.0, 3.86757, 0, 1, Vector2( 0.390572, 0.481818 ), 3.86757, -71.5499, 1, 1, Vector2( 0.397306, 0 ), -71.5499, 4.44194, 1, 1, Vector2( 0.501683, 0.463636 ), 4.44194, -137.7, 1, 1, Vector2( 0.50505, 0 ), -137.7, 4.64063, 1, 1, Vector2( 0.720539, 1 ), 4.64063, inf, 1, 1, Vector2( 0.720539, 0.0272727 ), inf, 5.35, 1, 1, Vector2( 0.902357, 1 ), 5.35, 0.0, 1, 1, Vector2( 1, 1 ), 0.0, 0.0, 1, 0 ]
+
+[resource]
+script = ExtResource( 1 )
+frames = ExtResource( 2 )
+animation = "binary"
+radius = 5.5
+pulse_speed = 0.6
+pulse_graph = SubResource( 1 )
+score = 150
+escape_speed = 40.0
+magnitude = 5.0
+min_level = 6
+audio_pitch_modulate = 0.65
+reel_speed_mod = 0.8

@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=2]
+[gd_scene load_steps=66 format=2]
 
 [ext_resource path="res://starfield_shader.tres" type="Shader" id=1]
 [ext_resource path="res://Sprites/TensionBar.png" type="Texture" id=2]
@@ -17,14 +17,14 @@
 [ext_resource path="res://Sprites/Map/star-field.png" type="Texture" id=15]
 [ext_resource path="res://Fonts/m6x11.tres" type="DynamicFont" id=16]
 [ext_resource path="res://menu_theme.tres" type="Theme" id=17]
-[ext_resource path="res://PackedScenes/Stars/StarMd.tscn" type="PackedScene" id=18]
-[ext_resource path="res://PackedScenes/Stars/StarLg.tscn" type="PackedScene" id=19]
-[ext_resource path="res://PackedScenes/Stars/PlanetRing.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Resources/Stars/PlanetMd.tres" type="Resource" id=18]
+[ext_resource path="res://Resources/Stars/PlanetLg.tres" type="Resource" id=19]
+[ext_resource path="res://Resources/Stars/Star.tres" type="Resource" id=20]
 [ext_resource path="res://PackedScenes/Stars/StarSmall.tscn" type="PackedScene" id=21]
 [ext_resource path="res://PackedScenes/Lure.tscn" type="PackedScene" id=22]
-[ext_resource path="res://PackedScenes/Stars/PlanetLg.tscn" type="PackedScene" id=23]
-[ext_resource path="res://PackedScenes/Stars/Pulsar.tscn" type="PackedScene" id=24]
-[ext_resource path="res://PackedScenes/Stars/PlanetMd.tscn" type="PackedScene" id=25]
+[ext_resource path="res://Resources/Stars/StarLg.tres" type="Resource" id=23]
+[ext_resource path="res://Resources/Stars/Pulsar.tres" type="Resource" id=24]
+[ext_resource path="res://Resources/Stars/StarMd.tres" type="Resource" id=25]
 [ext_resource path="res://Sprites/Animations/Target.tres" type="SpriteFrames" id=26]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=27]
 [ext_resource path="res://Scripts/River.gd" type="Script" id=28]
@@ -37,6 +37,9 @@
 [ext_resource path="res://Scripts/Flash.gd" type="Script" id=35]
 [ext_resource path="res://Sounds/Alert.wav" type="AudioStream" id=36]
 [ext_resource path="res://Scripts/Alert.gd" type="Script" id=37]
+[ext_resource path="res://Resources/Stars/PlanetRing.tres" type="Resource" id=38]
+[ext_resource path="res://Resources/Stars/ShootingStar.tres" type="Resource" id=39]
+[ext_resource path="res://Sprites/Levels/ship.png" type="Texture" id=40]
 
 [sub_resource type="Curve" id=12]
 _data = [ Vector2( 0, 0 ), 0.0, 1.90909, 0, 0, Vector2( 1, 1 ), 2.36169e-07, 0.0, 0, 0 ]
@@ -592,47 +595,62 @@ texture = ExtResource( 15 )
 [node name="Rivers" type="Node2D" parent="."]
 
 [node name="SmallRiver" type="Node2D" parent="Rivers"]
-position = Vector2( 411, 386 )
+position = Vector2( 427, 386 )
 script = ExtResource( 28 )
-stars = [ ExtResource( 21 ) ]
-width = 420.0
+star_scene = ExtResource( 21 )
+star_reources = [ ExtResource( 20 ) ]
+width = 350.0
 height = 35.0
 initial_height = 640.0
 initial_stars = 15.0
 spawn_time = 1.0
 speed = 7.0
-color = Color( 0.541176, 0.631373, 0.964706, 1 )
+color = Color( 0.886275, 0.447059, 0.521569, 1 )
 
 [node name="SmallRiver2" type="Node2D" parent="Rivers"]
-position = Vector2( 421, 394 )
+position = Vector2( 429, 394 )
 script = ExtResource( 28 )
-stars = [ ExtResource( 18 ), ExtResource( 19 ) ]
-width = 420.0
+star_scene = ExtResource( 21 )
+star_reources = [ ExtResource( 23 ), ExtResource( 25 ) ]
+width = 300.0
 height = 35.0
 initial_height = 640.0
 spawn_time = 5.0
 speed = 7.0
-color = Color( 0.270588, 0.447059, 0.890196, 1 )
+color = Color( 0.992157, 0.788235, 0.788235, 1 )
 
 [node name="MedRiver" type="Node2D" parent="Rivers"]
-position = Vector2( 486, 380 )
+position = Vector2( 455, 378 )
 script = ExtResource( 28 )
-stars = [ ExtResource( 24 ), ExtResource( 25 ) ]
-width = 200.0
+star_scene = ExtResource( 21 )
+star_reources = [ ExtResource( 24 ), ExtResource( 18 ) ]
+width = 250.0
 height = 35.0
 spawn_time = 3.0
 speed = 15.0
 color = Color( 0.945098, 0.94902, 1, 1 )
 
 [node name="BigRiver" type="Node2D" parent="Rivers"]
-position = Vector2( 534, 372 )
+position = Vector2( 501, 372 )
 script = ExtResource( 28 )
-stars = [ ExtResource( 20 ), ExtResource( 23 ) ]
+star_scene = ExtResource( 21 )
+star_reources = [ ExtResource( 38 ), ExtResource( 19 ) ]
 width = 150.0
 height = 35.0
 spawn_time = 5.0
 speed = 10.0
-color = Color( 1, 0.913725, 0.890196, 1 )
+color = Color( 0.541176, 0.631373, 0.964706, 1 )
+
+[node name="ShootingStar" type="Node2D" parent="Rivers"]
+position = Vector2( 528, 402 )
+script = ExtResource( 28 )
+star_scene = ExtResource( 21 )
+star_reources = [ ExtResource( 39 ) ]
+width = 100.0
+height = 35.0
+spawn_time = 60.0
+speed = 25.0
+color = Color( 0.992157, 0.788235, 0.788235, 1 )
 
 [node name="Floor" type="Node2D" parent="."]
 
@@ -646,8 +664,12 @@ texture = ExtResource( 34 )
 position = Vector2( 309, -33 )
 polygon = PoolVector2Array( -347, -164, 12, -159, 9, 208, -409, 212, -407, 196, -303, 199, -259, 191, -174, 187, -107, 170, -50, 164, -42, 111, -18, 63, -50, -40, -63, -97, -86, -124, -390, -130 )
 
+[node name="Ship" type="Sprite" parent="."]
+position = Vector2( 100, 235 )
+texture = ExtResource( 40 )
+
 [node name="Player" type="Node2D" parent="."]
-position = Vector2( 150, 134 )
+position = Vector2( 149, 223 )
 script = ExtResource( 27 )
 cast_curve_x = SubResource( 19 )
 cast_curve_y = SubResource( 20 )
@@ -694,6 +716,7 @@ base_magnitude = 5.0
 visible = false
 position = Vector2( 27, 1 )
 frames = ExtResource( 26 )
+frame = 1
 speed_scale = 2.0
 playing = true
 
@@ -891,8 +914,6 @@ stream = ExtResource( 36 )
 bus = "Sfx"
 script = ExtResource( 37 )
 enabled = true
-
-[node name="Node2D" type="Node2D" parent="."]
 
 [connection signal="score_change" from="." to="SideBar/VBoxContainer/Points" method="_on_Main_score_change"]
 [connection signal="area_entered" from="Player/Lure" to="." method="_on_Lure_area_entered"]

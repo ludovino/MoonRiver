@@ -9,4 +9,4 @@ prog_name = "catch_level"
 display_name = "Hook Power"
 description = "Catch bigger stars and planets."
 icon = ExtResource( 2 )
-costs = [ 100, 1000, 10000, 50000 ]
+costs = [ 100, 1000, 5000, 10000, 20000, 50000 ]

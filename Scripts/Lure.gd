@@ -37,8 +37,11 @@ func add_star(star: Star):
 	hide()
 	hooked = star
 	hooked.get_parent().remove_child(hooked)
+	star.set_deferred("monitorable", false)
+	star.set_deferred("monitoring", false)
 	$Offset.add_child(hooked)
 	hooked.position = Vector2.ZERO
+	hooked.rotation = 0.0
 
 func remove_star() -> Star:
 	$Offset.remove_child(hooked)

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/StarData.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Animations/Planet.tres" type="SpriteFrames" id=2]
+
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.0714286, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.247619, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.590476, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.733333, 0.336364 ), 0.0, 0.0, 0, 0, Vector2( 0.842857, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.938095, 0.3 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[resource]
+script = ExtResource( 1 )
+frames = ExtResource( 2 )
+animation = "ring"
+radius = 4.5
+pulse_speed = 0.4
+pulse_graph = SubResource( 4 )
+score = 400
+escape_speed = 35.0
+magnitude = 7.0
+min_level = 5
+audio_pitch_modulate = 0.75
+reel_speed_mod = 0.7
