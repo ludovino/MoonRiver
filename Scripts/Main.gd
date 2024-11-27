@@ -5,6 +5,8 @@ enum Layers { DEFAULT = 0, STARS = 1, LURE = 2, EFFECTORS = 4 }
 var progress : Progression
 export(Resource) var prog_res : Resource
 
+export(NodePath) var player_path : NodePath
+
 export var player_speed: float
 export var position_min: float
 export var position_max: float
@@ -59,9 +61,9 @@ func _ready() -> void:
 	game_timer = $GameTime
 	game_timer.connect("timeout", self, "_out_of_time")
 	timer_display = $SideBar/VBoxContainer/Timer
-	player = $Player
+	player = $Player if is_instance_valid($Player) else get_node(player_path)
 	lure = player.lure
-	lure.connect("area_entered", self, "_on_Lure_area_entered")
+	player.connect("lure_area_entered", self, "_on_Lure_area_entered")
 	target = player.target
 	tension_bar = $TensionBar
 	reels_display = $SideBar/VBoxContainer/Center/Reels
@@ -99,8 +101,7 @@ func _physics_process(delta: float) -> void:
 		return
 	var move: Vector2 = Input.get_vector("left", "right", "up", "down", 0.1)
 	player.walk(move)
-	player.position += move
-	player.position.y = clamp(player.position.y, position_min, position_max)
+	player.move_and_slide(move * 60.0)
 
 func _out_of_time() -> void:
 	_ending_anim_start()
@@ -161,10 +162,7 @@ func _process_wait(delta: float) -> void:
 		player.wait()
 		
 	if Input.is_action_pressed("action"):
-		lure.position -= lure.position.normalized() * reel_speed * delta
-		if lure.position.x < position_min:
-			player.cancel()
-			current_state = state.move
+		lure.global_position -= player.to_local(lure.global_position).normalized() * reel_speed * delta
 	if(!lure.monitoring):
 		return
 	if Input.is_action_just_pressed("cancel"):
@@ -183,14 +181,14 @@ func _process_fight(delta):
 		player.reel(true)
 		var tf_bonus = 1.0 - (progress.escape_level / 8.0)
 		t += intensity * delta * tension_multiplier * tf_bonus
-		lure.position -= lure.position.normalized() * reel_speed * delta * inv * reel_speed_mod
+		lure.global_position -= player.to_local(lure.global_position).normalized() * reel_speed * delta * inv * reel_speed_mod
 		tension_bar.set_danger(intensity)
 	else:
 		tension_bar.set_danger(0.0)
 		player.wait(false)
 		var td_bonus = 1.0 + (progress.decay_level / 6.0)
 		t -= tension_decay * td_bonus * delta
-		lure.position += lure.position.normalized() *escape * delta * inv
+		lure.global_position += player.to_local(lure.global_position).normalized() *escape * delta * inv
 	
 	set_tension(t)
 	
@@ -222,6 +220,7 @@ func set_tension(t: float):
 	player.set_tension(clamp_t)
 
 func land_star():
+	if current_state == state.land: return
 	$Timer.start(1.0)
 	current_state = state.land
 	set_tension(0)
@@ -264,6 +263,8 @@ func _on_Lure_area_entered(area: Area2D) -> void:
 			if area.is_in_group("star"):
 				call_deferred("_catch_star", area as Star)
 			elif area.is_in_group("cancel_lure"):
+				_cancel()
+			elif area.is_in_group("land"):
 				_cancel()
 		state.fight:
 			if area.is_in_group("star"):

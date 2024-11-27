@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://Sounds/Failure.wav" type="AudioStream" id=1]
 [ext_resource path="res://Sounds/Reel.wav" type="AudioStream" id=2]
@@ -10,7 +10,7 @@
 [ext_resource path="res://Scripts/Stepper.gd" type="Script" id=8]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=9]
 [ext_resource path="res://Sprites/Animations/Target.tres" type="SpriteFrames" id=10]
-[ext_resource path="res://PackedScenes/Lure.tscn" type="PackedScene" id=11]
+[ext_resource path="res://PackedScenes/Player/Lure.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Sprites/Fishernaut-mini.png" type="Texture" id=12]
 [ext_resource path="res://Scripts/DrawLine.gd" type="Script" id=13]
 [ext_resource path="res://Scripts/AudioRandomize.gd" type="Script" id=14]
@@ -578,7 +578,13 @@ x_label = "y"
 y_label = "x"
 blend_mode = 1
 
-[node name="Player" type="Node2D"]
+[sub_resource type="CircleShape2D" id=56]
+radius = 3.0
+
+[sub_resource type="CircleShape2D" id=57]
+radius = 30.0
+
+[node name="Player" type="KinematicBody2D"]
 position = Vector2( 215, 208 )
 script = ExtResource( 9 )
 cast_curve_x = SubResource( 19 )
@@ -617,20 +623,18 @@ slack = SubResource( 15 )
 flying = SubResource( 16 )
 line_color = Color( 0.733333, 0.741176, 0.745098, 1 )
 line_swap_speed = 1.0
-lure_node_path = NodePath("../Lure")
 y_displacement = 20.0
 sample = 100
 
 [node name="Lure" parent="." instance=ExtResource( 11 )]
 collision_layer = 4
 collision_mask = 10
-base_magnitude = 5.0
 
 [node name="Target" type="AnimatedSprite" parent="."]
 visible = false
 position = Vector2( 27, 1 )
 frames = ExtResource( 10 )
-frame = 4
+frame = 1
 speed_scale = 2.0
 playing = true
 
@@ -648,7 +652,7 @@ script = ExtResource( 7 )
 
 [node name="Stepper" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
-pitch_scale = 1.01024
+pitch_scale = 0.953759
 bus = "Sfx"
 script = ExtResource( 8 )
 clip = ExtResource( 5 )
@@ -665,3 +669,14 @@ bus = "Sfx"
 tree_root = SubResource( 54 )
 anim_player = NodePath("../AnimationPlayer")
 parameters/blend_position = Vector2( -0.006993, -0.00578034 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -1 )
+shape = SubResource( 56 )
+
+[node name="Area2D" type="Area2D" parent="." groups=["land"]]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 57 )

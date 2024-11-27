@@ -1,5 +1,5 @@
 class_name Player
-extends Node2D
+extends KinematicBody2D
 
 export var cast_curve_x: Curve
 export var cast_curve_y: Curve
@@ -11,6 +11,7 @@ var wind_up = false
 var casting_time = 0
 var origin_pos: Vector2
 
+export(NodePath) var lure_path : NodePath
 onready var lure : Lure = $Lure
 onready var target : Node2D = $Target
 onready var lure_origin : Node2D = $LureOrigin
@@ -18,18 +19,25 @@ onready var rod_tip : RodTip = $RodTip
 onready var anim : AnimationPlayer = $AnimationPlayer
 onready var anim_tree : AnimationTree = $AnimationTree
 
+signal lure_area_entered
+
 func _ready() -> void:
 	rod_tip.disable()
+	if lure_path:
+		lure.queue_free()
+		lure = get_node(lure_path)
+	lure.connect("area_entered", self, "_lure_area_entered")
 	lure.disable()
 	lure.hide()
-	origin_pos = lure_origin.position
+	rod_tip.lure = lure.get_node("Offset")
+	origin_pos = lure_origin.global_position
 
 func _process(delta: float) -> void:
 	if wind_up:
-		lure.position = lure_origin.position
+		lure.global_position = lure_origin.global_position
 	if casting:
 		casting_time += clamp(delta * cast_speed, 0.0, 1.0)
-		lure_pos(casting_time, lure_origin.position, target.position)
+		lure_pos(casting_time, lure_origin.global_position, target.global_position)
 		if casting_time >= 1.0:
 			casting = false
 			rod_tip.set_line(rod_tip.slack)
@@ -38,7 +46,7 @@ func _process(delta: float) -> void:
 func lure_pos(weight: float, start: Vector2, end: Vector2) -> void:
 	var x = lerp(start.x, end.x, cast_curve_x.interpolate_baked(weight))
 	var y = lerp(start.y, end.y, weight) - cast_curve_y.interpolate(weight) * cast_height
-	lure.position = Vector2(x, y)
+	lure.global_position = Vector2(x, y)
 
 func walk(dir : Vector2)-> void:
 	rod_tip.disable()
@@ -66,7 +74,7 @@ func start_cast() -> void:
 	anim_tree.active = false
 	wind_up = true
 	anim.play("wind-up")
-	lure.position = origin_pos
+	lure.global_position = lure_origin.global_position
 	lure.show()
 	target.visible = true
 	rod_tip.set_line(rod_tip.taut)
@@ -103,18 +111,18 @@ func break_line() -> void:
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_LINEAR)
-	tween.tween_property($Lure, "position", lure.position + Vector2(-10, -50), 2)
+	tween.tween_property($Lure, "global_position", lure.global_position + Vector2(-10, -50), 2)
 	
 func show_cancel() -> void:
 	rod_tip.set_line(rod_tip.flying)
 	anim.play("cancel")
 	target.visible = false
 	wind_up = false
-	var start = lure.position
+	var start = lure.global_position
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT_IN)
 	tween.set_trans(Tween.TRANS_LINEAR)
-	tween.tween_method(self, "lure_pos", 1.0, 0.0, 1.05, [Vector2(-20, 0), start])
+	tween.tween_method(self, "lure_pos", 1.0, 0.0, 1.05, [global_position, start])
 
 func cancel() -> void:
 	casting = false
@@ -130,3 +138,6 @@ func highlight(catch : Node2D) -> void:
 func set_tension(tension: float) -> void:
 	var t = clamp(tension, 0.0, 1.0)
 	$Reeler.pitch_scale = 1.0 + t * 0.4
+
+func _lure_area_entered(body: Node2D) -> void:
+	emit_signal("lure_area_entered", body)

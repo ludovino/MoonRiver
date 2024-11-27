@@ -1,9 +1,10 @@
-[gd_scene load_steps=50 format=2]
+[gd_scene load_steps=52 format=2]
 
 [ext_resource path="res://starfield_shader.tres" type="Shader" id=1]
 [ext_resource path="res://Sprites/TensionBar.png" type="Texture" id=2]
 [ext_resource path="res://PackedScenes/Player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Sprites/Levels/ship-mini.png" type="Texture" id=4]
+[ext_resource path="res://PackedScenes/Player/Lure.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Sprites/Reel.png" type="Texture" id=9]
 [ext_resource path="res://Scripts/Timerisplay.gd" type="Script" id=11]
 [ext_resource path="res://FadeIn.gd" type="Script" id=12]
@@ -120,6 +121,9 @@ extents = Vector2( 15, 210 )
 [sub_resource type="RectangleShape2D" id=58]
 extents = Vector2( 320, 15 )
 
+[sub_resource type="RectangleShape2D" id=59]
+extents = Vector2( 15, 300 )
+
 [node name="Main" type="Node2D"]
 script = ExtResource( 32 )
 player_speed = 50.0
@@ -214,7 +218,6 @@ color = Color( 0.992157, 0.788235, 0.788235, 1 )
 
 [node name="Orbit" type="Node2D" parent="."]
 position = Vector2( -50, 180 )
-rotation = -1.65806
 script = ExtResource( 42 )
 turns_per_second = 0.0083
 
@@ -241,7 +244,6 @@ script = ExtResource( 44 )
 direction = Vector2( 650, 0 )
 magnitude = 22.0
 local = true
-point = true
 falloff = 1.62451
 min_distance = 250.0
 max_distance = 2000.0
@@ -298,7 +300,6 @@ script = ExtResource( 44 )
 direction = Vector2( 650, 0 )
 magnitude = 22.0
 local = true
-point = true
 falloff = 1.62451
 min_distance = 250.0
 max_distance = 2000.0
@@ -343,6 +344,11 @@ texture = ExtResource( 4 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 158, 201 )
+lure_path = NodePath("../Lure")
+
+[node name="Lure" parent="." groups=["lure"] instance=ExtResource( 5 )]
+collision_layer = 4
+collision_mask = 10
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
@@ -537,6 +543,15 @@ shape = SubResource( 58 )
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Extents"]
 position = Vector2( 360, -27 )
 shape = SubResource( 58 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 84, 180 )
+shape = SubResource( 59 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( 99, 1, 130, 0, 168, 51, 191, 111, 200, 165, 199, 219, 187, 265, 165, 311, 136, 349, 125, 360, 97, 360, 97, 391, 428, 392, 427, -26, 100, -31 )
 
 [connection signal="score_change" from="." to="SideBar/VBoxContainer/Points" method="_on_Main_score_change"]
 [connection signal="lose_reel" from="SideBar/VBoxContainer/Center/Reels" to="SideBar/VBoxContainer/ReelsLabel" method="flash"]

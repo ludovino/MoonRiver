@@ -13,7 +13,6 @@ export var line_swap_speed: float
 var line_weight: float
 var to_be_visible: bool = false
 
-export var lure_node_path: NodePath
 var lure : Node2D
 
 export var y_displacement: float
@@ -24,7 +23,6 @@ var points: Array = []
 func _ready() -> void:
 	line_weight = 1.0
 	current_line = flying
-	lure = get_node(lure_node_path).get_node("Offset")
 	division = 1.0 / sample
 	points.resize(sample + 1)
 
