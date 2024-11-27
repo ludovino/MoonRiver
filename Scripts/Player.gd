@@ -7,86 +7,98 @@ export var cast_height: float
 export var cast_speed: float
 
 var casting = false
+var wind_up = false
 var casting_time = 0
 var origin_pos: Vector2
 
+onready var lure : Lure = $Lure
+onready var target : Node2D = $Target
+onready var lure_origin : Node2D = $LureOrigin
+onready var rod_tip : RodTip = $RodTip
+onready var anim : AnimationPlayer = $AnimationPlayer
+
 func _ready() -> void:
-	$RodTip.disable()
-	$Lure.disable()
-	$Lure.hide()
-	origin_pos = $LureOrigin.position
+	rod_tip.disable()
+	lure.disable()
+	lure.hide()
+	origin_pos = lure_origin.position
 
 func _process(delta: float) -> void:
+	if wind_up:
+		lure.position = lure_origin.position
 	if casting:
 		casting_time += clamp(delta * cast_speed, 0.0, 1.0)
-		lure_pos(casting_time, $LureOrigin.position, $Target.position)
+		lure_pos(casting_time, lure_origin.position, target.position)
 		if casting_time >= 1.0:
 			casting = false
-			$RodTip.set_line($RodTip.slack)
-			$Lure.enable()
+			rod_tip.set_line(rod_tip.slack)
+			lure.enable()
 		
 func lure_pos(weight: float, start: Vector2, end: Vector2) -> void:
 	var x = lerp(start.x, end.x, cast_curve_x.interpolate_baked(weight))
 	var y = lerp(start.y, end.y, weight) - cast_curve_y.interpolate(weight) * cast_height
-	$Lure.position = Vector2(x, y)
+	lure.position = Vector2(x, y)
 
 func walk(up: bool)-> void:
-	$RodTip.disable()
-	if up and $AnimationPlayer.current_animation != "walk-up":
-		$AnimationPlayer.play("walk-up")
-	elif !up and $AnimationPlayer.current_animation != "walk-down":
-		$AnimationPlayer.play("walk-down")
+	rod_tip.disable()
+	if up and anim.current_animation != "walk-up":
+		anim.play("walk-up")
+	elif !up and anim.current_animation != "walk-down":
+		anim.play("walk-down")
 
 func idle() -> void:
-	$RodTip.disable()
-	if $AnimationPlayer.current_animation != "idle":
-		$AnimationPlayer.play("idle")
+	rod_tip.disable()
+	if anim.current_animation != "idle":
+		anim.play("idle")
 	
 func start_cast() -> void:
-	$AnimationPlayer.play("wind-up")
-	$Lure.position = origin_pos
-	$Lure.show()
-	$Target.visible = true
-	$RodTip.set_line($RodTip.taut)
-	$RodTip.enable()
+	wind_up = true
+	anim.play("wind-up")
+	lure.position = origin_pos
+	lure.show()
+	target.visible = true
+	rod_tip.set_line(rod_tip.taut)
+	rod_tip.enable()
 	
 func release_cast() -> void:
 	casting_time = 0.0
 	casting = true
-	$RodTip.enable()
-	$AnimationPlayer.play("cast")
-	$Target.visible = false
-	$RodTip.set_line($RodTip.flying)
+	wind_up = false
+	rod_tip.enable()
+	anim.play("cast")
+	target.visible = false
+	rod_tip.set_line(rod_tip.flying)
 	
 func reel(taut: bool) -> void:
-	if $AnimationPlayer.current_animation != "reel":
-		$AnimationPlayer.play("reel")
+	if anim.current_animation != "reel":
+		anim.play("reel")
 	if(taut):
-		$RodTip.set_line($RodTip.taut)
+		rod_tip.set_line(rod_tip.taut)
 
 func wait(slack = true) -> void:
-	$AnimationPlayer.play("wait")
+	anim.play("wait")
 	if(slack):
-		$RodTip.set_line($RodTip.slack)
+		rod_tip.set_line(rod_tip.slack)
 
 func land() -> void:
 	cancel()
-	$AnimationPlayer.play("catch")
+	anim.play("catch")
 
 func break_line() -> void:
-	$Lure.hide()
-	$RodTip.set_line($RodTip.flying)
-	$AnimationPlayer.play("loss")
+	lure.hide()
+	rod_tip.set_line(rod_tip.flying)
+	anim.play("loss")
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_LINEAR)
-	tween.tween_property($Lure, "position", $Lure.position + Vector2(-10, -50), 2)
+	tween.tween_property($Lure, "position", lure.position + Vector2(-10, -50), 2)
 	
 func show_cancel() -> void:
-	$RodTip.set_line($RodTip.flying)
-	$AnimationPlayer.play("cancel")
-	$Target.visible = false
-	var start = $Lure.position
+	rod_tip.set_line(rod_tip.flying)
+	anim.play("cancel")
+	target.visible = false
+	wind_up = false
+	var start = lure.position
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT_IN)
 	tween.set_trans(Tween.TRANS_LINEAR)
@@ -94,7 +106,11 @@ func show_cancel() -> void:
 
 func cancel() -> void:
 	casting = false
-	$Lure.hide()
-	$Lure.disable()
-	$Target.visible = false
-	$RodTip.disable()
+	wind_up = false
+	lure.hide()
+	lure.disable()
+	target.visible = false
+	rod_tip.disable()
+
+func highlight(catch : Node2D) -> void:
+	$StarHighlight.add_star(catch)

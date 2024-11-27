@@ -74,6 +74,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/River.gd"
 }, {
+"base": "Node2D",
+"class": "RodTip",
+"language": "GDScript",
+"path": "res://Scripts/DrawLine.gd"
+}, {
 "base": "Area2D",
 "class": "Star",
 "language": "GDScript",
@@ -113,6 +118,7 @@ _global_script_class_icons={
 "Progression": "",
 "ReelsDisplay": "",
 "River": "",
+"RodTip": "",
 "Star": "",
 "StarData": "",
 "StarHighlight": "",

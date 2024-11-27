@@ -1,3 +1,4 @@
+class_name RodTip
 extends Node2D
 
 export var taut: Curve
@@ -25,21 +26,25 @@ func _ready() -> void:
 	current_line = flying
 	lure = get_node(lure_node_path).get_node("Offset")
 	division = 1.0 / sample
-	points.resize(sample)
+	points.resize(sample + 1)
 
 func _draw() -> void:
 	draw_polyline(points, line_color, -1.0)
 
 func _get_line_pos(weight: float) -> Vector2: 
 	var pos = lerp(global_position, lure.global_position, weight)
-	var current = current_line.interpolate_baked(weight)
-	pos.y -= current * y_displacement
+	var t = weight
+	var y_mod = 1.0
+	if current_line == flying:
+		t = 1.0 - fmod(t + Time.get_ticks_msec() * 0.0007, 1.0)
+		y_mod = -4 * weight * weight + 4 * weight
+	var current = current_line.interpolate_baked(t)
+	pos.y -= current * y_displacement * y_mod
 	return to_local(pos)
 	
 func _process(delta: float) -> void:
 	line_weight += stepify(delta, 0.1) * line_swap_speed
 	line_weight = clamp(line_weight, 0.0, 1.0)
-	
 	for i in range(0, points.size()):
 		points[i] = _get_line_pos(i * division)
 	update()

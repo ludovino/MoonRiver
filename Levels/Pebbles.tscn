@@ -1,15 +1,10 @@
-[gd_scene load_steps=71 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://starfield_shader.tres" type="Shader" id=1]
 [ext_resource path="res://Sprites/TensionBar.png" type="Texture" id=2]
-[ext_resource path="res://Sprites/Fishernaut.png" type="Texture" id=3]
-[ext_resource path="res://Sounds/Cast.wav" type="AudioStream" id=4]
-[ext_resource path="res://Sounds/Step.wav" type="AudioStream" id=5]
-[ext_resource path="res://Sounds/Success.wav" type="AudioStream" id=6]
-[ext_resource path="res://Sounds/LineSnap.wav" type="AudioStream" id=7]
-[ext_resource path="res://Sounds/Reel.wav" type="AudioStream" id=8]
+[ext_resource path="res://PackedScenes/Player/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Sprites/Levels/ship-mini.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/Reel.png" type="Texture" id=9]
-[ext_resource path="res://Sounds/Failure.wav" type="AudioStream" id=10]
 [ext_resource path="res://Scripts/Timerisplay.gd" type="Script" id=11]
 [ext_resource path="res://FadeIn.gd" type="Script" id=12]
 [ext_resource path="res://Scripts/ReelsDisplay.gd" type="Script" id=13]
@@ -21,18 +16,13 @@
 [ext_resource path="res://Resources/Stars/StarMd.tres" type="Resource" id=19]
 [ext_resource path="res://Resources/Stars/StarLg.tres" type="Resource" id=20]
 [ext_resource path="res://PackedScenes/Stars/StarSmall.tscn" type="PackedScene" id=21]
-[ext_resource path="res://PackedScenes/Lure.tscn" type="PackedScene" id=22]
 [ext_resource path="res://Resources/Stars/PlanetMd.tres" type="Resource" id=23]
 [ext_resource path="res://Resources/Stars/Pulsar.tres" type="Resource" id=24]
 [ext_resource path="res://Resources/Stars/PlanetLg.tres" type="Resource" id=25]
-[ext_resource path="res://Sprites/Animations/Target.tres" type="SpriteFrames" id=26]
-[ext_resource path="res://Scripts/Player.gd" type="Script" id=27]
 [ext_resource path="res://Scripts/River.gd" type="Script" id=28]
-[ext_resource path="res://Scripts/DrawLine.gd" type="Script" id=29]
 [ext_resource path="res://Scripts/Points.gd" type="Script" id=30]
 [ext_resource path="res://Scripts/TensionBar.gd" type="Script" id=31]
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=32]
-[ext_resource path="res://Scripts/StarHighlight.gd" type="Script" id=33]
 [ext_resource path="res://Sprites/Levels/pebbles-main.png" type="Texture" id=34]
 [ext_resource path="res://Scripts/Flash.gd" type="Script" id=35]
 [ext_resource path="res://Sounds/Alert.wav" type="AudioStream" id=36]
@@ -43,7 +33,6 @@
 [ext_resource path="res://Sprites/Levels/Pebble3.tres" type="Texture" id=41]
 [ext_resource path="res://Resources/Stars/PlanetRing.tres" type="Resource" id=42]
 [ext_resource path="res://Resources/Stars/ShootingStar.tres" type="Resource" id=43]
-[ext_resource path="res://Sprites/Levels/ship.png" type="Texture" id=44]
 
 [sub_resource type="Curve" id=12]
 _data = [ Vector2( 0, 0 ), 0.0, 1.90909, 0, 0, Vector2( 1, 1 ), 2.36169e-07, 0.0, 0, 0 ]
@@ -87,459 +76,6 @@ shader_param/noise = SubResource( 41 )
 [sub_resource type="AtlasTexture" id=46]
 atlas = ExtResource( 34 )
 region = Rect2( 0, 30, 270, 336 )
-
-[sub_resource type="Curve" id=19]
-_data = [ Vector2( 0, 0 ), 0.0, 2.15385, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
-
-[sub_resource type="Curve" id=20]
-_data = [ Vector2( 0, 0 ), 0.0, 4.35273, 0, 0, Vector2( 0.5, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -3.98419, 0.0, 0, 0 ]
-
-[sub_resource type="Animation" id=22]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("RodTip:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("LureOrigin:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( -36, -14 ) ]
-}
-
-[sub_resource type="Animation" id=47]
-resource_name = "cancel"
-length = 1.1
-tracks/0/type = "value"
-tracks/0/path = NodePath("PixelSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.3, 0.5, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 15, 13, 15, 14, 5 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("RodTip:position")
-tracks/1/interp = 0
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 0.3, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ Vector2( 27, -39 ), Vector2( 5, -48 ), Vector2( 27, -39 ), Vector2( 41, -39 ) ]
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 1 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "cancel"
-} ]
-}
-tracks/3/type = "audio"
-tracks/3/path = NodePath("SfxPlayer")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"clips": [ {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 7 )
-} ],
-"times": PoolRealArray( 0 )
-}
-
-[sub_resource type="Animation" id=23]
-length = 0.4
-tracks/0/type = "value"
-tracks/0/path = NodePath("PixelSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ 12, 13, 14 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("RodTip:position")
-tracks/1/interp = 0
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ Vector2( -33, -36 ), Vector2( 4, -48 ), Vector2( 41, -39 ) ]
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath("RodTip")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0.1 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "enable"
-} ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("LureOrigin:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( -36, 14 ), Vector2( -33, -40 ), Vector2( 15, -47 ) ]
-}
-tracks/4/type = "audio"
-tracks/4/path = NodePath("SfxPlayer")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"clips": [ {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 4 )
-} ],
-"times": PoolRealArray( 0.2 )
-}
-
-[sub_resource type="Animation" id=24]
-length = 0.5
-tracks/0/type = "value"
-tracks/0/path = NodePath("PixelSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.001, 0.2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ 6, 6, 7 ]
-}
-tracks/1/type = "audio"
-tracks/1/path = NodePath("SfxPlayer")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"clips": [ {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 6 )
-} ],
-"times": PoolRealArray( 0 )
-}
-
-[sub_resource type="Animation" id=4]
-resource_name = "idle"
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("PixelSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 16, 17 ]
-}
-
-[sub_resource type="Animation" id=5]
-resource_name = "loss"
-length = 1.8
-tracks/0/type = "value"
-tracks/0/path = NodePath("PixelSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.3, 0.5, 1, 1.1, 1.4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 15, 13, 15, 14, 5, 4, 5 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("RodTip:position")
-tracks/1/interp = 0
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 0.3, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ Vector2( 27, -39 ), Vector2( 5, -48 ), Vector2( 27, -39 ), Vector2( 41, -39 ) ]
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 1 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "cancel"
-} ]
-}
-tracks/3/type = "audio"
-tracks/3/path = NodePath("SfxPlayer")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"clips": [ {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 7 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 10 )
-} ],
-"times": PoolRealArray( 0, 0.8 )
-}
-
-[sub_resource type="Animation" id=6]
-resource_name = "reel"
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("PixelSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 15 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("RodTip:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 27, -39 ) ]
-}
-tracks/2/type = "audio"
-tracks/2/path = NodePath("SfxPlayer")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"clips": [ {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 8 )
-} ],
-"times": PoolRealArray( 0 )
-}
-
-[sub_resource type="Animation" id=7]
-resource_name = "wait"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/path = NodePath("PixelSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 14 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("RodTip:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 41, -39 ) ]
-}
-
-[sub_resource type="Animation" id=8]
-resource_name = "walk-down"
-length = 2.0
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("PixelSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 1, 1.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 3 ]
-}
-tracks/1/type = "audio"
-tracks/1/path = NodePath("SfxPlayer")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"clips": [ {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 5 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 5 )
-} ],
-"times": PoolRealArray( 0, 1 )
-}
-
-[sub_resource type="Animation" id=9]
-resource_name = "walk-up"
-length = 2.0
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("PixelSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 1, 1.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 8, 9, 10, 11 ]
-}
-tracks/1/type = "audio"
-tracks/1/path = NodePath("SfxPlayer")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"clips": [ {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 5 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 5 )
-} ],
-"times": PoolRealArray( 0, 1 )
-}
-
-[sub_resource type="Animation" id=11]
-resource_name = "wind-up"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath("PixelSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 12 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("RodTip:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( -33, -36 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("LureOrigin:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( -33, -9 ) ]
-}
-
-[sub_resource type="Curve" id=14]
-_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
-
-[sub_resource type="Curve" id=15]
-min_value = -1.0
-max_value = 0.0
-_data = [ Vector2( 0, 0 ), 0.0, -1.81119, 0, 0, Vector2( 0.704762, -0.272727 ), 0.502392, 0.502392, 0, 0, Vector2( 1, 0 ), 1.2, 0.0, 0, 0 ]
-
-[sub_resource type="Curve" id=16]
-min_value = -1.0
-_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.204762, 0.6 ), 0.0, 0.0, 0, 0, Vector2( 0.342857, 0.327273 ), 0.0, 0.0, 0, 0, Vector2( 0.495238, 0.745455 ), 0.0, 0.0, 0, 0, Vector2( 0.657143, 0.163636 ), 0.0, 0.0, 0, 0, Vector2( 0.828571, 0.890909 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="Animation" id=25]
 resource_name = "score"
@@ -675,8 +211,8 @@ position = Vector2( 136, 313 )
 texture = ExtResource( 39 )
 
 [node name="Ship" type="Sprite" parent="."]
-position = Vector2( 110, 192 )
-texture = ExtResource( 44 )
+position = Vector2( 131, 205 )
+texture = ExtResource( 4 )
 
 [node name="Orbit" type="Node2D" parent="."]
 position = Vector2( -47, 132 )
@@ -727,7 +263,6 @@ turns_per_second = 0.0126
 [node name="Spin2" type="Node2D" parent="Orbit3"]
 position = Vector2( 405.715, -478.247 )
 rotation = -0.062831
-scale = Vector2( 1, 1 )
 script = ExtResource( 40 )
 turns_per_second = 0.027
 
@@ -756,74 +291,8 @@ polygon = PoolVector2Array( 29, -48, 44, -42, 50, -30, 50, 0, 37, 13, 24, 29, 0,
 position = Vector2( 2, -3 )
 texture = ExtResource( 41 )
 
-[node name="Player" type="Node2D" parent="."]
-position = Vector2( 156, 195 )
-script = ExtResource( 27 )
-cast_curve_x = SubResource( 19 )
-cast_curve_y = SubResource( 20 )
-cast_height = 45.0
-cast_speed = 0.8
-
-[node name="PixelSprite" type="Sprite" parent="Player"]
-position = Vector2( -5, -26 )
-texture = ExtResource( 3 )
-hframes = 3
-vframes = 6
-frame = 16
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
-anims/RESET = SubResource( 22 )
-anims/cancel = SubResource( 47 )
-anims/cast = SubResource( 23 )
-anims/catch = SubResource( 24 )
-anims/idle = SubResource( 4 )
-anims/loss = SubResource( 5 )
-anims/reel = SubResource( 6 )
-anims/wait = SubResource( 7 )
-anims/walk-down = SubResource( 8 )
-anims/walk-up = SubResource( 9 )
-anims/wind-up = SubResource( 11 )
-
-[node name="Tween" type="Tween" parent="Player"]
-
-[node name="RodTip" type="Node2D" parent="Player"]
-script = ExtResource( 29 )
-taut = SubResource( 14 )
-slack = SubResource( 15 )
-flying = SubResource( 16 )
-line_color = Color( 0.733333, 0.741176, 0.745098, 1 )
-line_swap_speed = 1.0
-lure_node_path = NodePath("../Lure")
-y_displacement = 20.0
-sample = 100
-
-[node name="Lure" parent="Player" instance=ExtResource( 22 )]
-base_magnitude = 5.0
-
-[node name="Target" type="AnimatedSprite" parent="Player"]
-visible = false
-position = Vector2( 27, 1 )
-frames = ExtResource( 26 )
-frame = 4
-speed_scale = 2.0
-playing = true
-
-[node name="LureOrigin" type="Node2D" parent="Player"]
-position = Vector2( -36, -14 )
-
-[node name="BarParent" type="Node2D" parent="Player"]
-position = Vector2( 0, -19 )
-
-[node name="StarHighlight" type="Node2D" parent="Player"]
-position = Vector2( 0.5, -28 )
-script = ExtResource( 33 )
-
-[node name="Tween" type="Tween" parent="Player/StarHighlight"]
-
-[node name="SfxPlayer" type="AudioStreamPlayer" parent="Player"]
-stream = ExtResource( 10 )
-volume_db = -9.087
-bus = "Sfx"
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 165, 182 )
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
@@ -1004,5 +473,4 @@ script = ExtResource( 37 )
 enabled = true
 
 [connection signal="score_change" from="." to="SideBar/VBoxContainer/Points" method="_on_Main_score_change"]
-[connection signal="area_entered" from="Player/Lure" to="." method="_on_Lure_area_entered"]
 [connection signal="lose_reel" from="SideBar/VBoxContainer/Center/Reels" to="SideBar/VBoxContainer/ReelsLabel" method="flash"]

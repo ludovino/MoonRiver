@@ -755,6 +755,7 @@ margin_left = 5.0
 margin_top = 6.0
 margin_right = 402.0
 margin_bottom = 316.0
+rect_clip_content = true
 
 [node name="StarBg" type="TextureRect" parent="Control/Map/Panel/ScreenClip"]
 modulate = Color( 1, 1, 1, 0.388235 )

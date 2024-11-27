@@ -56,14 +56,14 @@ func _ready() -> void:
 		progress = load("user://progression.tres") as Progression
 	else:
 		progress = prog_res as Progression
-	lure = $Player/Lure
 	game_timer = $GameTime
 	game_timer.connect("timeout", self, "_out_of_time")
 	timer_display = $SideBar/VBoxContainer/Timer
 	player = $Player
-	target = $Player/Target
+	lure = player.lure
+	lure.connect("area_entered", self, "_on_Lure_area_entered")
+	target = player.target
 	tension_bar = $TensionBar
-	star_highlight = $Player/StarHighlight
 	reels_display = $SideBar/VBoxContainer/Center/Reels
 	sfx = $SfxPlayer
 	$Timer.start(1.5)
@@ -167,7 +167,8 @@ func _process_wait(delta: float) -> void:
 		player.wait()
 		
 	if Input.is_action_pressed("action"):
-		lure.position.x -= reel_speed * delta
+		lure.position -= lure.position.normalized() * reel_speed * delta
+		#lure.position.x -= reel_speed * delta
 		if lure.position.x < position_min:
 			player.cancel()
 			current_state = state.move
@@ -192,14 +193,14 @@ func _process_fight(delta):
 		player.reel(true)
 		var tf_bonus = 1.0 - (progress.escape_level / 8.0)
 		t += intensity * delta * tension_multiplier * tf_bonus
-		lure.position.x -= reel_speed * delta * inv * reel_speed_mod
+		lure.position -= lure.position.normalized() * reel_speed * delta * inv * reel_speed_mod
 		tension_bar.set_danger(intensity)
 	else:
 		tension_bar.set_danger(0.0)
 		player.wait(false)
 		var td_bonus = 1.0 + (progress.decay_level / 6.0)
 		t -= tension_decay * td_bonus * delta
-		lure.position.x += escape * delta * inv
+		lure.position += lure.position.normalized() *escape * delta * inv
 	
 	set_tension(t)
 	 
@@ -240,7 +241,7 @@ func land_star():
 	player.land()
 	var star = lure.remove_star()
 	star.unhook()
-	star_highlight.add_star(star)
+	player.highlight(star)
 	add_score(star.score * score_multiplier)
 
 func lose_hook():
@@ -270,6 +271,7 @@ func _cancel() -> void:
 	current_state = state.lose
 	
 func _on_Lure_area_entered(area: Area2D) -> void:
+	print("lure touched")
 	match current_state:
 		state.wait:
 			if area.is_in_group("star"):
