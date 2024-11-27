@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://starfield_shader.tres" type="Shader" id=1]
 [ext_resource path="res://Sprites/TensionBar.png" type="Texture" id=2]
@@ -113,6 +113,12 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Vector2( 1, 1 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
 }
+
+[sub_resource type="RectangleShape2D" id=57]
+extents = Vector2( 15, 210 )
+
+[sub_resource type="RectangleShape2D" id=58]
+extents = Vector2( 320, 15 )
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 32 )
@@ -320,16 +326,23 @@ shape = SubResource( 56 )
 script = ExtResource( 45 )
 effect = ExtResource( 46 )
 
-[node name="Blobs2" type="Sprite" parent="."]
+[node name="Land" type="Sprite" parent="."]
 position = Vector2( -50, 180 )
 texture = ExtResource( 34 )
 
-[node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 158, 201 )
+[node name="Land" type="Area2D" parent="Land" groups=["land"]]
+collision_layer = 8
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Land/Land"]
+shape = SubResource( 56 )
 
 [node name="Ship" type="Sprite" parent="."]
 position = Vector2( 127, 210 )
 texture = ExtResource( 4 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 158, 201 )
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
@@ -508,6 +521,22 @@ stream = ExtResource( 36 )
 bus = "Sfx"
 script = ExtResource( 37 )
 enabled = true
+
+[node name="Extents" type="Area2D" parent="." groups=["cancel_lure"]]
+collision_layer = 4
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Extents"]
+position = Vector2( 666, 180 )
+shape = SubResource( 57 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Extents"]
+position = Vector2( 360, 389 )
+shape = SubResource( 58 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Extents"]
+position = Vector2( 360, -27 )
+shape = SubResource( 58 )
 
 [connection signal="score_change" from="." to="SideBar/VBoxContainer/Points" method="_on_Main_score_change"]
 [connection signal="lose_reel" from="SideBar/VBoxContainer/Center/Reels" to="SideBar/VBoxContainer/ReelsLabel" method="flash"]

@@ -42,10 +42,12 @@ randomness = 1.0
 process_material = SubResource( 7 )
 script = ExtResource( 1 )
 
-[node name="AudioRandomize" type="AudioStreamPlayer2D" parent="."]
+[node name="Sfx" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 2 )
 autoplay = true
 max_distance = 600.0
 bus = "Reverb"
+
+[node name="AudioRandomize" type="Node" parent="Sfx"]
 script = ExtResource( 3 )
 random_range = 0.1

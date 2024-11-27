@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://starfield_shader.tres" type="Shader" id=1]
 [ext_resource path="res://Sprites/TensionBar.png" type="Texture" id=2]
@@ -95,6 +95,12 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Vector2( 1, 1 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
 }
+
+[sub_resource type="RectangleShape2D" id=45]
+extents = Vector2( 15, 210 )
+
+[sub_resource type="RectangleShape2D" id=46]
+extents = Vector2( 320, 15 )
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 32 )
@@ -371,6 +377,29 @@ stream = ExtResource( 36 )
 bus = "Sfx"
 script = ExtResource( 37 )
 enabled = true
+
+[node name="Extents" type="Area2D" parent="." groups=["cancel_lure"]]
+collision_layer = 8
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Extents"]
+position = Vector2( 666, 180 )
+shape = SubResource( 45 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Extents"]
+position = Vector2( 360, 389 )
+shape = SubResource( 46 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Extents"]
+position = Vector2( 360, -27 )
+shape = SubResource( 46 )
+
+[node name="Land" type="Area2D" parent="." groups=["land"]]
+collision_layer = 8
+collision_mask = 6
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Land"]
+polygon = PoolVector2Array( 32, 382, 94, 382, 93, 319, 134, 317, 162, 310, 174, 280, 178, 197, 171, 105, 167, 26, 144, 6, 97, 5, 99, -34, 0, -9 )
 
 [connection signal="score_change" from="." to="SideBar/VBoxContainer/Points" method="_on_Main_score_change"]
 [connection signal="lose_reel" from="SideBar/VBoxContainer/Center/Reels" to="SideBar/VBoxContainer/ReelsLabel" method="flash"]

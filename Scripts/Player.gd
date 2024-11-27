@@ -16,6 +16,7 @@ onready var target : Node2D = $Target
 onready var lure_origin : Node2D = $LureOrigin
 onready var rod_tip : RodTip = $RodTip
 onready var anim : AnimationPlayer = $AnimationPlayer
+onready var anim_tree : AnimationTree = $AnimationTree
 
 func _ready() -> void:
 	rod_tip.disable()
@@ -39,12 +40,22 @@ func lure_pos(weight: float, start: Vector2, end: Vector2) -> void:
 	var y = lerp(start.y, end.y, weight) - cast_curve_y.interpolate(weight) * cast_height
 	lure.position = Vector2(x, y)
 
-func walk(up: bool)-> void:
+func walk(dir : Vector2)-> void:
 	rod_tip.disable()
-	if up and anim.current_animation != "walk-up":
-		anim.play("walk-up")
-	elif !up and anim.current_animation != "walk-down":
+	var a_x = abs(dir.x)
+	var a_y = abs(dir.y)
+	
+	if is_zero_approx(dir.length()):
+		anim.play("idle")
+		return
+	if dir.x > a_y:
+		anim.play("walk-right")
+	elif dir.x < -a_y:
+		anim.play("walk-left")
+	elif dir.y > 0.0:
 		anim.play("walk-down")
+	elif dir.y <= -a_x:
+		anim.play("walk-up")
 
 func idle() -> void:
 	rod_tip.disable()
@@ -52,6 +63,7 @@ func idle() -> void:
 		anim.play("idle")
 	
 func start_cast() -> void:
+	anim_tree.active = false
 	wind_up = true
 	anim.play("wind-up")
 	lure.position = origin_pos
@@ -114,3 +126,7 @@ func cancel() -> void:
 
 func highlight(catch : Node2D) -> void:
 	$StarHighlight.add_star(catch)
+
+func set_tension(tension: float) -> void:
+	var t = clamp(tension, 0.0, 1.0)
+	$Reeler.pitch_scale = 1.0 + t * 0.4

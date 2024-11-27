@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Sounds/Failure.wav" type="AudioStream" id=1]
 [ext_resource path="res://Sounds/Reel.wav" type="AudioStream" id=2]
@@ -7,11 +7,13 @@
 [ext_resource path="res://Sounds/Step.wav" type="AudioStream" id=5]
 [ext_resource path="res://Sounds/Cast.wav" type="AudioStream" id=6]
 [ext_resource path="res://Scripts/StarHighlight.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/Stepper.gd" type="Script" id=8]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=9]
 [ext_resource path="res://Sprites/Animations/Target.tres" type="SpriteFrames" id=10]
 [ext_resource path="res://PackedScenes/Lure.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Sprites/Fishernaut-mini.png" type="Texture" id=12]
 [ext_resource path="res://Scripts/DrawLine.gd" type="Script" id=13]
+[ext_resource path="res://Scripts/AudioRandomize.gd" type="Script" id=14]
 
 [sub_resource type="Curve" id=19]
 _data = [ Vector2( 0, 0 ), 0.0, 2.15385, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
@@ -44,6 +46,18 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( -36, -14 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PixelSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 18 ]
 }
 
 [sub_resource type="Animation" id=47]
@@ -88,7 +102,7 @@ tracks/2/keys = {
 } ]
 }
 tracks/3/type = "audio"
-tracks/3/path = NodePath("SfxPlayer")
+tracks/3/path = NodePath("Stepper")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -155,7 +169,7 @@ tracks/3/keys = {
 "values": [ Vector2( -36, 14 ), Vector2( -33, -40 ), Vector2( 15, -47 ) ]
 }
 tracks/4/type = "audio"
-tracks/4/path = NodePath("SfxPlayer")
+tracks/4/path = NodePath("Stepper")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -184,7 +198,7 @@ tracks/0/keys = {
 "values": [ 6, 6, 7 ]
 }
 tracks/1/type = "audio"
-tracks/1/path = NodePath("SfxPlayer")
+tracks/1/path = NodePath("Stepper")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -200,6 +214,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=4]
 resource_name = "idle"
+length = 1.2
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("PixelSprite:frame")
@@ -208,10 +223,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 16, 17 ]
+"values": [ 26, 27, 28, 29, 28, 27 ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -256,7 +271,7 @@ tracks/2/keys = {
 } ]
 }
 tracks/3/type = "audio"
-tracks/3/path = NodePath("SfxPlayer")
+tracks/3/path = NodePath("Stepper")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -302,7 +317,7 @@ tracks/1/keys = {
 "values": [ Vector2( 27, -39 ) ]
 }
 tracks/2/type = "audio"
-tracks/2/path = NodePath("SfxPlayer")
+tracks/2/path = NodePath("Reeler")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -360,23 +375,90 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 0, 1, 2, 3 ]
 }
-tracks/1/type = "audio"
-tracks/1/path = NodePath("SfxPlayer")
+tracks/1/type = "method"
+tracks/1/path = NodePath("Stepper")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"clips": [ {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 5 )
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "step"
 }, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 5 )
-} ],
-"times": PoolRealArray( 0, 1 )
+"args": [  ],
+"method": "step"
+} ]
+}
+
+[sub_resource type="Animation" id=49]
+resource_name = "walk-left"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("PixelSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 1, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 23, 24, 25, 22 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("Stepper")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "step"
+}, {
+"args": [  ],
+"method": "step"
+} ]
+}
+
+[sub_resource type="Animation" id=48]
+resource_name = "walk-right"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("PixelSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 1, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 21, 18, 19, 20 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("Stepper")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "step"
+}, {
+"args": [  ],
+"method": "step"
+} ]
 }
 
 [sub_resource type="Animation" id=9]
@@ -395,23 +477,22 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 8, 9, 10, 11 ]
 }
-tracks/1/type = "audio"
-tracks/1/path = NodePath("SfxPlayer")
+tracks/1/type = "method"
+tracks/1/path = NodePath("Stepper")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"clips": [ {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 5 )
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "step"
 }, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 5 )
-} ],
-"times": PoolRealArray( 0, 1 )
+"args": [  ],
+"method": "step"
+} ]
 }
 
 [sub_resource type="Animation" id=11]
@@ -467,6 +548,36 @@ _data = [ Vector2( 0, 0 ), 0.0, -1.81119, 0, 0, Vector2( 0.704762, -0.272727 ), 
 min_value = -1.0
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.204762, 0.6 ), 0.0, 0.0, 0, 0, Vector2( 0.342857, 0.327273 ), 0.0, 0.0, 0, 0, Vector2( 0.495238, 0.745455 ), 0.0, 0.0, 0, 0, Vector2( 0.657143, 0.163636 ), 0.0, 0.0, 0, 0, Vector2( 0.828571, 0.890909 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
+[sub_resource type="AnimationNodeAnimation" id=50]
+animation = "walk-down"
+
+[sub_resource type="AnimationNodeAnimation" id=51]
+animation = "walk-up"
+
+[sub_resource type="AnimationNodeAnimation" id=52]
+animation = "walk-left"
+
+[sub_resource type="AnimationNodeAnimation" id=53]
+animation = "walk-right"
+
+[sub_resource type="AnimationNodeAnimation" id=55]
+animation = "idle"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=54]
+blend_point_0/node = SubResource( 50 )
+blend_point_0/pos = Vector2( 0, 0.1 )
+blend_point_1/node = SubResource( 51 )
+blend_point_1/pos = Vector2( 0, -0.1 )
+blend_point_2/node = SubResource( 52 )
+blend_point_2/pos = Vector2( -0.1, 0 )
+blend_point_3/node = SubResource( 53 )
+blend_point_3/pos = Vector2( 0.1, 0 )
+blend_point_4/node = SubResource( 55 )
+blend_point_4/pos = Vector2( 0, 0 )
+x_label = "y"
+y_label = "x"
+blend_mode = 1
+
 [node name="Player" type="Node2D"]
 position = Vector2( 215, 208 )
 script = ExtResource( 9 )
@@ -479,8 +590,8 @@ cast_speed = 0.8
 position = Vector2( -5, -26 )
 texture = ExtResource( 12 )
 hframes = 3
-vframes = 6
-frame = 14
+vframes = 10
+frame = 18
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 22 )
@@ -492,6 +603,8 @@ anims/loss = SubResource( 5 )
 anims/reel = SubResource( 6 )
 anims/wait = SubResource( 7 )
 anims/walk-down = SubResource( 8 )
+anims/walk-left = SubResource( 49 )
+anims/walk-right = SubResource( 48 )
 anims/walk-up = SubResource( 9 )
 anims/wind-up = SubResource( 11 )
 
@@ -517,7 +630,7 @@ base_magnitude = 5.0
 visible = false
 position = Vector2( 27, 1 )
 frames = ExtResource( 10 )
-frame = 5
+frame = 4
 speed_scale = 2.0
 playing = true
 
@@ -533,7 +646,22 @@ script = ExtResource( 7 )
 
 [node name="Tween" type="Tween" parent="StarHighlight"]
 
-[node name="SfxPlayer" type="AudioStreamPlayer" parent="."]
+[node name="Stepper" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
-volume_db = -9.087
+pitch_scale = 1.01024
 bus = "Sfx"
+script = ExtResource( 8 )
+clip = ExtResource( 5 )
+
+[node name="AudioRandomize" type="Node" parent="Stepper"]
+script = ExtResource( 14 )
+random_range = 0.04
+
+[node name="Reeler" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+bus = "Sfx"
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 54 )
+anim_player = NodePath("../AnimationPlayer")
+parameters/blend_position = Vector2( -0.006993, -0.00578034 )

@@ -94,6 +94,14 @@ func _process(delta: float) -> void:
 		_:
 			if $Timer.is_stopped(): current_state = state.move
 
+func _physics_process(delta: float) -> void:
+	if current_state != state.move:
+		return
+	var move: Vector2 = Input.get_vector("left", "right", "up", "down", 0.1)
+	player.walk(move)
+	player.position += move
+	player.position.y = clamp(player.position.y, position_min, position_max)
+
 func _out_of_time() -> void:
 	_ending_anim_start()
 
@@ -128,20 +136,6 @@ func _process_move(delta: float) -> void:
 		current_state = state.cast
 		cast_time = 0.0
 		return
-	# move
-	var move: Vector2 = Vector2.ZERO
-	if Input.is_action_pressed("up"):
-		move += Vector2.UP * player_speed * delta
-		player.walk(true)
-	if Input.is_action_pressed("down"):
-		move += Vector2.DOWN * player_speed * delta
-		player.walk(false)
-	if move.length_squared() == 0.0:
-		player.idle()
-	else:
-		player.position += move
-	player.position.y = clamp(player.position.y, position_min, position_max)
-	
 
 func _process_cast(delta: float) -> void:
 	if Input.is_action_just_pressed("cancel"):
@@ -168,7 +162,6 @@ func _process_wait(delta: float) -> void:
 		
 	if Input.is_action_pressed("action"):
 		lure.position -= lure.position.normalized() * reel_speed * delta
-		#lure.position.x -= reel_speed * delta
 		if lure.position.x < position_min:
 			player.cancel()
 			current_state = state.move
@@ -176,9 +169,6 @@ func _process_wait(delta: float) -> void:
 		return
 	if Input.is_action_just_pressed("cancel"):
 		_cancel()
-		return
-	var overlaps = lure.get_overlapping_areas()
-	if overlaps.size() == 0:
 		return
 
 func _process_fight(delta):
@@ -203,12 +193,8 @@ func _process_fight(delta):
 		lure.position += lure.position.normalized() *escape * delta * inv
 	
 	set_tension(t)
-	 
-	if lure.position.x < aim_min:
-		land_star()
-		return
 	
-	if tension > max_tension or lure.position.x > aim_max + 20:
+	if tension > max_tension:
 		lose_hook()
 		return
 	tension = clamp(tension, 0, max_tension)
@@ -231,7 +217,9 @@ func add_score(points: int):
 func set_tension(t: float):
 	tension = t
 	emit_signal("tension_change", t)
-	tension_bar.set_tension(clamp(t / max_tension, 0.0, 1.0))
+	var clamp_t = clamp(t / max_tension, 0.0, 1.0)
+	tension_bar.set_tension(clamp_t)
+	player.set_tension(clamp_t)
 
 func land_star():
 	$Timer.start(1.0)
@@ -271,7 +259,6 @@ func _cancel() -> void:
 	current_state = state.lose
 	
 func _on_Lure_area_entered(area: Area2D) -> void:
-	print("lure touched")
 	match current_state:
 		state.wait:
 			if area.is_in_group("star"):
@@ -282,4 +269,6 @@ func _on_Lure_area_entered(area: Area2D) -> void:
 			if area.is_in_group("star"):
 				pass
 			elif area.is_in_group("cancel_lure"):
-				lose_hook()
+				call_deferred("lose_hook")
+			elif area.is_in_group("land"):
+				call_deferred("land_star")

@@ -1,9 +1,10 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://starfield_shader.tres" type="Shader" id=1]
 [ext_resource path="res://Sprites/TensionBar.png" type="Texture" id=2]
 [ext_resource path="res://PackedScenes/Player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Sprites/Levels/ship-mini.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Levels/cracked-bouncing.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/Reel.png" type="Texture" id=9]
 [ext_resource path="res://Scripts/Timerisplay.gd" type="Script" id=11]
 [ext_resource path="res://FadeIn.gd" type="Script" id=12]
@@ -69,6 +70,9 @@ shader_param/noise_uv_scale = 2.008
 shader_param/grad = SubResource( 39 )
 shader_param/noise = SubResource( 41 )
 
+[sub_resource type="RectangleShape2D" id=47]
+extents = Vector2( 218.044, 50 )
+
 [sub_resource type="Animation" id=25]
 resource_name = "score"
 length = 0.7
@@ -96,6 +100,12 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Vector2( 1, 1 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
 }
+
+[sub_resource type="RectangleShape2D" id=45]
+extents = Vector2( 15, 210 )
+
+[sub_resource type="RectangleShape2D" id=46]
+extents = Vector2( 320, 15 )
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 32 )
@@ -190,12 +200,55 @@ spawn_time = 60.0
 speed = 25.0
 color = Color( 0.992157, 0.788235, 0.788235, 1 )
 
-[node name="Cracked" type="Sprite" parent="."]
-position = Vector2( -191, 277 )
-texture = ExtResource( 34 )
+[node name="Top" type="Sprite" parent="."]
+position = Vector2( -63, 185 )
+texture = ExtResource( 5 )
 offset = Vector2( 346, -149 )
 region_enabled = true
-region_rect = Rect2( 0, 0, 402, 512 )
+region_rect = Rect2( 0, 0, 512, 150 )
+
+[node name="Area2D3" type="Area2D" parent="Top" groups=["cancel_lure"]]
+position = Vector2( 238, -168 )
+collision_layer = 8
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Top/Area2D3"]
+position = Vector2( 82, -38 )
+rotation = -0.218166
+shape = SubResource( 47 )
+
+[node name="Bottom" type="Sprite" parent="."]
+position = Vector2( -120, 471 )
+texture = ExtResource( 5 )
+offset = Vector2( 346, -149 )
+region_enabled = true
+region_rect = Rect2( 0, 384, 402, 128 )
+
+[node name="Area2D2" type="Area2D" parent="Bottom" groups=["cancel_lure"]]
+position = Vector2( 800, -276 )
+collision_layer = 8
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom/Area2D2"]
+position = Vector2( -434, 204 )
+rotation = -0.413643
+shape = SubResource( 47 )
+
+[node name="Island" type="Sprite" parent="."]
+position = Vector2( -169, 319 )
+texture = ExtResource( 5 )
+offset = Vector2( 346, -149 )
+region_enabled = true
+region_rect = Rect2( 584, 108, 157, 263 )
+
+[node name="Land" type="Area2D" parent="Island" groups=["land"]]
+position = Vector2( 247, -312 )
+collision_layer = 8
+collision_mask = 6
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Island/Land"]
+position = Vector2( -5, 1 )
+polygon = PoolVector2Array( 66, 180, 106, 220, 136, 265, 145, 273, 154, 270, 158, 262, 145, 239, 146, 176, 136, 128, 138, 100, 133, 51, 95, 50, 60, 75, 38, 101, 44, 142 )
 
 [node name="Cracked2" type="Sprite" parent="."]
 position = Vector2( 130, 320 )
@@ -228,6 +281,7 @@ one_shot = true
 bus = "Sfx"
 
 [node name="TensionBar" type="NinePatchRect" parent="."]
+visible = false
 margin_left = 127.0
 margin_top = 350.0
 margin_right = 145.0
@@ -398,6 +452,22 @@ stream = ExtResource( 36 )
 bus = "Sfx"
 script = ExtResource( 37 )
 enabled = true
+
+[node name="Extents" type="Area2D" parent="." groups=["cancel_lure"]]
+collision_layer = 8
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Extents"]
+position = Vector2( 666, 180 )
+shape = SubResource( 45 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Extents"]
+position = Vector2( 360, 389 )
+shape = SubResource( 46 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Extents"]
+position = Vector2( 360, -27 )
+shape = SubResource( 46 )
 
 [connection signal="score_change" from="." to="SideBar/VBoxContainer/Points" method="_on_Main_score_change"]
 [connection signal="lose_reel" from="SideBar/VBoxContainer/Center/Reels" to="SideBar/VBoxContainer/ReelsLabel" method="flash"]
