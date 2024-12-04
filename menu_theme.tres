@@ -1,5 +1,6 @@
-[gd_resource type="Theme" load_steps=14 format=2]
+[gd_resource type="Theme" load_steps=20 format=2]
 
+[ext_resource path="res://Fonts/m5x7.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Fonts/m6x11.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Sprites/handle.png" type="Texture" id=3]
 
@@ -71,6 +72,42 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
+[sub_resource type="StyleBoxFlat" id=12]
+bg_color = Color( 0.698039, 0.321569, 0.4, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 2.0
+expand_margin_right = 5.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id=13]
+bg_color = Color( 0.392157, 0.211765, 0.294118, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id=14]
+bg_color = Color( 0.992157, 0.788235, 0.788235, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id=15]
+content_margin_left = 1.0
+content_margin_right = 1.0
+bg_color = Color( 0.19, 0.1349, 0.16245, 1 )
+
+[sub_resource type="StyleBoxFlat" id=16]
+bg_color = Color( 0.698039, 0.321569, 0.4, 1 )
+border_width_right = 2
+border_color = Color( 0.698039, 0.321569, 0.4, 1 )
+
 [resource]
 Button/colors/font_color = Color( 0.392157, 0.211765, 0.294118, 1 )
 Button/colors/font_color_disabled = Color( 0.105882, 0.141176, 0.278431, 1 )
@@ -96,4 +133,11 @@ Quit/base_type = "Button"
 Quit/styles/focus = SubResource( 8 )
 Quit/styles/hover = SubResource( 8 )
 Quit/styles/normal = SubResource( 7 )
+RichTextLabel/fonts/normal_font = ExtResource( 1 )
 VBoxContainer/constants/separation = 10
+VScrollBar/styles/grabber = SubResource( 12 )
+VScrollBar/styles/grabber_highlight = SubResource( 13 )
+VScrollBar/styles/grabber_pressed = SubResource( 14 )
+VScrollBar/styles/scroll = SubResource( 15 )
+VScrollBar/styles/scroll_focus = SubResource( 15 )
+VSeparator/styles/separator = SubResource( 16 )

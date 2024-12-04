@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "PlayerState",
+"class": "AimState",
+"language": "GDScript",
+"path": "res://Scripts/PlayerStates/Aim.gd"
+}, {
 "base": "AudioStreamPlayer",
 "class": "Alert",
 "language": "GDScript",
@@ -24,10 +29,30 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/AudioRandomize.gd"
 }, {
+"base": "PlayerState",
+"class": "CancelState",
+"language": "GDScript",
+"path": "res://Scripts/PlayerStates/Cancel.gd"
+}, {
+"base": "PlayerState",
+"class": "CastState",
+"language": "GDScript",
+"path": "res://Scripts/PlayerStates/Cast.gd"
+}, {
 "base": "Node",
 "class": "DestroyStars",
 "language": "GDScript",
 "path": "res://Scripts/DestroyStars.gd"
+}, {
+"base": "PlayerState",
+"class": "EscapeState",
+"language": "GDScript",
+"path": "res://Scripts/PlayerStates/Escape.gd"
+}, {
+"base": "PlayerState",
+"class": "FightState",
+"language": "GDScript",
+"path": "res://Scripts/PlayerStates/Fight.gd"
 }, {
 "base": "Node2D",
 "class": "ForceCancelLure",
@@ -39,10 +64,35 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://GameOverScene.gd"
 }, {
+"base": "PlayerState",
+"class": "IdleState",
+"language": "GDScript",
+"path": "res://Scripts/PlayerStates/Idle.gd"
+}, {
+"base": "Area2D",
+"class": "Interactable",
+"language": "GDScript",
+"path": "res://Scripts/Interactable.gd"
+}, {
+"base": "PlayerState",
+"class": "LandState",
+"language": "GDScript",
+"path": "res://Scripts/PlayerStates/Land.gd"
+}, {
+"base": "Resource",
+"class": "Level",
+"language": "GDScript",
+"path": "res://Scripts/Level.gd"
+}, {
 "base": "Node2D",
 "class": "LevelSelect",
 "language": "GDScript",
 "path": "res://Scripts/LevelSelect.gd"
+}, {
+"base": "PlayerState",
+"class": "LossState",
+"language": "GDScript",
+"path": "res://Scripts/PlayerStates/Loss.gd"
 }, {
 "base": "Area2D",
 "class": "Lure",
@@ -54,20 +104,45 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://PackedScenes/Map.gd"
 }, {
+"base": "PlayerState",
+"class": "MoveState",
+"language": "GDScript",
+"path": "res://Scripts/PlayerStates/Move.gd"
+}, {
 "base": "Sprite",
 "class": "PixelSprite",
 "language": "GDScript",
 "path": "res://Scripts/PixelSprite.gd"
+}, {
+"base": "TextureButton",
+"class": "PlanetButton",
+"language": "GDScript",
+"path": "res://PackedScenes/PlanetButton.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
 "path": "res://Scripts/Player.gd"
 }, {
+"base": "Node",
+"class": "PlayerState",
+"language": "GDScript",
+"path": "res://Scripts/PlayerStates/PlayerState.gd"
+}, {
+"base": "HBoxContainer",
+"class": "ProgressDisplay",
+"language": "GDScript",
+"path": "res://Scripts/ProgressDisplay.gd"
+}, {
 "base": "Resource",
 "class": "Progression",
 "language": "GDScript",
 "path": "res://Scripts/Progression.gd"
+}, {
+"base": "PlayerState",
+"class": "ReelState",
+"language": "GDScript",
+"path": "res://Scripts/PlayerStates/Reel.gd"
 }, {
 "base": "GridContainer",
 "class": "ReelsDisplay",
@@ -83,6 +158,11 @@ _global_script_classes=[ {
 "class": "RodTip",
 "language": "GDScript",
 "path": "res://Scripts/DrawLine.gd"
+}, {
+"base": "Sprite",
+"class": "Ship",
+"language": "GDScript",
+"path": "res://Scripts/Ship.gd"
 }, {
 "base": "Area2D",
 "class": "Star",
@@ -108,28 +188,56 @@ _global_script_classes=[ {
 "class": "Upgrade",
 "language": "GDScript",
 "path": "res://Scripts/Upgrade.gd"
+}, {
+"base": "Control",
+"class": "UpgradeDisplay",
+"language": "GDScript",
+"path": "res://Scripts/UpgradeDisplay.gd"
+}, {
+"base": "PlayerState",
+"class": "WaitState",
+"language": "GDScript",
+"path": "res://Scripts/PlayerStates/Wait.gd"
 } ]
 _global_script_class_icons={
+"AimState": "",
 "Alert": "",
 "AnimatedSpriteRng": "",
 "AudioRandomize": "",
+"CancelState": "",
+"CastState": "",
 "DestroyStars": "",
+"EscapeState": "",
+"FightState": "",
 "ForceCancelLure": "",
 "GameOver": "",
+"IdleState": "",
+"Interactable": "",
+"LandState": "",
+"Level": "",
 "LevelSelect": "",
+"LossState": "",
 "Lure": "",
 "Map": "",
+"MoveState": "",
 "PixelSprite": "",
+"PlanetButton": "",
 "Player": "",
+"PlayerState": "",
+"ProgressDisplay": "",
 "Progression": "",
+"ReelState": "",
 "ReelsDisplay": "",
 "River": "",
 "RodTip": "",
+"Ship": "",
 "Star": "",
 "StarData": "",
 "StarHighlight": "",
 "TensionBar": "",
-"Upgrade": ""
+"Upgrade": "",
+"UpgradeDisplay": "",
+"WaitState": ""
 }
 
 [application]
@@ -139,11 +247,16 @@ run/main_scene="res://GameAndUI.tscn"
 config/icon="res://Sprites/icon.png"
 config/windows_native_icon="res://Sprites/icon.ico"
 
+[autoload]
+
+SceneChanger="*res://Scripts/SceneChanger.gd"
+
 [display]
 
 window/size/width=640
 window/size/height=360
 window/size/resizable=false
+window/size/fullscreen=true
 window/size/test_width=1280
 window/size/test_height=720
 window/stretch/mode="viewport"
@@ -278,6 +391,7 @@ right={
 2d_physics/layer_2="STARS"
 2d_physics/layer_3="LURE"
 2d_physics/layer_4="EFFECTORS"
+2d_physics/layer_5="INTERACTABLES"
 
 [physics]
 

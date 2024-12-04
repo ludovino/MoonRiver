@@ -1,0 +1,26 @@
+[gd_resource type="Resource" load_steps=6 format=2]
+
+[ext_resource path="res://Scripts/Level.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/planet-sprite-focus-sheet.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/planet-sprite-sheet.png" type="Texture" id=3]
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 2 )
+region = Rect2( 64, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 3 )
+region = Rect2( 64, 64, 64, 64 )
+
+[resource]
+script = ExtResource( 1 )
+display_name = "Shattered Planet"
+progress_key = "cracked"
+progress_level = 3
+scene = "res://Levels/Cracked.tscn"
+intro_scene = ""
+description = "The remains of a planet long ago destroyed by a devastating impact."
+stars = [  ]
+ls_texture = SubResource( 19 )
+ls_highlight = SubResource( 20 )
+pausable = true

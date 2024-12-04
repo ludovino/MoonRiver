@@ -2,7 +2,7 @@ extends AudioStreamPlayer
 
 
 export var clip : AudioStream
-export(float, 0.2, 1.0) var step_time : float
+export(float, 0.05, 1.0) var step_time : float
 var timer : Timer
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

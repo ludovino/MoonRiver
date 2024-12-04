@@ -43,6 +43,9 @@ func _get_line_pos(weight: float) -> Vector2:
 func _process(delta: float) -> void:
 	line_weight += stepify(delta, 0.1) * line_swap_speed
 	line_weight = clamp(line_weight, 0.0, 1.0)
+	_do_line()
+
+func _do_line() -> void:
 	for i in range(0, points.size()):
 		points[i] = _get_line_pos(i * division)
 	update()

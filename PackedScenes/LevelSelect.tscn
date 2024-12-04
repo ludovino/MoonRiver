@@ -1,25 +1,22 @@
-[gd_scene load_steps=69 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://Sprites/Map/map-ship-console.png" type="Texture" id=1]
+[ext_resource path="res://PackedScenes/PlanetButton.gd" type="Script" id=2]
 [ext_resource path="res://PackedScenes/level_select_theme.tres" type="Theme" id=3]
 [ext_resource path="res://Sprites/planet-sprite-focus-sheet.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/planet-sprite-sheet.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/planet-disabled-sprite-sheet.png" type="Texture" id=6]
-[ext_resource path="res://PackedScenes/UI/BuyButton.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Resources/Levels/Donut.tres" type="Resource" id=6]
+[ext_resource path="res://Resources/Levels/Rock.tres" type="Resource" id=7]
+[ext_resource path="res://Resources/Levels/Cracked.tres" type="Resource" id=8]
+[ext_resource path="res://Resources/Levels/Blobs.tres" type="Resource" id=9]
 [ext_resource path="res://Sprites/Map/map-ship.png" type="Texture" id=10]
+[ext_resource path="res://Resources/Levels/Pebbles.tres" type="Resource" id=11]
 [ext_resource path="res://PackedScenes/blink.gd" type="Script" id=12]
 [ext_resource path="res://Scripts/LevelSelect.gd" type="Script" id=13]
 [ext_resource path="res://PackedScenes/Map.gd" type="Script" id=14]
-[ext_resource path="res://Scripts/Shop.gd" type="Script" id=15]
+[ext_resource path="res://Resources/Levels/Shop.tres" type="Resource" id=15]
+[ext_resource path="res://Fonts/m6x11.tres" type="DynamicFont" id=16]
 [ext_resource path="res://Sprites/line.png" type="Texture" id=18]
-[ext_resource path="res://Resources/Upgrades/fill.tres" type="Resource" id=20]
-[ext_resource path="res://Resources/Upgrades/escape.tres" type="Resource" id=21]
-[ext_resource path="res://Resources/Upgrades/pull.tres" type="Resource" id=22]
-[ext_resource path="res://Resources/Upgrades/planet_unlock.tres" type="Resource" id=23]
-[ext_resource path="res://Resources/Upgrades/decay.tres" type="Resource" id=24]
-[ext_resource path="res://Resources/Upgrades/oxygen.tres" type="Resource" id=25]
-[ext_resource path="res://Resources/Upgrades/catch.tres" type="Resource" id=26]
-[ext_resource path="res://Resources/Upgrades/reel.tres" type="Resource" id=27]
 [ext_resource path="res://starfield_shader.tres" type="Shader" id=28]
 [ext_resource path="res://Sprites/Map/star-field.png" type="Texture" id=29]
 [ext_resource path="res://Sounds/RocketBoostConstantLoop.wav" type="AudioStream" id=30]
@@ -70,7 +67,7 @@ scale_random = 0.4
 scale_curve = SubResource( 48 )
 color_ramp = SubResource( 46 )
 
-[sub_resource type="Shader" id=5]
+[sub_resource type="Shader" id=54]
 code = "// NOTE: Shader automatically converted from Godot Engine 3.5.3.stable's CanvasItemMaterial.
 
 shader_type canvas_item;
@@ -90,7 +87,7 @@ void fragment(){
 }"
 
 [sub_resource type="ShaderMaterial" id=6]
-shader = SubResource( 5 )
+shader = SubResource( 54 )
 shader_param/lod = 5.0
 
 [sub_resource type="Gradient" id=38]
@@ -140,100 +137,12 @@ region = Rect2( 0, 0, 64, 64 )
 atlas = ExtResource( 4 )
 region = Rect2( 0, 0, 64, 64 )
 
-[sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 6 )
-region = Rect2( 0, 0, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=10]
-atlas = ExtResource( 5 )
-region = Rect2( 64, 0, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=11]
-atlas = ExtResource( 4 )
-region = Rect2( 64, 0, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=12]
-atlas = ExtResource( 6 )
-region = Rect2( 64, 0, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=13]
-atlas = ExtResource( 5 )
-region = Rect2( 128, 0, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=14]
-atlas = ExtResource( 4 )
-region = Rect2( 128, 0, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=15]
-atlas = ExtResource( 6 )
-region = Rect2( 128, 0, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=19]
-atlas = ExtResource( 5 )
-region = Rect2( 64, 64, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=20]
-atlas = ExtResource( 4 )
-region = Rect2( 64, 64, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=21]
-atlas = ExtResource( 6 )
-region = Rect2( 64, 64, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=22]
-atlas = ExtResource( 5 )
-region = Rect2( 128, 64, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=23]
-atlas = ExtResource( 4 )
-region = Rect2( 128, 64, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=24]
-atlas = ExtResource( 6 )
-region = Rect2( 128, 64, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=25]
-atlas = ExtResource( 5 )
-region = Rect2( 0, 128, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=26]
-atlas = ExtResource( 4 )
-region = Rect2( 0, 128, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=27]
-atlas = ExtResource( 6 )
-region = Rect2( 0, 128, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=28]
-atlas = ExtResource( 5 )
-region = Rect2( 64, 128, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=29]
-atlas = ExtResource( 4 )
-region = Rect2( 64, 128, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=30]
-atlas = ExtResource( 6 )
-region = Rect2( 64, 128, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=31]
-atlas = ExtResource( 5 )
-region = Rect2( 128, 128, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=32]
-atlas = ExtResource( 4 )
-region = Rect2( 128, 128, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=33]
-atlas = ExtResource( 6 )
-region = Rect2( 128, 128, 64, 64 )
-
-[sub_resource type="Gradient" id=34]
+[sub_resource type="Gradient" id=55]
 interpolation_mode = 1
 colors = PoolColorArray( 0, 0, 0, 0.0784314, 0.0235294, 0.0156863, 0.00784314, 0 )
 
 [sub_resource type="GradientTexture2D" id=35]
-gradient = SubResource( 34 )
+gradient = SubResource( 55 )
 width = 4
 height = 4
 fill_to = Vector2( 0.483333, 0.00416667 )
@@ -254,72 +163,36 @@ tracks/0/keys = {
 "values": [ Vector2( 0.01, 0.4 ), Vector2( 0.01, 0.4 ), Vector2( 1, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Control/Modify:rect_scale")
+tracks/1/path = NodePath("Control/Map/Panel/ScreenClip:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.4, 0.9 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0.01, 0.4 ), Vector2( 0.01, 0.4 ), Vector2( 1, 1 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Control/Modify/Panel/CenterContainer:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.4, 1.1 ),
-"transitions": PoolRealArray( 1, 2.14355, 1 ),
-"update": 0,
-"values": [ Color( 0.0235294, 0.0156863, 0.00784314, 0.262745 ), Color( 0.0235294, 0.0156863, 0.00784314, 0.262745 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Control/Map/Panel/ScreenClip:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
 "times": PoolRealArray( 0, 0.2, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 0.0235294, 0.0156863, 0.00784314, 0.329412 ), Color( 0.0235294, 0.0156863, 0.00784314, 0.329412 ), Color( 1, 1, 1, 1 ) ]
 }
-tracks/4/type = "value"
-tracks/4/path = NodePath("Control/Map:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
+tracks/2/type = "value"
+tracks/2/path = NodePath("Control/Map:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
 "times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
 }
-tracks/5/type = "value"
-tracks/5/path = NodePath("Control/Modify:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
-tracks/6/type = "method"
-tracks/6/path = NodePath(".")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
 "times": PoolRealArray( 0.9 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
@@ -343,7 +216,7 @@ tracks/0/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Control/Modify:rect_scale")
+tracks/1/path = NodePath("Control/Map/Panel/ScreenClip:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -352,10 +225,10 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ) ]
+"values": [ Color( 1, 1, 1, 1 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Control/Map/Panel/ScreenClip:modulate")
+tracks/2/path = NodePath("Control/Map:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -364,10 +237,10 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
+"values": [ true ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Control/Modify/Panel/CenterContainer:modulate")
+tracks/3/path = NodePath("Control/Map:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -379,7 +252,7 @@ tracks/3/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Control/Map:visible")
+tracks/4/path = NodePath("StarRush/Fast:speed_scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -388,10 +261,10 @@ tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ true ]
+"values": [ 0.1 ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Control/Modify:visible")
+tracks/5/path = NodePath("StarRush/Slow:speed_scale")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -400,10 +273,10 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ true ]
+"values": [ 0.1 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Control/Modify:modulate")
+tracks/6/path = NodePath(".:modulate")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -415,7 +288,7 @@ tracks/6/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("Control/Map:modulate")
+tracks/7/path = NodePath("Fade:color")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -424,10 +297,10 @@ tracks/7/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 0.0235294, 0.0156863, 0.00784314, 0 ) ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("StarRush/Fast:speed_scale")
+tracks/8/path = NodePath("StarRush/Fast:process_material:scale")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -436,10 +309,10 @@ tracks/8/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 0.1 ]
+"values": [ 5.0 ]
 }
 tracks/9/type = "value"
-tracks/9/path = NodePath("StarRush/Slow:speed_scale")
+tracks/9/path = NodePath("StarRush/Slow:process_material:scale")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
@@ -448,10 +321,10 @@ tracks/9/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 0.1 ]
+"values": [ 5.0 ]
 }
 tracks/10/type = "value"
-tracks/10/path = NodePath(".:modulate")
+tracks/10/path = NodePath("Rocket:volume_db")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/imported = false
@@ -460,63 +333,15 @@ tracks/10/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
+"values": [ -40.0 ]
 }
 tracks/11/type = "value"
-tracks/11/path = NodePath("Fade:color")
+tracks/11/path = NodePath("Rocket:playing")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/imported = false
 tracks/11/enabled = true
 tracks/11/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 0.0235294, 0.0156863, 0.00784314, 0 ) ]
-}
-tracks/12/type = "value"
-tracks/12/path = NodePath("StarRush/Fast:process_material:scale")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 5.0 ]
-}
-tracks/13/type = "value"
-tracks/13/path = NodePath("StarRush/Slow:process_material:scale")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 5.0 ]
-}
-tracks/14/type = "value"
-tracks/14/path = NodePath("Rocket:volume_db")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/imported = false
-tracks/14/enabled = true
-tracks/14/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ -40.0 ]
-}
-tracks/15/type = "value"
-tracks/15/path = NodePath("Rocket:playing")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/imported = false
-tracks/15/enabled = true
-tracks/15/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -539,72 +364,48 @@ tracks/0/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 0.4, 0.01 ), Vector2( 0.01, 0.01 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Control/Modify:rect_scale")
+tracks/1/path = NodePath("Control/Map/Panel/ScreenClip:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.3, 0.6, 0.9 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 0.01, 0.01 ), Vector2( 0.01, 0.4 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Control/Map/Panel/ScreenClip:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
 "times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 0.0235294, 0.0156863, 0.00784314, 0 ) ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("StarRush/Fast:speed_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.3, 2.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.1, 5.0 ]
+}
 tracks/3/type = "value"
-tracks/3/path = NodePath("Control/Modify/Panel/CenterContainer:modulate")
+tracks/3/path = NodePath("StarRush/Slow:speed_scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.2, 0.5 ),
+"times": PoolRealArray( 0.3, 2.6 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 0.0235294, 0.0156863, 0.00784314, 0 ) ]
+"values": [ 0.1, 5.0 ]
 }
-tracks/4/type = "value"
-tracks/4/path = NodePath("StarRush/Fast:speed_scale")
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0.3, 2.6 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0.1, 5.0 ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("StarRush/Slow:speed_scale")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0.3, 2.6 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0.1, 5.0 ]
-}
-tracks/6/type = "method"
-tracks/6/path = NodePath(".")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
 "times": PoolRealArray( 2.6 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
@@ -612,85 +413,73 @@ tracks/6/keys = {
 "method": "_launch_animation_finished"
 } ]
 }
-tracks/7/type = "value"
-tracks/7/path = NodePath("Control/Map:visible")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
+tracks/5/type = "value"
+tracks/5/path = NodePath("Control/Map:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
 "times": PoolRealArray( 0, 0.8 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
 }
-tracks/8/type = "value"
-tracks/8/path = NodePath("Control/Modify:visible")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/keys = {
-"times": PoolRealArray( 0, 0.9 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
-}
-tracks/9/type = "value"
-tracks/9/path = NodePath("Fade:color")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/keys = {
+tracks/6/type = "value"
+tracks/6/path = NodePath("Fade:color")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
 "times": PoolRealArray( 0, 1.9, 2.5 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 0.0235294, 0.0156863, 0.00784314, 0 ), Color( 0.0235294, 0.0156863, 0.00784314, 0 ), Color( 0.0235294, 0.0156863, 0.00784314, 1 ) ]
 }
-tracks/10/type = "value"
-tracks/10/path = NodePath("StarRush/Fast:process_material:scale")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/keys = {
+tracks/7/type = "value"
+tracks/7/path = NodePath("StarRush/Fast:process_material:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
 "times": PoolRealArray( 0.4, 1.7 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 5.0, 30.0 ]
 }
-tracks/11/type = "value"
-tracks/11/path = NodePath("StarRush/Slow:process_material:scale")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/keys = {
+tracks/8/type = "value"
+tracks/8/path = NodePath("StarRush/Slow:process_material:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
 "times": PoolRealArray( 0.4, 1.7 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 5.0, 50.0 ]
 }
-tracks/12/type = "value"
-tracks/12/path = NodePath("Rocket:volume_db")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/keys = {
+tracks/9/type = "value"
+tracks/9/path = NodePath("Rocket:volume_db")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
 "times": PoolRealArray( 0, 0.5, 1.6 ),
 "transitions": PoolRealArray( 1, 2, 1 ),
 "update": 0,
 "values": [ -35.0, -35.0, 0.0 ]
 }
-tracks/13/type = "value"
-tracks/13/path = NodePath("Rocket:playing")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/keys = {
+tracks/10/type = "value"
+tracks/10/path = NodePath("Rocket:playing")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
 "times": PoolRealArray( 0, 2.9 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
@@ -735,10 +524,8 @@ theme = ExtResource( 3 )
 
 [node name="Map" type="ColorRect" parent="Control"]
 material = SubResource( 6 )
-margin_left = 29.0
-margin_top = 18.0
-margin_right = 427.0
-margin_bottom = 329.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 194, 155 )
 color = Color( 0, 0, 0, 0.784314 )
 
@@ -751,11 +538,12 @@ margin_right = 5.0
 margin_bottom = 5.0
 
 [node name="ScreenClip" type="Control" parent="Control/Map/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 margin_left = 5.0
-margin_top = 6.0
-margin_right = 402.0
-margin_bottom = 316.0
-rect_clip_content = true
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = -5.0
 
 [node name="StarBg" type="TextureRect" parent="Control/Map/Panel/ScreenClip"]
 modulate = Color( 1, 1, 1, 0.388235 )
@@ -793,177 +581,11 @@ autowrap = true
 modulate = Color( 1, 0.913725, 0.890196, 1 )
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_top = -311.0
-margin_right = 397.0
+margin_top = -324.0
+margin_right = 575.0
 margin_bottom = -1.0
 rect_pivot_offset = Vector2( 32, 261 )
 script = ExtResource( 14 )
-
-[node name="Rock" type="TextureButton" parent="Control/Map/Panel/ScreenClip/Map"]
-margin_left = 7.0
-margin_top = 67.0
-margin_right = 71.0
-margin_bottom = 131.0
-rect_pivot_offset = Vector2( 32, 53 )
-hint_tooltip = "Chill Rock"
-focus_neighbour_top = NodePath("../Pebbles")
-focus_neighbour_right = NodePath("../Pebbles")
-focus_neighbour_bottom = NodePath("../../Launch")
-focus_next = NodePath("../Pebbles")
-focus_previous = NodePath("../../Launch")
-texture_normal = SubResource( 7 )
-texture_hover = SubResource( 8 )
-texture_disabled = SubResource( 9 )
-texture_focused = SubResource( 8 )
-
-[node name="Pebbles" type="TextureButton" parent="Control/Map/Panel/ScreenClip/Map"]
-margin_left = 12.0
-margin_top = 133.0
-margin_right = 76.0
-margin_bottom = 197.0
-rect_pivot_offset = Vector2( 23, 33 )
-hint_tooltip = "The Pebbles"
-focus_neighbour_left = NodePath("../Rock")
-focus_neighbour_right = NodePath("../Donut")
-focus_neighbour_bottom = NodePath("../../Launch")
-focus_next = NodePath("../Donut")
-focus_previous = NodePath("../Rock")
-texture_normal = SubResource( 10 )
-texture_hover = SubResource( 11 )
-texture_disabled = SubResource( 12 )
-texture_focused = SubResource( 11 )
-
-[node name="Donut" type="TextureButton" parent="Control/Map/Panel/ScreenClip/Map"]
-margin_left = 99.0
-margin_top = 142.0
-margin_right = 163.0
-margin_bottom = 206.0
-rect_pivot_offset = Vector2( 32, 32 )
-hint_tooltip = "The Everything Donut"
-focus_neighbour_left = NodePath("../Pebbles")
-focus_neighbour_bottom = NodePath("../../Launch")
-focus_previous = NodePath("../Pebbles")
-texture_normal = SubResource( 13 )
-texture_hover = SubResource( 14 )
-texture_disabled = SubResource( 15 )
-texture_focused = SubResource( 14 )
-
-[node name="Cracked" type="TextureButton" parent="Control/Map/Panel/ScreenClip/Map"]
-margin_left = 190.0
-margin_top = 177.0
-margin_right = 254.0
-margin_bottom = 241.0
-rect_pivot_offset = Vector2( 32, 32 )
-hint_tooltip = "Shattered Outlook"
-focus_neighbour_right = NodePath("../Blobs")
-focus_neighbour_bottom = NodePath("../../Launch")
-focus_next = NodePath("../Blobs")
-texture_normal = SubResource( 19 )
-texture_hover = SubResource( 20 )
-texture_disabled = SubResource( 21 )
-texture_focused = SubResource( 20 )
-
-[node name="Blobs" type="TextureButton" parent="Control/Map/Panel/ScreenClip/Map"]
-margin_left = 312.0
-margin_top = 109.0
-margin_right = 376.0
-margin_bottom = 173.0
-rect_pivot_offset = Vector2( 29, 38 )
-hint_tooltip = "The Triplets"
-focus_neighbour_left = NodePath("../Cracked")
-focus_neighbour_right = NodePath("../Home")
-focus_neighbour_bottom = NodePath("../../Launch")
-focus_next = NodePath("../Home")
-focus_previous = NodePath("../Cracked")
-texture_normal = SubResource( 22 )
-texture_hover = SubResource( 23 )
-texture_disabled = SubResource( 24 )
-texture_focused = SubResource( 23 )
-
-[node name="Home" type="TextureButton" parent="Control/Map/Panel/ScreenClip/Map"]
-margin_left = 332.0
-margin_top = 7.0
-margin_right = 396.0
-margin_bottom = 71.0
-rect_pivot_offset = Vector2( 32, 32 )
-hint_tooltip = "Home"
-focus_neighbour_left = NodePath("../Blobs")
-focus_neighbour_right = NodePath("../PlanetX")
-focus_neighbour_bottom = NodePath("../../Launch")
-focus_next = NodePath("../PlanetX")
-focus_previous = NodePath("../Blobs")
-texture_normal = SubResource( 25 )
-texture_hover = SubResource( 26 )
-texture_disabled = SubResource( 27 )
-texture_focused = SubResource( 26 )
-
-[node name="PlanetX" type="TextureButton" parent="Control/Map/Panel/ScreenClip/Map"]
-margin_left = 411.0
-margin_top = -165.0
-margin_right = 475.0
-margin_bottom = -101.0
-rect_scale = Vector2( 2, 2 )
-rect_pivot_offset = Vector2( 29, 32 )
-hint_tooltip = "X"
-focus_neighbour_left = NodePath("../Home")
-focus_neighbour_right = NodePath("../BlackHole")
-focus_neighbour_bottom = NodePath("../../Launch")
-focus_next = NodePath("../BlackHole")
-focus_previous = NodePath("../Home")
-texture_normal = SubResource( 28 )
-texture_hover = SubResource( 29 )
-texture_disabled = SubResource( 30 )
-texture_focused = SubResource( 29 )
-
-[node name="BlackHole" type="TextureButton" parent="Control/Map/Panel/ScreenClip/Map"]
-margin_left = 645.0
-margin_top = -105.0
-margin_right = 709.0
-margin_bottom = -41.0
-rect_scale = Vector2( 2, 2 )
-rect_pivot_offset = Vector2( 31, 31 )
-hint_tooltip = "DANGER - KEEP CLEAR"
-focus_neighbour_left = NodePath("../PlanetX")
-focus_neighbour_bottom = NodePath("../../Launch")
-focus_previous = NodePath("../PlanetX")
-texture_normal = SubResource( 31 )
-texture_hover = SubResource( 32 )
-texture_disabled = SubResource( 33 )
-texture_focused = SubResource( 32 )
-
-[node name="PebblesLine" type="Line2D" parent="Control/Map/Panel/ScreenClip/Map"]
-position = Vector2( 7, -76 )
-points = PoolVector2Array( 27, 225, 32, 189 )
-width = 16.0
-default_color = Color( 1, 1, 1, 1 )
-texture = ExtResource( 18 )
-texture_mode = 1
-joint_mode = 2
-
-[node name="DonutLine" type="Line2D" parent="Control/Map/Panel/ScreenClip/Map"]
-position = Vector2( 22, 37 )
-points = PoolVector2Array( 48, 132, 84, 136 )
-width = 16.0
-default_color = Color( 1, 1, 1, 1 )
-texture = ExtResource( 18 )
-texture_mode = 1
-joint_mode = 2
-
-[node name="CrackedLine" type="Line2D" parent="Control/Map/Panel/ScreenClip/Map"]
-points = PoolVector2Array( 151, 185, 197, 202 )
-width = 16.0
-default_color = Color( 1, 1, 1, 1 )
-texture = ExtResource( 18 )
-texture_mode = 1
-joint_mode = 2
-
-[node name="BlobsLine" type="Line2D" parent="Control/Map/Panel/ScreenClip/Map"]
-points = PoolVector2Array( 263, 211, 326, 162 )
-width = 16.0
-default_color = Color( 1, 1, 1, 1 )
-texture = ExtResource( 18 )
-texture_mode = 1
-joint_mode = 2
 
 [node name="HomeLine" type="Line2D" parent="Control/Map/Panel/ScreenClip/Map"]
 points = PoolVector2Array( 348, 134, 360, 62 )
@@ -989,6 +611,135 @@ texture = ExtResource( 18 )
 texture_mode = 1
 joint_mode = 2
 
+[node name="Rock" type="TextureButton" parent="Control/Map/Panel/ScreenClip/Map"]
+margin_left = 32.0
+margin_top = 164.0
+margin_right = 96.0
+margin_bottom = 228.0
+rect_pivot_offset = Vector2( 32, 53 )
+focus_neighbour_bottom = NodePath("../../Info/Launch")
+focus_previous = NodePath("../../Info/Launch")
+texture_normal = SubResource( 7 )
+texture_hover = SubResource( 8 )
+texture_focused = SubResource( 8 )
+script = ExtResource( 2 )
+level_resource = ExtResource( 7 )
+
+[node name="Pebbles" type="TextureButton" parent="Control/Map/Panel/ScreenClip/Map"]
+margin_left = 88.0
+margin_top = 108.0
+margin_right = 152.0
+margin_bottom = 172.0
+rect_pivot_offset = Vector2( 32, 53 )
+focus_neighbour_bottom = NodePath("../../Info/Launch")
+focus_previous = NodePath("../../Info/Launch")
+texture_normal = SubResource( 7 )
+texture_hover = SubResource( 8 )
+texture_focused = SubResource( 8 )
+script = ExtResource( 2 )
+level_resource = ExtResource( 11 )
+
+[node name="PebblesLine" type="Line2D" parent="Control/Map/Panel/ScreenClip/Map/Pebbles"]
+position = Vector2( -11, -206 )
+points = PoolVector2Array( 30, 252, 4, 282 )
+width = 16.0
+default_color = Color( 1, 1, 1, 1 )
+texture = ExtResource( 18 )
+texture_mode = 1
+joint_mode = 2
+
+[node name="Shop" type="TextureButton" parent="Control/Map/Panel/ScreenClip/Map"]
+margin_left = 78.0
+margin_top = 193.0
+margin_right = 142.0
+margin_bottom = 257.0
+rect_pivot_offset = Vector2( 32, 53 )
+focus_neighbour_bottom = NodePath("../../Info/Launch")
+focus_previous = NodePath("../../Info/Launch")
+texture_normal = SubResource( 7 )
+texture_hover = SubResource( 8 )
+texture_focused = SubResource( 8 )
+script = ExtResource( 2 )
+level_resource = ExtResource( 15 )
+
+[node name="PebblesLine" type="Line2D" parent="Control/Map/Panel/ScreenClip/Map/Shop"]
+position = Vector2( -15, -222 )
+points = PoolVector2Array( 31, 248, 15, 238 )
+width = 16.0
+default_color = Color( 1, 1, 1, 1 )
+texture = ExtResource( 18 )
+texture_mode = 1
+joint_mode = 2
+
+[node name="Donut" type="TextureButton" parent="Control/Map/Panel/ScreenClip/Map"]
+margin_left = 189.0
+margin_top = 83.0
+margin_right = 253.0
+margin_bottom = 147.0
+rect_pivot_offset = Vector2( 32, 53 )
+focus_neighbour_bottom = NodePath("../../Info/Launch")
+focus_previous = NodePath("../../Info/Launch")
+texture_normal = SubResource( 7 )
+texture_hover = SubResource( 8 )
+texture_focused = SubResource( 8 )
+script = ExtResource( 2 )
+level_resource = ExtResource( 6 )
+
+[node name="DonutLine" type="Line2D" parent="Control/Map/Panel/ScreenClip/Map/Donut"]
+position = Vector2( -73, -105 )
+points = PoolVector2Array( 27, 152, 79, 139 )
+width = 16.0
+default_color = Color( 1, 1, 1, 1 )
+texture = ExtResource( 18 )
+texture_mode = 1
+joint_mode = 2
+
+[node name="Cracked" type="TextureButton" parent="Control/Map/Panel/ScreenClip/Map"]
+margin_left = 280.0
+margin_top = 151.0
+margin_right = 344.0
+margin_bottom = 215.0
+rect_pivot_offset = Vector2( 32, 53 )
+focus_neighbour_bottom = NodePath("../../Info/Launch")
+focus_previous = NodePath("../../Info/Launch")
+texture_normal = SubResource( 7 )
+texture_hover = SubResource( 8 )
+texture_focused = SubResource( 8 )
+script = ExtResource( 2 )
+level_resource = ExtResource( 8 )
+
+[node name="CrackedLine" type="Line2D" parent="Control/Map/Panel/ScreenClip/Map/Cracked"]
+position = Vector2( -198, -174 )
+points = PoolVector2Array( 155, 155, 211, 196 )
+width = 16.0
+default_color = Color( 1, 1, 1, 1 )
+texture = ExtResource( 18 )
+texture_mode = 1
+joint_mode = 2
+
+[node name="Blobs" type="TextureButton" parent="Control/Map/Panel/ScreenClip/Map"]
+margin_left = 409.0
+margin_top = 188.0
+margin_right = 473.0
+margin_bottom = 252.0
+rect_pivot_offset = Vector2( 32, 53 )
+focus_neighbour_bottom = NodePath("../../Info/Launch")
+focus_previous = NodePath("../../Info/Launch")
+texture_normal = SubResource( 7 )
+texture_hover = SubResource( 8 )
+texture_focused = SubResource( 8 )
+script = ExtResource( 2 )
+level_resource = ExtResource( 9 )
+
+[node name="BlobsLine" type="Line2D" parent="Control/Map/Panel/ScreenClip/Map/Blobs"]
+position = Vector2( -305, -114 )
+points = PoolVector2Array( 227, 124, 316, 148 )
+width = 16.0
+default_color = Color( 1, 1, 1, 1 )
+texture = ExtResource( 18 )
+texture_mode = 1
+joint_mode = 2
+
 [node name="MapShip" type="Sprite" parent="Control/Map/Panel/ScreenClip/Map"]
 modulate = Color( 1, 1, 1, 0.788235 )
 position = Vector2( 34, 228 )
@@ -1002,20 +753,6 @@ stream = ExtResource( 33 )
 [node name="Select" type="AudioStreamPlayer" parent="Control/Map/Panel/ScreenClip/Map"]
 stream = ExtResource( 32 )
 
-[node name="Launch" type="Button" parent="Control/Map/Panel/ScreenClip"]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -65.0
-margin_top = -38.0
-margin_right = 63.0
-margin_bottom = -8.0
-rect_pivot_offset = Vector2( 64, 30 )
-focus_neighbour_top = NodePath("../Map/Rock")
-focus_next = NodePath("../Map/Rock")
-text = "LAUNCH"
-
 [node name="ScreenFlicker" type="TextureRect" parent="Control/Map/Panel/ScreenClip"]
 margin_right = 397.0
 margin_bottom = 309.0
@@ -1025,84 +762,42 @@ stretch_mode = 2
 script = ExtResource( 12 )
 time = 0.182
 
-[node name="Modify" type="ColorRect" parent="Control"]
-material = SubResource( 6 )
-margin_left = 445.0
-margin_top = 20.0
-margin_right = 630.0
-margin_bottom = 327.0
-rect_pivot_offset = Vector2( 0, 150 )
-color = Color( 0, 0, 0, 0.784314 )
+[node name="Info" type="Panel" parent="Control/Map/Panel/ScreenClip"]
+margin_left = 467.0
+margin_top = -1.0
+margin_right = 641.0
+margin_bottom = 361.0
 
-[node name="Panel" type="Panel" parent="Control/Modify"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -5.0
-margin_top = -5.0
-margin_right = 5.0
-margin_bottom = 5.0
+[node name="Title" type="Label" parent="Control/Map/Panel/ScreenClip/Info"]
+margin_left = 21.0
+margin_top = 17.0
+margin_right = 148.0
+margin_bottom = 49.0
+custom_fonts/font = ExtResource( 16 )
+text = "The Lonely Planet of BOOBA"
+autowrap = true
 
-[node name="CenterContainer" type="CenterContainer" parent="Control/Modify/Panel"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 5.0
-margin_top = 7.0
-margin_right = -7.0
-margin_bottom = -6.0
-
-[node name="Shop" type="VBoxContainer" parent="Control/Modify/Panel/CenterContainer"]
-margin_left = 37.0
-margin_top = 122.0
-margin_right = 145.0
-margin_bottom = 182.0
-focus_neighbour_right = NodePath("../../../../Map/Panel/ScreenClip/Map/Rock")
-size_flags_horizontal = 0
-script = ExtResource( 15 )
-button_scene = ExtResource( 9 )
-unlock_res = ExtResource( 23 )
-fill_res = ExtResource( 20 )
-decay_res = ExtResource( 24 )
-pull_res = ExtResource( 22 )
-escape_res = ExtResource( 21 )
-catch_res = ExtResource( 26 )
-oxygen_res = ExtResource( 25 )
-reels_res = ExtResource( 27 )
-
-[node name="UpgradeLabel" type="Label" parent="Control/Modify/Panel/CenterContainer/Shop"]
-margin_right = 108.0
-margin_bottom = 13.0
-text = "Synthesize Upgrades"
-align = 1
-
-[node name="HSeparator" type="HSeparator" parent="Control/Modify/Panel/CenterContainer/Shop"]
-margin_top = 23.0
-margin_right = 108.0
-margin_bottom = 27.0
-
-[node name="UnitsCount" type="Label" parent="Control/Modify/Panel/CenterContainer/Shop"]
-margin_top = 37.0
-margin_right = 108.0
-margin_bottom = 50.0
-text = "1200 units"
-align = 1
-
-[node name="Grid" type="GridContainer" parent="Control/Modify/Panel/CenterContainer/Shop"]
+[node name="Description" type="Label" parent="Control/Map/Panel/ScreenClip/Info"]
+margin_left = 21.0
 margin_top = 60.0
-margin_right = 108.0
-margin_bottom = 60.0
-columns = 2
+margin_right = 148.0
+margin_bottom = 92.0
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 0
+text = "This planet is a hive of scum and villany"
+autowrap = true
 
-[node name="ShopBoop" type="AudioStreamPlayer" parent="Control/Modify/Panel/CenterContainer/Shop"]
-stream = ExtResource( 33 )
-
-[node name="ScreenFlicker2" type="TextureRect" parent="Control/Modify"]
-anchor_right = 1.0
+[node name="Launch" type="Button" parent="Control/Map/Panel/ScreenClip/Info"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-mouse_filter = 2
-texture = SubResource( 35 )
-stretch_mode = 2
-script = ExtResource( 12 )
-time = 0.182
+margin_left = -65.0
+margin_top = -53.0
+margin_right = 63.0
+margin_bottom = -23.0
+rect_pivot_offset = Vector2( 64, 30 )
+text = "LAUNCH"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Intro"
@@ -1128,13 +823,10 @@ autoplay = true
 bus = "Sfx"
 
 [connection signal="pressed" from="Control/Map/Panel/ScreenClip/Map/Rock" to="." method="_on_Rock_pressed"]
-[connection signal="pressed" from="Control/Map/Panel/ScreenClip/Map/Pebbles" to="." method="_on_Pebbles_pressed"]
-[connection signal="pressed" from="Control/Map/Panel/ScreenClip/Map/Donut" to="." method="_on_Donut_pressed"]
-[connection signal="pressed" from="Control/Map/Panel/ScreenClip/Map/Cracked" to="." method="_on_Cracked_pressed"]
-[connection signal="pressed" from="Control/Map/Panel/ScreenClip/Map/Blobs" to="." method="_on_Blobs_pressed"]
-[connection signal="pressed" from="Control/Map/Panel/ScreenClip/Map/Home" to="." method="_on_Home_pressed"]
-[connection signal="pressed" from="Control/Map/Panel/ScreenClip/Map/PlanetX" to="." method="_on_PlanetX_pressed"]
-[connection signal="pressed" from="Control/Map/Panel/ScreenClip/Map/BlackHole" to="." method="_on_BlackHole_pressed"]
-[connection signal="focus_entered" from="Control/Map/Panel/ScreenClip/Launch" to="." method="_on_Launch_focus_entered"]
-[connection signal="pressed" from="Control/Map/Panel/ScreenClip/Launch" to="." method="_on_Launch_pressed"]
-[connection signal="unlock_purchased" from="Control/Modify/Panel/CenterContainer/Shop" to="Control/Map/Panel/ScreenClip/Map" method="_on_Shop_unlock_purchased"]
+[connection signal="pressed" from="Control/Map/Panel/ScreenClip/Map/Pebbles" to="." method="_on_Rock_pressed"]
+[connection signal="pressed" from="Control/Map/Panel/ScreenClip/Map/Shop" to="." method="_on_Rock_pressed"]
+[connection signal="pressed" from="Control/Map/Panel/ScreenClip/Map/Donut" to="." method="_on_Rock_pressed"]
+[connection signal="pressed" from="Control/Map/Panel/ScreenClip/Map/Cracked" to="." method="_on_Rock_pressed"]
+[connection signal="pressed" from="Control/Map/Panel/ScreenClip/Map/Blobs" to="." method="_on_Rock_pressed"]
+[connection signal="focus_entered" from="Control/Map/Panel/ScreenClip/Info/Launch" to="." method="_on_Launch_focus_entered"]
+[connection signal="pressed" from="Control/Map/Panel/ScreenClip/Info/Launch" to="." method="_on_Launch_pressed"]

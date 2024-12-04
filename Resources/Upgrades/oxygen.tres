@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource( 1 )
 prog_name = "oxygen_level"
-display_name = "Additional Oxygen"
+display_name = "Oxygen Tanks"
 description = "Additional 30 seconds of fishing time."
 icon = ExtResource( 2 )
 costs = [ 100, 200, 500, 1500, 3000, 10000 ]

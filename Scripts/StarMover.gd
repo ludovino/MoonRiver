@@ -17,7 +17,6 @@ func _process(delta: float) -> void:
 			else: _move_direction(star, delta)
 
 func _move_point(node : Node2D, delta: float) -> void:
-	if node.name == "lure": print("LURE MOVED??")
 	var dir : Vector2
 	if local:
 		 dir = global_position + direction - node.global_position
@@ -28,7 +27,6 @@ func _move_point(node : Node2D, delta: float) -> void:
 	node.global_position += dir.normalized() * magnitude * delta * ease(decay, falloff)
 
 func _move_direction(node : Node2D, delta: float) -> void:
-	if node.name == "lure": print("LURE MOVED??")
 	var dir : Vector2
 	if local:
 		dir = direction.rotated(global_rotation)

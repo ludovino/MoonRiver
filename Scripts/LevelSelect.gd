@@ -2,73 +2,39 @@ class_name LevelSelect
 extends Node2D
 
 var map : Map
-var current_planet : int = 0
+var next_level : Level
 
 signal level_selected
 
 func _ready() -> void:
 	map = $Control/Map/Panel/ScreenClip/Map
-	_move_ship()
+	for button in map.buttons:
+		button.connect("pressed", self, "_select_level", [button.level])
 
 func _after_intro() -> void:
-	$Control/Map/Panel/ScreenClip/Map.set_focus(current_planet)
+	map.set_focus(next_level)
+	_move_ship()
 
 func _focus_launch() -> void:
 	$Control/Map/Panel/ScreenClip/Launch.grab_focus()
 
 func _move_ship() -> void:
-	map._move_ship_indicator(current_planet)
-
-func _on_Rock_pressed() -> void:
-	current_planet = 0
-	_focus_launch()
-	_move_ship()
-	
-func _on_Pebbles_pressed() -> void:
-	current_planet = 1
-	_focus_launch()
-	_move_ship()
-
-func _on_Donut_pressed() -> void:
-	current_planet = 2
-	_focus_launch()
-	_move_ship()
-
-func _on_Cracked_pressed() -> void:
-	current_planet = 3
-	_focus_launch()
-	_move_ship()
-
-func _on_Blobs_pressed() -> void:
-	current_planet = 4
-	_focus_launch()
-	_move_ship()
-
-func _on_Home_pressed() -> void:
-	current_planet = 5
-	_focus_launch()
-	_move_ship()
-
-func _on_PlanetX_pressed() -> void:
-	current_planet = 6
-	_focus_launch()
-	_move_ship()
-
-func _on_BlackHole_pressed() -> void:
-	current_planet = 7
-	_focus_launch()
-	_move_ship()
+	map._move_ship_indicator(next_level)
 
 func _on_Launch_pressed() -> void:
 	$LaunchSound.play()
 	$AnimationPlayer.play("outro")
 
 func _launch_animation_finished() -> void:
-	emit_signal("level_selected", current_planet)
+	SceneChanger.queue_level(next_level)
 	
-
+func _select_level(level : Level) -> void:
+	$Control/Map/Panel/ScreenClip/Info/Title.text = level.display_name
+	$Control/Map/Panel/ScreenClip/Info/Description.text = level.description
+	next_level = level
 
 func _on_Launch_focus_entered() -> void:
-	var sound = $Control/Modify/Panel/CenterContainer/Shop/ShopBoop
-	sound.pitch_scale = 0.9
-	sound.play()
+	pass
+	#var sound = $Control/Modify/Panel/CenterContainer/Shop/ShopBoop
+	#sound.pitch_scale = 0.9
+	#sound.play()

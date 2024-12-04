@@ -13,7 +13,7 @@ var intro_scene = preload("res://Cutscene.tscn")
 var level_select = preload("res://PackedScenes/LevelSelect.tscn")
 var progress : Progression
 
-var current_level := 0
+var current_level : Level
 var current: Node
 
 var viewport: Viewport
@@ -27,6 +27,15 @@ func _ready() -> void:
 	randomize()
 	viewport = $ViewportContainer/Viewport
 	_to_main_menu()
+	SceneChanger.connect("scene_queued", self, "swap_scene_path")
+	SceneChanger.connect("level_queued", self, "_change_level")
+	SceneChanger.connect("level_select", self, "_to_level_select", [0])
+	SceneChanger.connect("game_finished", self, "_to_level_select")
+
+func _change_level(level : Level) -> void:
+	current_level = level
+	level.set_status(level.VISITED)
+	swap_scene_path(level.scene)
 	
 func _to_main_menu():
 	get_tree().paused = false
@@ -40,20 +49,16 @@ func _to_main_menu():
 		scene.connect("play", self, "_to_level_select", [0])
 	scene.connect("quit", self, "_on_quit")
 
+func swap_scene_path(path: String):
+	var packed = load(path) as PackedScene
+	swap_scene(packed.instance())
+
 func swap_scene(scene: Node):
 	if current:
 		viewport.remove_child(current)
 		current.queue_free()
 	current = scene
 	viewport.add_child(scene)
-
-func _on_play(level : int):
-	$PauseMenu.hide()
-	can_pause = true
-	current_level = level
-	var scene = levels[level].instance()
-	swap_scene(scene)
-	scene.connect("game_over", self, "_to_level_select")
 
 func _on_quit():
 	get_tree().quit()
@@ -64,7 +69,7 @@ func _on_intro():
 	var scene = intro_scene.instance()
 	swap_scene(scene)
 	scene.connect("finished", self, "_on_play", [0])
-
+	
 func _to_level_select(score: int):
 	$PauseMenu.hide()
 	progress.units += score
@@ -73,7 +78,7 @@ func _to_level_select(score: int):
 	can_pause = false
 	var scene = level_select.instance()
 	swap_scene(scene)
-	scene.current_planet = current_level
+	scene.next_level = current_level
 	scene._move_ship()
 	scene.connect("level_selected", self, "_on_play")
 

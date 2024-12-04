@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource( 1 )
 prog_name = "escape_level"
-display_name = "Slow Escape"
+display_name = "Tractor Beam"
 description = "The stars will pull away from you more slowly on the line."
 icon = ExtResource( 2 )
 costs = [ 100, 200, 500, 1500, 3000, 10000 ]

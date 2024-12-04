@@ -1,8 +1,10 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://starfield_shader.tres" type="Shader" id=1]
 [ext_resource path="res://Sprites/TensionBar.png" type="Texture" id=2]
 [ext_resource path="res://PackedScenes/Player/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://PackedScenes/Player/ShipShabby.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Sprites/Upgrades/cast_template.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/Reel.png" type="Texture" id=9]
 [ext_resource path="res://Scripts/Timerisplay.gd" type="Script" id=11]
 [ext_resource path="res://FadeIn.gd" type="Script" id=12]
@@ -24,19 +26,8 @@
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=32]
 [ext_resource path="res://Sprites/SpaceRock.png" type="Texture" id=34]
 [ext_resource path="res://Scripts/Flash.gd" type="Script" id=35]
-[ext_resource path="res://Sounds/Alert.wav" type="AudioStream" id=36]
-[ext_resource path="res://Scripts/Alert.gd" type="Script" id=37]
 [ext_resource path="res://Resources/Stars/PlanetRing.tres" type="Resource" id=38]
 [ext_resource path="res://Resources/Stars/ShootingStar.tres" type="Resource" id=39]
-
-[sub_resource type="Curve" id=12]
-_data = [ Vector2( 0, 0 ), 0.0, 1.90909, 0, 0, Vector2( 1, 1 ), 2.36169e-07, 0.0, 0, 0 ]
-
-[sub_resource type="Curve" id=17]
-_data = [ Vector2( 0, 0 ), 0.0, 3.02273, 0, 0, Vector2( 0.5, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -2.86363, 0.0, 0, 0 ]
-
-[sub_resource type="Curve" id=18]
-_data = [ Vector2( 0, 0 ), 0.0, 0.318182, 0, 0, Vector2( 1, 1 ), 2.46591, 0.0, 0, 0 ]
 
 [sub_resource type="Gradient" id=42]
 offsets = PoolRealArray( 0, 0.141935, 0.303226, 0.477419, 0.677419, 0.819355, 0.980645 )
@@ -68,6 +59,12 @@ shader_param/noise_uv_scale = 2.008
 shader_param/grad = SubResource( 39 )
 shader_param/noise = SubResource( 41 )
 
+[sub_resource type="RectangleShape2D" id=45]
+extents = Vector2( 15, 210 )
+
+[sub_resource type="RectangleShape2D" id=46]
+extents = Vector2( 320, 15 )
+
 [sub_resource type="Animation" id=25]
 resource_name = "score"
 length = 0.7
@@ -96,21 +93,12 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=45]
-extents = Vector2( 15, 210 )
-
-[sub_resource type="RectangleShape2D" id=46]
-extents = Vector2( 320, 15 )
+[sub_resource type="RectangleShape2D" id=47]
+extents = Vector2( 15, 300 )
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 32 )
 player_speed = 50.0
-position_min = 45.0
-position_max = 260.0
-cast_x_curve = SubResource( 12 )
-cast_y_curve = SubResource( 17 )
-cast_height = 45.0
-aim_lerp_curve = SubResource( 18 )
 aim_min = 35.0
 aim_max = 483.0
 aim_speed = 0.5
@@ -134,9 +122,10 @@ rect_pivot_offset = Vector2( 0, 540 )
 texture = ExtResource( 15 )
 
 [node name="Rivers" type="Node2D" parent="."]
+position = Vector2( -17, -7 )
 
 [node name="SmallRiver" type="Node2D" parent="Rivers"]
-position = Vector2( 423, 386 )
+position = Vector2( 392, 377 )
 script = ExtResource( 28 )
 star_scene = ExtResource( 21 )
 star_reources = [ ExtResource( 20 ) ]
@@ -149,7 +138,7 @@ speed = 7.0
 color = Color( 1, 0.913725, 0.890196, 1 )
 
 [node name="SmallRiver2" type="Node2D" parent="Rivers"]
-position = Vector2( 425, 394 )
+position = Vector2( 370, 386 )
 script = ExtResource( 28 )
 star_scene = ExtResource( 21 )
 star_reources = [ ExtResource( 23 ), ExtResource( 25 ) ]
@@ -160,8 +149,30 @@ spawn_time = 5.0
 speed = 7.0
 color = Color( 0.992157, 0.788235, 0.788235, 1 )
 
+[node name="MedRiver" type="Node2D" parent="Rivers"]
+position = Vector2( 461, 381 )
+script = ExtResource( 28 )
+star_scene = ExtResource( 21 )
+star_reources = [ ExtResource( 24 ), ExtResource( 18 ) ]
+width = 200.0
+height = 35.0
+spawn_time = 3.0
+speed = 15.0
+color = Color( 0.541176, 0.631373, 0.964706, 1 )
+
+[node name="BigRiver" type="Node2D" parent="Rivers"]
+position = Vector2( 506, 398 )
+script = ExtResource( 28 )
+star_scene = ExtResource( 21 )
+star_reources = [ ExtResource( 38 ), ExtResource( 19 ) ]
+width = 190.0
+height = 35.0
+spawn_time = 5.0
+speed = 10.0
+color = Color( 0.945098, 0.94902, 1, 1 )
+
 [node name="ShootingStar" type="Node2D" parent="Rivers"]
-position = Vector2( 542, 372 )
+position = Vector2( 552, 391 )
 script = ExtResource( 28 )
 star_scene = ExtResource( 21 )
 star_reources = [ ExtResource( 39 ) ]
@@ -171,31 +182,12 @@ spawn_time = 60.0
 speed = 25.0
 color = Color( 0.992157, 0.788235, 0.788235, 1 )
 
-[node name="MedRiver" type="Node2D" parent="Rivers"]
-position = Vector2( 447, 380 )
-script = ExtResource( 28 )
-star_scene = ExtResource( 21 )
-star_reources = [ ExtResource( 24 ), ExtResource( 18 ) ]
-width = 350.0
-height = 35.0
-spawn_time = 3.0
-speed = 15.0
-color = Color( 0.541176, 0.631373, 0.964706, 1 )
-
-[node name="BigRiver" type="Node2D" parent="Rivers"]
-position = Vector2( 497, 372 )
-script = ExtResource( 28 )
-star_scene = ExtResource( 21 )
-star_reources = [ ExtResource( 38 ), ExtResource( 19 ) ]
-width = 250.0
-height = 35.0
-spawn_time = 5.0
-speed = 10.0
-color = Color( 0.945098, 0.94902, 1, 1 )
-
 [node name="SpaceRock" type="Sprite" parent="."]
 position = Vector2( 260, 160 )
 texture = ExtResource( 34 )
+
+[node name="Ship" parent="." instance=ExtResource( 4 )]
+position = Vector2( 136, 33 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 160, 171 )
@@ -206,7 +198,41 @@ one_shot = true
 [node name="SfxPlayer" type="AudioStreamPlayer" parent="."]
 bus = "Sfx"
 
-[node name="TensionBar" type="NinePatchRect" parent="."]
+[node name="GameTime" type="Timer" parent="."]
+wait_time = 300.0
+one_shot = true
+autostart = true
+
+[node name="Extents" type="Area2D" parent="." groups=["cancel_lure"]]
+collision_layer = 8
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Extents"]
+visible = false
+position = Vector2( 666, 180 )
+shape = SubResource( 45 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Extents"]
+visible = false
+position = Vector2( 360, 389 )
+shape = SubResource( 46 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Extents"]
+visible = false
+position = Vector2( 360, -27 )
+shape = SubResource( 46 )
+
+[node name="Land" type="Area2D" parent="." groups=["land"]]
+collision_layer = 8
+collision_mask = 6
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Land"]
+visible = false
+polygon = PoolVector2Array( 32, 382, 94, 382, 93, 319, 134, 317, 162, 310, 174, 280, 176, 266, 168, 203, 173, 170, 191, 170, 191, 153, 173, 153, 177, 139, 171, 105, 159, 62, 159, 22, 144, 6, 97, 5, 99, -34, 0, -9 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TensionBar" type="NinePatchRect" parent="CanvasLayer"]
 margin_left = 127.0
 margin_top = 350.0
 margin_right = 145.0
@@ -223,33 +249,33 @@ patch_margin_right = 1
 patch_margin_bottom = 1
 script = ExtResource( 31 )
 
-[node name="BarFill" type="ColorRect" parent="TensionBar"]
+[node name="BarFill" type="ColorRect" parent="CanvasLayer/TensionBar"]
 margin_left = 2.0
 margin_top = 2.0
 margin_right = 16.0
 margin_bottom = 338.0
 rect_pivot_offset = Vector2( 2, 20 )
 
-[node name="SideBar" type="Panel" parent="."]
+[node name="SideBar" type="Panel" parent="CanvasLayer"]
 margin_left = -3.0
 margin_top = -10.0
 margin_right = 100.0
 margin_bottom = 370.0
 theme = ExtResource( 17 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SideBar"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/SideBar"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 10.0
 margin_right = -10.0
 alignment = 1
 
-[node name="HSeparator3" type="HSeparator" parent="SideBar/VBoxContainer"]
+[node name="HSeparator3" type="HSeparator" parent="CanvasLayer/SideBar/VBoxContainer"]
 margin_top = 22.0
 margin_right = 83.0
 margin_bottom = 26.0
 
-[node name="TimerLabel" type="Label" parent="SideBar/VBoxContainer"]
+[node name="TimerLabel" type="Label" parent="CanvasLayer/SideBar/VBoxContainer"]
 margin_top = 36.0
 margin_right = 83.0
 margin_bottom = 67.0
@@ -257,7 +283,7 @@ text = "Time to launch"
 align = 1
 autowrap = true
 
-[node name="Timer" type="Label" parent="SideBar/VBoxContainer"]
+[node name="Timer" type="Label" parent="CanvasLayer/SideBar/VBoxContainer"]
 margin_top = 77.0
 margin_right = 83.0
 margin_bottom = 91.0
@@ -266,12 +292,12 @@ align = 1
 valign = 1
 script = ExtResource( 11 )
 
-[node name="HSeparator" type="HSeparator" parent="SideBar/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/SideBar/VBoxContainer"]
 margin_top = 101.0
 margin_right = 83.0
 margin_bottom = 105.0
 
-[node name="ScoreLabel" type="Label" parent="SideBar/VBoxContainer"]
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/SideBar/VBoxContainer"]
 margin_top = 115.0
 margin_right = 83.0
 margin_bottom = 146.0
@@ -279,7 +305,7 @@ text = "Fuel Collected"
 align = 1
 autowrap = true
 
-[node name="Points" type="Label" parent="SideBar/VBoxContainer"]
+[node name="Points" type="Label" parent="CanvasLayer/SideBar/VBoxContainer"]
 margin_top = 156.0
 margin_right = 83.0
 margin_bottom = 170.0
@@ -290,15 +316,15 @@ align = 1
 valign = 1
 script = ExtResource( 30 )
 
-[node name="PointsAnimator" type="AnimationPlayer" parent="SideBar/VBoxContainer/Points"]
+[node name="PointsAnimator" type="AnimationPlayer" parent="CanvasLayer/SideBar/VBoxContainer/Points"]
 anims/score = SubResource( 25 )
 
-[node name="HSeparator2" type="HSeparator" parent="SideBar/VBoxContainer"]
+[node name="HSeparator2" type="HSeparator" parent="CanvasLayer/SideBar/VBoxContainer"]
 margin_top = 180.0
 margin_right = 83.0
 margin_bottom = 184.0
 
-[node name="ReelsLabel" type="Label" parent="SideBar/VBoxContainer"]
+[node name="ReelsLabel" type="Label" parent="CanvasLayer/SideBar/VBoxContainer"]
 margin_top = 194.0
 margin_right = 83.0
 margin_bottom = 225.0
@@ -308,12 +334,12 @@ autowrap = true
 script = ExtResource( 35 )
 flash_color = Color( 1, 0, 0, 1 )
 
-[node name="Center" type="CenterContainer" parent="SideBar/VBoxContainer"]
+[node name="Center" type="CenterContainer" parent="CanvasLayer/SideBar/VBoxContainer"]
 margin_top = 235.0
 margin_right = 83.0
 margin_bottom = 271.0
 
-[node name="Reels" type="GridContainer" parent="SideBar/VBoxContainer/Center"]
+[node name="Reels" type="GridContainer" parent="CanvasLayer/SideBar/VBoxContainer/Center"]
 margin_left = 41.0
 margin_right = 41.0
 margin_bottom = 36.0
@@ -323,12 +349,12 @@ columns = 3
 script = ExtResource( 13 )
 texture = ExtResource( 9 )
 
-[node name="HSeparator4" type="HSeparator" parent="SideBar/VBoxContainer"]
+[node name="HSeparator4" type="HSeparator" parent="CanvasLayer/SideBar/VBoxContainer"]
 margin_top = 281.0
 margin_right = 83.0
 margin_bottom = 285.0
 
-[node name="Controls" type="Label" parent="SideBar/VBoxContainer"]
+[node name="Controls" type="Label" parent="CanvasLayer/SideBar/VBoxContainer"]
 modulate = Color( 0.760784, 0.737255, 0.737255, 1 )
 margin_top = 295.0
 margin_right = 83.0
@@ -339,67 +365,48 @@ stop cast: Q"
 align = 1
 autowrap = true
 
-[node name="HSeparator5" type="HSeparator" parent="SideBar/VBoxContainer"]
+[node name="HSeparator5" type="HSeparator" parent="CanvasLayer/SideBar/VBoxContainer"]
 margin_top = 353.0
 margin_right = 83.0
 margin_bottom = 357.0
 
-[node name="CenterContainer" type="CenterContainer" parent="SideBar"]
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/SideBar"]
 margin_top = 2.0
 margin_right = 320.0
 margin_bottom = 42.0
 
-[node name="VFlowContainer" type="HFlowContainer" parent="SideBar/CenterContainer"]
+[node name="VFlowContainer" type="HFlowContainer" parent="CanvasLayer/SideBar/CenterContainer"]
 margin_left = 160.0
 margin_top = 20.0
 margin_right = 160.0
 margin_bottom = 20.0
 
-[node name="GameTime" type="Timer" parent="."]
-wait_time = 300.0
-one_shot = true
-autostart = true
-
-[node name="FadeIn" type="ColorRect" parent="."]
+[node name="FadeIn" type="ColorRect" parent="CanvasLayer"]
 visible = false
 margin_right = 640.0
 margin_bottom = 360.0
 color = Color( 0.0235294, 0.0156863, 0.00784314, 1 )
 script = ExtResource( 12 )
 
-[node name="Steam" type="AudioStreamPlayer" parent="FadeIn"]
+[node name="Steam" type="AudioStreamPlayer" parent="CanvasLayer/FadeIn"]
 stream = ExtResource( 14 )
 autoplay = true
 bus = "Sfx"
 
-[node name="Alert" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 36 )
-bus = "Sfx"
-script = ExtResource( 37 )
-enabled = true
+[node name="Bounds" type="StaticBody2D" parent="."]
 
-[node name="Extents" type="Area2D" parent="." groups=["cancel_lure"]]
-collision_layer = 8
-collision_mask = 6
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds"]
+visible = false
+position = Vector2( 84, 180 )
+shape = SubResource( 47 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Extents"]
-position = Vector2( 666, 180 )
-shape = SubResource( 45 )
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bounds"]
+visible = false
+polygon = PoolVector2Array( 100, 4, 130, 7, 157, 21, 159, 60, 164, 97, 166.85, 136.903, 168, 153, 191, 153, 191, 170, 168, 170, 167, 195, 165, 210, 172, 254, 172, 284, 156, 306, 109, 305, 99, 299, 97, 360, 97, 391, 428, 392, 427, -26, 100, -31 )
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Extents"]
-position = Vector2( 360, 389 )
-shape = SubResource( 46 )
+[node name="CastTemplate" type="Sprite" parent="."]
+position = Vector2( 417, 371 )
+texture = ExtResource( 5 )
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Extents"]
-position = Vector2( 360, -27 )
-shape = SubResource( 46 )
-
-[node name="Land" type="Area2D" parent="." groups=["land"]]
-collision_layer = 8
-collision_mask = 6
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Land"]
-polygon = PoolVector2Array( 32, 382, 94, 382, 93, 319, 134, 317, 162, 310, 174, 280, 178, 197, 171, 105, 167, 26, 144, 6, 97, 5, 99, -34, 0, -9 )
-
-[connection signal="score_change" from="." to="SideBar/VBoxContainer/Points" method="_on_Main_score_change"]
-[connection signal="lose_reel" from="SideBar/VBoxContainer/Center/Reels" to="SideBar/VBoxContainer/ReelsLabel" method="flash"]
+[connection signal="score_change" from="." to="CanvasLayer/SideBar/VBoxContainer/Points" method="_on_Main_score_change"]
+[connection signal="lose_reel" from="CanvasLayer/SideBar/VBoxContainer/Center/Reels" to="CanvasLayer/SideBar/VBoxContainer/ReelsLabel" method="flash"]

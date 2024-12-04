@@ -19,7 +19,7 @@ export var speed: float
 
 export var color : Color
 
-const bounds = Rect2(-100, -100, 640 + 200, 360 + 200)
+const bounds = Rect2(-100, -100, 640 + 400, 360 + 400)
 
 func _ready() -> void:
 	if Engine.editor_hint:

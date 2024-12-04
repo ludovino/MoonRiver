@@ -1,0 +1,26 @@
+[gd_resource type="Resource" load_steps=6 format=2]
+
+[ext_resource path="res://Scripts/Level.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/planet-sprite-focus-sheet.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/planet-sprite-sheet.png" type="Texture" id=3]
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 2 )
+region = Rect2( 128, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 3 )
+region = Rect2( 128, 64, 64, 64 )
+
+[resource]
+script = ExtResource( 1 )
+display_name = "Three Sisters"
+progress_key = "blobs"
+progress_level = 4
+scene = "res://Levels/Blobs.tscn"
+intro_scene = ""
+description = "Three planets in close orbit with each other, causing unpredictable gravitational fields."
+stars = [  ]
+ls_texture = SubResource( 22 )
+ls_highlight = SubResource( 23 )
+pausable = true

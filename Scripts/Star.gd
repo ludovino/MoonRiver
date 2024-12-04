@@ -31,6 +31,7 @@ func _ready() -> void:
 	add_child(audio_source)
 
 func hook():
+	if hooked: return
 	hooked = true
 	hook_sound.pitch_scale = audio_pitch_modulate
 	add_child(hook_sound)

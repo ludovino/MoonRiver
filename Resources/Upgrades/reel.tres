@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource( 1 )
 prog_name = "reels_level"
-display_name = "Spare Reel"
+display_name = "Spare Reels"
 description = "Additional spares."
 icon = ExtResource( 2 )
 costs = [ 100, 5000, 20000 ]

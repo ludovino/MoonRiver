@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Upgrade.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Upgrades/reel.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+prog_name = "cast_level"
+display_name = "Lure Launcher"
+description = "Throw your lure further"
+icon = ExtResource( 2 )
+costs = [ 100, 1000, 5000, 10000, 20000, 50000 ]

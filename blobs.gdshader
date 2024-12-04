@@ -14,8 +14,8 @@ uniform float noise_uv_scale;
 void fragment() {
 	vec4 col = texture(grad, UV);
 	float t = TIME * 0.1;
-	col.rgb -= 0.5 * texture(radial_grad, UV - vec2(0, 0.5)).rgb;
-	col.rgb += 0.5 * texture(radial_grad, UV * vec2(1.0, 1.0) - vec2(0.5, 0.0)).rgb;
+	col.rgb -= 0.5 * texture(radial_grad, vec2(UV.x, UV.y + 0.5 - floor(UV.y + 0.5))).rgb;
+	col.rgb += 0.5 * texture(radial_grad, vec2(UV.y, UV.x + 0.5 - floor(UV.x + 0.5))).rgb;
 	col = col * (.53 + texture(noise, UV * vec2(.4, 1.0) - vec2(t, 0.0) - floor(t)));
 	col = floor(col * 5.) * 0.2;
 	col = clamp(col, 0.0, 1.0);

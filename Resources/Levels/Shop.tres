@@ -1,0 +1,18 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/Level.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Map/Shop-map-focus.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Map/Shop-map.png" type="Texture" id=3]
+
+[resource]
+script = ExtResource( 1 )
+display_name = "Abandoned Workshop"
+progress_key = "shop"
+progress_level = 0
+scene = "res://PackedScenes/Shop/Shop.tscn"
+intro_scene = "res://PackedScenes/Shop/ShopIntro.tscn"
+description = "Convert your captured stars into upgrades for your rod and ship."
+stars = [  ]
+ls_texture = ExtResource( 3 )
+ls_highlight = ExtResource( 2 )
+pausable = false

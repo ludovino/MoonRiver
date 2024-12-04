@@ -1,0 +1,265 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Sounds/Steam.wav" type="AudioStream" id=1]
+[ext_resource path="res://Scripts/Interactable.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Ship.gd" type="Script" id=3]
+[ext_resource path="res://Sounds/Unlock.wav" type="AudioStream" id=4]
+[ext_resource path="res://Sprites/Levels/ship-shabby.png" type="Texture" id=5]
+[ext_resource path="res://Sounds/Alert.wav" type="AudioStream" id=6]
+[ext_resource path="res://Sprites/particle.png" type="Texture" id=7]
+
+[sub_resource type="CircleShape2D" id=62]
+radius = 8.0
+
+[sub_resource type="Animation" id=60]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Alert:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Alert:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.956863, 0.141176, 0.278431, 0.580392 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Button/Button:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=61]
+resource_name = "alert"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Alert:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Alert:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 1, 1.1, 2 ),
+"transitions": PoolRealArray( 0.5, 2, 1, 2, 1 ),
+"update": 0,
+"values": [ Color( 0.698039, 0.321569, 0.4, 0 ), Color( 0.956863, 0.141176, 0.278431, 0.580392 ), Color( 0.698039, 0.321569, 0.4, 0 ), Color( 0.956863, 0.141176, 0.278431, 0.580392 ), Color( 0.698039, 0.321569, 0.4, 0 ) ]
+}
+tracks/2/type = "audio"
+tracks/2/path = NodePath("AlertSound")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 6 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 6 )
+} ],
+"times": PoolRealArray( 0.1, 1.1 )
+}
+
+[sub_resource type="Animation" id=68]
+resource_name = "idle"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Button/Button:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( -2, -2, 1, -2, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.380392 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.380392 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Alert:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2, 4 ),
+"transitions": PoolRealArray( -2, -2, 1 ),
+"update": 0,
+"values": [ Color( 0.698039, 0.321569, 0.4, 0 ), Color( 0.886275, 0.447059, 0.521569, 0.0470588 ), Color( 0.698039, 0.321569, 0.4, 0 ) ]
+}
+
+[sub_resource type="Gradient" id=63]
+offsets = PoolRealArray( 0, 0.134783, 0.778261 )
+colors = PoolColorArray( 1, 1, 1, 1, 0.964421, 0.966962, 1, 0.351955, 0.945098, 0.94902, 1, 0 )
+
+[sub_resource type="GradientTexture" id=64]
+gradient = SubResource( 63 )
+width = 32
+
+[sub_resource type="Curve" id=65]
+_data = [ Vector2( 0, 0.151136 ), 0.0, 2.76, 0, 0, Vector2( 0.407115, 1 ), -0.546951, -0.546951, 0, 0, Vector2( 1, 0.00227273 ), -3.13636, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=66]
+width = 128
+curve = SubResource( 65 )
+
+[sub_resource type="ParticlesMaterial" id=67]
+flag_disable_z = true
+direction = Vector3( -1, 0, 0 )
+spread = 5.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 24.92
+initial_velocity_random = 0.2
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel_random = 1.0
+damping = 16.66
+angle = 360.0
+angle_random = 1.0
+scale = 0.35
+scale_random = 0.59
+scale_curve = SubResource( 66 )
+color_ramp = SubResource( 64 )
+
+[node name="Ship" type="Sprite"]
+position = Vector2( 135, 240 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 48, 32 )
+script = ExtResource( 3 )
+alert_color = Color( 0.886275, 0.447059, 0.521569, 0.756863 )
+ok_color = Color( 0.541176, 0.631373, 0.964706, 0.517647 )
+
+[node name="Alert" type="Sprite" parent="."]
+visible = false
+modulate = Color( 0.956863, 0.141176, 0.278431, 0.580392 )
+position = Vector2( 10, -2 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 98, 3, 24, 24 )
+
+[node name="AlertSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+bus = "Sfx"
+
+[node name="DoorOpen" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+pitch_scale = 2.27
+bus = "Reverb"
+
+[node name="DoorThud" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+pitch_scale = 0.42
+bus = "Sfx"
+
+[node name="Door" type="Sprite" parent="."]
+visible = false
+position = Vector2( -1, 7 )
+texture = ExtResource( 5 )
+flip_h = true
+region_enabled = true
+region_rect = Rect2( 48, 0, 16, 23 )
+
+[node name="Light" type="Sprite" parent="Door"]
+position = Vector2( 0, 7 )
+z_index = 1
+texture = ExtResource( 5 )
+flip_h = true
+region_enabled = true
+region_rect = Rect2( 64, 0, 32, 37 )
+
+[node name="DoorTrigger" type="Area2D" parent="."]
+position = Vector2( 0, 5 )
+collision_layer = 16
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorTrigger"]
+visible = false
+position = Vector2( -2, 8 )
+shape = SubResource( 62 )
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="KinematicBody2D"]
+visible = false
+polygon = PoolVector2Array( 20, -6, 20, 7, 18, 12, -16, 12, -17, 7, -20, 4, -20, -5, -12, -11, 13, -11 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+anims/RESET = SubResource( 60 )
+anims/alert = SubResource( 61 )
+anims/idle = SubResource( 68 )
+
+[node name="AirLockParticles" type="Particles2D" parent="."]
+position = Vector2( -4, 4 )
+rotation = -1.39626
+emitting = false
+amount = 16
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.54
+randomness = 0.41
+local_coords = false
+process_material = SubResource( 67 )
+texture = ExtResource( 7 )
+
+[node name="AirLockParticles2" type="Particles2D" parent="."]
+position = Vector2( 1, 4 )
+rotation = -1.74533
+emitting = false
+amount = 16
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.54
+randomness = 0.41
+local_coords = false
+process_material = SubResource( 67 )
+texture = ExtResource( 7 )
+
+[node name="Button" type="Node2D" parent="."]
+
+[node name="Button" type="Sprite" parent="Button"]
+position = Vector2( -6, 5 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 53, 33, 8, 6 )
+
+[connection signal="triggered" from="DoorTrigger" to="." method="_on_DoorTrigger_triggered"]

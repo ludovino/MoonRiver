@@ -6,10 +6,25 @@ export var cast_curve_y: Curve
 export var cast_height: float
 export var cast_speed: float
 
+export var walk_speed: float
+export(float, EASE) var aim_lerp_curve: float
+export var aim_min: float
+export var aim_max: float
+export var aim_speed: float
+export var reel_speed: float
+export var can_cast: bool
+export var max_tension: float
+export var tension_multiplier: float
+export var tension_decay: float
+export var fight_speed_mod: float
+export var escape_speed_mod: float
+
 var casting = false
 var wind_up = false
 var casting_time = 0
 var origin_pos: Vector2
+var tension : float = 0 setget set_tension, get_tension
+
 
 export(NodePath) var lure_path : NodePath
 onready var lure : Lure = $Lure
@@ -17,11 +32,31 @@ onready var target : Node2D = $Target
 onready var lure_origin : Node2D = $LureOrigin
 onready var rod_tip : RodTip = $RodTip
 onready var anim : AnimationPlayer = $AnimationPlayer
-onready var anim_tree : AnimationTree = $AnimationTree
+onready var icon : Sprite = $InteractIcon
+onready var interact_area = $InteractArea
+onready var state_machine = $SM
+var inter_tween : SceneTreeTween
 
-signal lure_area_entered
+var dir_input : Vector2 = Vector2.ZERO
+var dir_move : Vector2 = Vector2.ZERO
+var can_interact : bool
+
+signal tension_changed
+signal danger_changed
+signal fight_started
+signal fight_ended
+signal hook_lost
+signal star_caught
+
+
+var progress : Progression
 
 func _ready() -> void:
+	progress = load("user://progression.tres") as Progression
+	
+	aim_max += progress.cast_level * 40
+	
+	icon.visible = false
 	rod_tip.disable()
 	if lure_path:
 		lure.queue_free()
@@ -31,88 +66,37 @@ func _ready() -> void:
 	lure.hide()
 	rod_tip.lure = lure.get_node("Offset")
 	origin_pos = lure_origin.global_position
+	change_state("Idle")
+
+func change_state(new_state: String):
+	state_machine.change_state(new_state)
 
 func _process(delta: float) -> void:
-	if wind_up:
-		lure.global_position = lure_origin.global_position
-	if casting:
-		casting_time += clamp(delta * cast_speed, 0.0, 1.0)
-		lure_pos(casting_time, lure_origin.global_position, target.global_position)
-		if casting_time >= 1.0:
-			casting = false
-			rod_tip.set_line(rod_tip.slack)
-			lure.enable()
-		
+	dir_input = Input.get_vector("left", "right", "up", "down")
+	if not can_interact && interact_area.get_overlapping_areas().size() > 0:
+		_interact_on()
+	elif can_interact && interact_area.get_overlapping_areas().size() == 0:
+		_interact_off()
+
+func _physics_process(delta: float) -> void:
+	if not state_machine.current_state.name == "Move": return
+	move_and_slide(dir_move * walk_speed)
+
+func set_tension(val: float) -> void:
+	tension = clamp(val, 0, max_tension + 1.0);
+	$Reeler.pitch_scale = 1.0 + (tension / max_tension) * 0.4
+	emit_signal("tension_changed", tension)
+
+func get_tension() -> float:
+	return tension
+
 func lure_pos(weight: float, start: Vector2, end: Vector2) -> void:
 	var x = lerp(start.x, end.x, cast_curve_x.interpolate_baked(weight))
 	var y = lerp(start.y, end.y, weight) - cast_curve_y.interpolate(weight) * cast_height
 	lure.global_position = Vector2(x, y)
+	rod_tip._do_line()
 
-func walk(dir : Vector2)-> void:
-	rod_tip.disable()
-	var a_x = abs(dir.x)
-	var a_y = abs(dir.y)
-	
-	if is_zero_approx(dir.length()):
-		anim.play("idle")
-		return
-	if dir.x > a_y:
-		anim.play("walk-right")
-	elif dir.x < -a_y:
-		anim.play("walk-left")
-	elif dir.y > 0.0:
-		anim.play("walk-down")
-	elif dir.y <= -a_x:
-		anim.play("walk-up")
 
-func idle() -> void:
-	rod_tip.disable()
-	if anim.current_animation != "idle":
-		anim.play("idle")
-	
-func start_cast() -> void:
-	anim_tree.active = false
-	wind_up = true
-	anim.play("wind-up")
-	lure.global_position = lure_origin.global_position
-	lure.show()
-	target.visible = true
-	rod_tip.set_line(rod_tip.taut)
-	rod_tip.enable()
-	
-func release_cast() -> void:
-	casting_time = 0.0
-	casting = true
-	wind_up = false
-	rod_tip.enable()
-	anim.play("cast")
-	target.visible = false
-	rod_tip.set_line(rod_tip.flying)
-	
-func reel(taut: bool) -> void:
-	if anim.current_animation != "reel":
-		anim.play("reel")
-	if(taut):
-		rod_tip.set_line(rod_tip.taut)
-
-func wait(slack = true) -> void:
-	anim.play("wait")
-	if(slack):
-		rod_tip.set_line(rod_tip.slack)
-
-func land() -> void:
-	cancel()
-	anim.play("catch")
-
-func break_line() -> void:
-	lure.hide()
-	rod_tip.set_line(rod_tip.flying)
-	anim.play("loss")
-	var tween = create_tween()
-	tween.set_ease(Tween.EASE_OUT)
-	tween.set_trans(Tween.TRANS_LINEAR)
-	tween.tween_property($Lure, "global_position", lure.global_position + Vector2(-10, -50), 2)
-	
 func show_cancel() -> void:
 	rod_tip.set_line(rod_tip.flying)
 	anim.play("cancel")
@@ -124,9 +108,17 @@ func show_cancel() -> void:
 	tween.set_trans(Tween.TRANS_LINEAR)
 	tween.tween_method(self, "lure_pos", 1.0, 0.0, 1.05, [global_position, start])
 
+func check_act() -> bool:
+	if can_interact && Input.is_action_just_pressed("action"):
+		var inter = get_interactable()
+		if inter:
+			inter.trigger()
+	elif can_cast && Input.is_action_just_pressed("action"):
+		change_state("Aim")
+		return true
+	return false
+
 func cancel() -> void:
-	casting = false
-	wind_up = false
 	lure.hide()
 	lure.disable()
 	target.visible = false
@@ -135,9 +127,49 @@ func cancel() -> void:
 func highlight(catch : Node2D) -> void:
 	$StarHighlight.add_star(catch)
 
-func set_tension(tension: float) -> void:
-	var t = clamp(tension, 0.0, 1.0)
-	$Reeler.pitch_scale = 1.0 + t * 0.4
-
 func _lure_area_entered(body: Node2D) -> void:
-	emit_signal("lure_area_entered", body)
+	print("body entered: ", body.name)
+	print("state: ", state_machine.current_state.name)
+	match state_machine.current_state.name:
+		"Wait", "Reel":
+			if body.is_in_group("star"):
+				call_deferred("_hook_star", body as Star)
+			elif body.is_in_group("cancel_lure"):
+				change_state("Cancel")
+			elif body.is_in_group("land"):
+				change_state("Cancel")
+		"Fight", "Escape":
+			if body.is_in_group("star"):
+				pass
+			elif body.is_in_group("cancel_lure"):
+				call_deferred("change_state", "Loss")
+			elif body.is_in_group("land"):
+				call_deferred("change_state", "Land")
+
+func _hook_star(star : Star) -> void:
+	lure.add_star(star)
+	star.hook()
+	change_state("Fight")
+	emit_signal("fight_started")
+	set_tension(0)
+
+func _interact_on() -> void:
+	can_interact = true
+	icon.visible = true
+	icon.scale = Vector2.ONE * 1.3
+	$InteractNoise.play()
+	inter_tween = create_tween()
+	inter_tween.set_ease(Tween.EASE_OUT)
+	inter_tween.tween_property(icon, "scale", Vector2.ONE, 0.3)
+	
+func _interact_off() -> void:
+	can_interact = false
+	icon.visible = false
+	if is_instance_valid(inter_tween):
+		inter_tween.kill()
+
+func get_interactable() -> Interactable:
+	for area in interact_area.get_overlapping_areas():
+		if area is Interactable:
+			return area
+	return null
