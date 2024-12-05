@@ -11,12 +11,13 @@ func _ready() -> void:
 	level = level_resource as Level
 	var status = level.get_status()
 	var name = level.display_name
+	var label = $Label
 	match status:
 		level.LOCKED:
 			visible = false
 			return
 		level.UNLOCKED:
-			name = "???"
+			label.visible = false
 			texture_normal = unlocked_tex
 			texture_focused = unlocked_highlighted_tex
 			texture_hover = unlocked_highlighted_tex
@@ -25,8 +26,5 @@ func _ready() -> void:
 			texture_focused = level.ls_highlight
 			texture_hover = level.ls_highlight
 
-	var label = Label.new()
-	add_child(label)
 	label.text = name
-	label.rect_position = Vector2(5, 50)
 

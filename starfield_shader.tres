@@ -16,9 +16,9 @@ uniform float noise_uv_scale;
 void fragment() {
 	float uv_time_1 = TIME * time_scale_1 - floor(TIME * time_scale_1);
 	float uv_time_2 = TIME * time_scale_2 - floor(TIME * time_scale_2);
-	vec4 col = texture(TEXTURE, .75 * UV + uv_time_1) + texture(TEXTURE, vec2(0.1, .75) + .5 * UV - uv_time_2);
-	col *= texture(grad, UV + uv_time_1 * 0.01);
-	float n_val = texture(noise, (UV.yx * noise_uv_scale) + uv_time_2).r * 1.5;
+	vec4 col = texture(TEXTURE, fract(.75 * UV + uv_time_1)) + texture(TEXTURE, fract(vec2(0.1, .75) + .5 * UV - uv_time_2));
+	col *= texture(grad, fract(UV + uv_time_1 * 0.01));
+	float n_val = texture(noise, fract((UV.yx * noise_uv_scale) + uv_time_2)).r * 1.5;
 	n_val = clamp((n_val * floor(n_val + 0.3)) - 0.7, .0, 1.) * 2.;
 	col.a = col.a * n_val;
 	COLOR = col;

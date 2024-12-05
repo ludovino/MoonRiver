@@ -12,6 +12,7 @@ func queue_scene_packed(packed : PackedScene) -> void:
 	emit_signal("scene_queued", packed.resource_path)
 
 func queue_level(level : Level) -> void:
+	print("TO LEVEL: ", level.display_name)
 	emit_signal("level_queued", level)
 
 func level_select() -> void:

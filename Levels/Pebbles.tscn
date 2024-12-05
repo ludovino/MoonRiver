@@ -216,7 +216,6 @@ script = ExtResource( 40 )
 turns_per_second = 0.027
 
 [node name="Peb1" type="Area2D" parent="Orbit/Spin" groups=["cancel_lure"]]
-visible = false
 collision_layer = 8
 collision_mask = 6
 monitoring = false
@@ -240,7 +239,6 @@ script = ExtResource( 40 )
 turns_per_second = 0.027
 
 [node name="Peb2" type="Area2D" parent="Orbit2/Spin" groups=["cancel_lure"]]
-visible = false
 collision_layer = 8
 collision_mask = 6
 monitoring = false
@@ -265,7 +263,6 @@ script = ExtResource( 40 )
 turns_per_second = 0.027
 
 [node name="Peb2" type="Area2D" parent="Orbit3/Spin2" groups=["cancel_lure"]]
-visible = false
 collision_layer = 8
 collision_mask = 6
 monitoring = false

@@ -113,10 +113,10 @@ noise = SubResource( 40 )
 
 [sub_resource type="ShaderMaterial" id=37]
 shader = ExtResource( 28 )
-shader_param/time_scale_1 = null
-shader_param/time_scale_2 = null
-shader_param/noise_time_scale = null
-shader_param/noise_uv_scale = null
+shader_param/time_scale_1 = 0.01
+shader_param/time_scale_2 = 0.02
+shader_param/noise_time_scale = 0.2
+shader_param/noise_uv_scale = 3.0
 shader_param/grad = SubResource( 52 )
 shader_param/noise = SubResource( 53 )
 
@@ -542,8 +542,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0
 margin_top = 5.0
-margin_right = -5.0
+margin_right = -174.0
 margin_bottom = -5.0
+rect_clip_content = true
 
 [node name="StarBg" type="TextureRect" parent="Control/Map/Panel/ScreenClip"]
 modulate = Color( 1, 1, 1, 0.388235 )
@@ -564,16 +565,15 @@ custom_styles/panel = SubResource( 42 )
 
 [node name="Title" type="Label" parent="Control/Map/Panel/ScreenClip"]
 modulate = Color( 0.53, 0.53, 0.53, 1 )
-margin_left = 94.0
-margin_top = 10.0
-margin_right = 207.0
-margin_bottom = 55.0
+margin_left = 123.0
+margin_top = 8.0
+margin_right = 236.0
+margin_bottom = 53.0
 grow_horizontal = 2
 rect_scale = Vector2( 2, 1 )
 custom_colors/font_color = Color( 0.270588, 0.447059, 0.890196, 1 )
 custom_colors/font_color_shadow = Color( 0.105882, 0.141176, 0.278431, 1 )
-text = "DESTINATION:
-THE EVERYTHING DONUT"
+text = "UNCHARTED SPACE"
 align = 1
 autowrap = true
 
@@ -581,13 +581,15 @@ autowrap = true
 modulate = Color( 1, 0.913725, 0.890196, 1 )
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_top = -324.0
-margin_right = 575.0
-margin_bottom = -1.0
+margin_left = 3.0
+margin_top = -343.0
+margin_right = 578.0
+margin_bottom = -20.0
 rect_pivot_offset = Vector2( 32, 261 )
 script = ExtResource( 14 )
 
 [node name="HomeLine" type="Line2D" parent="Control/Map/Panel/ScreenClip/Map"]
+visible = false
 points = PoolVector2Array( 348, 134, 360, 62 )
 width = 16.0
 default_color = Color( 1, 1, 1, 1 )
@@ -596,6 +598,7 @@ texture_mode = 1
 joint_mode = 2
 
 [node name="PlanetXLine" type="Line2D" parent="Control/Map/Panel/ScreenClip/Map"]
+visible = false
 points = PoolVector2Array( 431, -88, 372, 11 )
 width = 16.0
 default_color = Color( 1, 1, 1, 1 )
@@ -604,6 +607,7 @@ texture_mode = 1
 joint_mode = 2
 
 [node name="BlackHoleLine" type="Line2D" parent="Control/Map/Panel/ScreenClip/Map"]
+visible = false
 points = PoolVector2Array( 484, -132, 638, -87 )
 width = 16.0
 default_color = Color( 1, 1, 1, 1 )
@@ -617,13 +621,20 @@ margin_top = 164.0
 margin_right = 96.0
 margin_bottom = 228.0
 rect_pivot_offset = Vector2( 32, 53 )
-focus_neighbour_bottom = NodePath("../../Info/Launch")
-focus_previous = NodePath("../../Info/Launch")
+focus_neighbour_bottom = NodePath("../../../Info/Launch")
+focus_previous = NodePath("../../../Info/Launch")
 texture_normal = SubResource( 7 )
 texture_hover = SubResource( 8 )
 texture_focused = SubResource( 8 )
 script = ExtResource( 2 )
 level_resource = ExtResource( 7 )
+
+[node name="Label" type="Label" parent="Control/Map/Panel/ScreenClip/Map/Rock"]
+margin_left = -16.0
+margin_top = 6.0
+margin_right = 44.0
+margin_bottom = 19.0
+text = "Lonely Rock"
 
 [node name="Pebbles" type="TextureButton" parent="Control/Map/Panel/ScreenClip/Map"]
 margin_left = 88.0
@@ -631,8 +642,8 @@ margin_top = 108.0
 margin_right = 152.0
 margin_bottom = 172.0
 rect_pivot_offset = Vector2( 32, 53 )
-focus_neighbour_bottom = NodePath("../../Info/Launch")
-focus_previous = NodePath("../../Info/Launch")
+focus_neighbour_bottom = NodePath("../../../Info/Launch")
+focus_previous = NodePath("../../../Info/Launch")
 texture_normal = SubResource( 7 )
 texture_hover = SubResource( 8 )
 texture_focused = SubResource( 8 )
@@ -648,14 +659,19 @@ texture = ExtResource( 18 )
 texture_mode = 1
 joint_mode = 2
 
+[node name="Label" type="Label" parent="Control/Map/Panel/ScreenClip/Map/Pebbles"]
+margin_right = 40.0
+margin_bottom = 13.0
+text = "The Pebbles"
+
 [node name="Shop" type="TextureButton" parent="Control/Map/Panel/ScreenClip/Map"]
 margin_left = 78.0
 margin_top = 193.0
 margin_right = 142.0
 margin_bottom = 257.0
 rect_pivot_offset = Vector2( 32, 53 )
-focus_neighbour_bottom = NodePath("../../Info/Launch")
-focus_previous = NodePath("../../Info/Launch")
+focus_neighbour_bottom = NodePath("../../../Info/Launch")
+focus_previous = NodePath("../../../Info/Launch")
 texture_normal = SubResource( 7 )
 texture_hover = SubResource( 8 )
 texture_focused = SubResource( 8 )
@@ -671,14 +687,21 @@ texture = ExtResource( 18 )
 texture_mode = 1
 joint_mode = 2
 
+[node name="Label" type="Label" parent="Control/Map/Panel/ScreenClip/Map/Shop"]
+margin_left = 26.0
+margin_top = 40.0
+margin_right = 133.0
+margin_bottom = 53.0
+text = "Abandoned Workshop"
+
 [node name="Donut" type="TextureButton" parent="Control/Map/Panel/ScreenClip/Map"]
 margin_left = 189.0
 margin_top = 83.0
 margin_right = 253.0
 margin_bottom = 147.0
 rect_pivot_offset = Vector2( 32, 53 )
-focus_neighbour_bottom = NodePath("../../Info/Launch")
-focus_previous = NodePath("../../Info/Launch")
+focus_neighbour_bottom = NodePath("../../../Info/Launch")
+focus_previous = NodePath("../../../Info/Launch")
 texture_normal = SubResource( 7 )
 texture_hover = SubResource( 8 )
 texture_focused = SubResource( 8 )
@@ -694,14 +717,21 @@ texture = ExtResource( 18 )
 texture_mode = 1
 joint_mode = 2
 
+[node name="Label" type="Label" parent="Control/Map/Panel/ScreenClip/Map/Donut"]
+margin_left = 31.0
+margin_top = 2.0
+margin_right = 83.0
+margin_bottom = 15.0
+text = "The Donut"
+
 [node name="Cracked" type="TextureButton" parent="Control/Map/Panel/ScreenClip/Map"]
 margin_left = 280.0
 margin_top = 151.0
 margin_right = 344.0
 margin_bottom = 215.0
 rect_pivot_offset = Vector2( 32, 53 )
-focus_neighbour_bottom = NodePath("../../Info/Launch")
-focus_previous = NodePath("../../Info/Launch")
+focus_neighbour_bottom = NodePath("../../../Info/Launch")
+focus_previous = NodePath("../../../Info/Launch")
 texture_normal = SubResource( 7 )
 texture_hover = SubResource( 8 )
 texture_focused = SubResource( 8 )
@@ -717,14 +747,21 @@ texture = ExtResource( 18 )
 texture_mode = 1
 joint_mode = 2
 
+[node name="Label" type="Label" parent="Control/Map/Panel/ScreenClip/Map/Cracked"]
+margin_left = -39.0
+margin_top = 50.0
+margin_right = 49.0
+margin_bottom = 63.0
+text = "Shattered Planet"
+
 [node name="Blobs" type="TextureButton" parent="Control/Map/Panel/ScreenClip/Map"]
 margin_left = 409.0
 margin_top = 188.0
 margin_right = 473.0
 margin_bottom = 252.0
 rect_pivot_offset = Vector2( 32, 53 )
-focus_neighbour_bottom = NodePath("../../Info/Launch")
-focus_previous = NodePath("../../Info/Launch")
+focus_neighbour_bottom = NodePath("../../../Info/Launch")
+focus_previous = NodePath("../../../Info/Launch")
 texture_normal = SubResource( 7 )
 texture_hover = SubResource( 8 )
 texture_focused = SubResource( 8 )
@@ -739,6 +776,14 @@ default_color = Color( 1, 1, 1, 1 )
 texture = ExtResource( 18 )
 texture_mode = 1
 joint_mode = 2
+
+[node name="Label" type="Label" parent="Control/Map/Panel/ScreenClip/Map/Blobs"]
+margin_left = -17.0
+margin_top = 48.0
+margin_right = 47.0
+margin_bottom = 77.0
+text = "The Three Sisters"
+autowrap = true
 
 [node name="MapShip" type="Sprite" parent="Control/Map/Panel/ScreenClip/Map"]
 modulate = Color( 1, 1, 1, 0.788235 )
@@ -762,13 +807,13 @@ stretch_mode = 2
 script = ExtResource( 12 )
 time = 0.182
 
-[node name="Info" type="Panel" parent="Control/Map/Panel/ScreenClip"]
-margin_left = 467.0
-margin_top = -1.0
-margin_right = 641.0
-margin_bottom = 361.0
+[node name="Info" type="Panel" parent="Control/Map/Panel"]
+margin_left = 472.0
+margin_top = 4.0
+margin_right = 646.0
+margin_bottom = 366.0
 
-[node name="Title" type="Label" parent="Control/Map/Panel/ScreenClip/Info"]
+[node name="Title" type="Label" parent="Control/Map/Panel/Info"]
 margin_left = 21.0
 margin_top = 17.0
 margin_right = 148.0
@@ -777,7 +822,7 @@ custom_fonts/font = ExtResource( 16 )
 text = "The Lonely Planet of BOOBA"
 autowrap = true
 
-[node name="Description" type="Label" parent="Control/Map/Panel/ScreenClip/Info"]
+[node name="Description" type="Label" parent="Control/Map/Panel/Info"]
 margin_left = 21.0
 margin_top = 60.0
 margin_right = 148.0
@@ -787,7 +832,7 @@ custom_constants/shadow_offset_y = 0
 text = "This planet is a hive of scum and villany"
 autowrap = true
 
-[node name="Launch" type="Button" parent="Control/Map/Panel/ScreenClip/Info"]
+[node name="Launch" type="Button" parent="Control/Map/Panel/Info"]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -822,11 +867,6 @@ volume_db = -40.0
 autoplay = true
 bus = "Sfx"
 
-[connection signal="pressed" from="Control/Map/Panel/ScreenClip/Map/Rock" to="." method="_on_Rock_pressed"]
-[connection signal="pressed" from="Control/Map/Panel/ScreenClip/Map/Pebbles" to="." method="_on_Rock_pressed"]
-[connection signal="pressed" from="Control/Map/Panel/ScreenClip/Map/Shop" to="." method="_on_Rock_pressed"]
-[connection signal="pressed" from="Control/Map/Panel/ScreenClip/Map/Donut" to="." method="_on_Rock_pressed"]
-[connection signal="pressed" from="Control/Map/Panel/ScreenClip/Map/Cracked" to="." method="_on_Rock_pressed"]
 [connection signal="pressed" from="Control/Map/Panel/ScreenClip/Map/Blobs" to="." method="_on_Rock_pressed"]
-[connection signal="focus_entered" from="Control/Map/Panel/ScreenClip/Info/Launch" to="." method="_on_Launch_focus_entered"]
-[connection signal="pressed" from="Control/Map/Panel/ScreenClip/Info/Launch" to="." method="_on_Launch_pressed"]
+[connection signal="focus_entered" from="Control/Map/Panel/Info/Launch" to="." method="_on_Launch_focus_entered"]
+[connection signal="pressed" from="Control/Map/Panel/Info/Launch" to="." method="_on_Launch_pressed"]

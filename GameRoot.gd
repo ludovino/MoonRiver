@@ -33,7 +33,7 @@ func _ready() -> void:
 	SceneChanger.connect("game_finished", self, "_to_level_select")
 
 func _change_level(level : Level) -> void:
-	current_level = level
+	progress.current_location = level
 	level.set_status(level.VISITED)
 	swap_scene_path(level.scene)
 	
@@ -78,7 +78,6 @@ func _to_level_select(score: int):
 	can_pause = false
 	var scene = level_select.instance()
 	swap_scene(scene)
-	scene.next_level = current_level
 	scene._move_ship()
 	scene.connect("level_selected", self, "_on_play")
 

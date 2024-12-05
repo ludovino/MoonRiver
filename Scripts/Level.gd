@@ -14,7 +14,7 @@ export var pausable : bool
 
 enum { LOCKED, UNLOCKED, VISITED }
 
-var progression = preload("user://progression.tres")
+onready var progression = load("user://progression.tres")
 
 func get_status() -> int:
 	var status = progression.level_status.get(progress_key, LOCKED)
