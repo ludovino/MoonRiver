@@ -1,15 +1,12 @@
 class_name Map
 extends Control
 
-var progress : Progression
+var progress : ProgressionRes
 var buttons : Array = []
 var lines : Array = []
 
 func _ready() -> void:
-	progress = ResourceLoader.load("user://progression.tres") as Progression
-	if progress == null:
-		progress = Progression.new()
-		ResourceSaver.save("user://progression.tres", progress)
+	progress = Progression.res
 	for child in get_children():
 		if child is PlanetButton:
 			buttons.append(child)

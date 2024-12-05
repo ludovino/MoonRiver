@@ -7,16 +7,16 @@ var upgrade : Upgrade
 onready var title : Label = $Panel/HBoxContainer/VBoxContainer/HBoxContainer/Title
 onready var description : RichTextLabel = $Panel/HBoxContainer/VBoxContainer2/Description
 onready var icon : TextureRect = $Panel/HBoxContainer/VBoxContainer/HBoxContainer/Icon
-onready var price : Label = $Panel/HBoxContainer/VBoxContainer2/Price
+#onready var price : Label = $Panel/HBoxContainer/VBoxContainer2/Price
 onready var progress : ProgressDisplay = $Panel/HBoxContainer/VBoxContainer/Progress
 onready var button : Button = $Panel/HBoxContainer/VBoxContainer2/Button
 
-var progression : Progression
+var progression : ProgressionRes
 
 signal purchased
 
 func _ready() -> void:
-	progression = load("user://progression.tres")
+	progression = Progression.res
 
 func update_display() -> void:
 	var upgrade_level = progression.get(upgrade.prog_name)
@@ -43,5 +43,5 @@ func purchase() -> void:
 		return
 	progression.set(upgrade.prog_name, upgrade_level + 1)
 	progression.units -= cost
-	ResourceSaver.save("user://progression.tres", progression)
+	Progression.save()
 	emit_signal("purchased")

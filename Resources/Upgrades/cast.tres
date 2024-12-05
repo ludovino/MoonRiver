@@ -9,4 +9,4 @@ prog_name = "cast_level"
 display_name = "Lure Launcher"
 description = "Throw your lure further"
 icon = ExtResource( 2 )
-costs = [ 100, 1000, 5000, 10000, 20000, 50000 ]
+costs = [ 300, 1000, 4000, 7000, 13000, 25000 ]

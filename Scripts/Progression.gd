@@ -1,4 +1,4 @@
-class_name Progression
+class_name ProgressionRes
 extends Resource
 
 export var units : int = 0
@@ -17,4 +17,4 @@ export var current_location : Resource
 
 export var first_play : bool = true
 
-export(Dictionary) var level_status : Dictionary
+export(Dictionary) var level_status : Dictionary = {}

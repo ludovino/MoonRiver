@@ -1,13 +1,13 @@
 class_name EscapeState
 extends PlayerState
 
-var progress : Progression
+var progress : ProgressionRes
 var td_bonus : float
 var escape_speed_mod : float
 var escape_speed : float
 
 func _ready() -> void:
-	progress = load("user://progression.tres") as Progression
+	progress = Progression.res
 
 func enter() -> void:
 	escape_speed_mod = player.escape_speed_mod

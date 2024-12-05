@@ -5,7 +5,7 @@ extends Node2D
 export(PackedScene) var star_scene : PackedScene
 export(Array, Resource) var star_reources = []
 export(Resource) var prog_res : Resource
-var progress : Progression
+var progress : ProgressionRes
 
 export var width: float
 export var height: float
@@ -25,9 +25,9 @@ func _ready() -> void:
 	if Engine.editor_hint:
 		return
 	if prog_res == null:
-		progress = load("user://progression.tres") as Progression
+		progress = Progression.res
 	else:
-		progress = prog_res as Progression
+		progress = prog_res as ProgressionRes
 	if initial_stars == 0: return
 	for _i in range(0, initial_stars):
 		spawn_star(width, initial_height, -200)

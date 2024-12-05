@@ -3,13 +3,12 @@ extends TextureButton
 
 export var level_resource : Resource
 var level : Level
-var progression : Progression
 var unlocked_tex : Texture = preload("res://Sprites/Map/mystery.png")
 var unlocked_highlighted_tex: Texture = preload("res://Sprites/Map/mysteryHL.png")
 
 func _ready() -> void:
 	level = level_resource as Level
-	var status = level.get_status()
+	var status = Progression.get_status(level)
 	var name = level.display_name
 	var label = $Label
 	match status:

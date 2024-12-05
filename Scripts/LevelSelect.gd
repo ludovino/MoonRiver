@@ -7,7 +7,7 @@ var next_level : Level
 signal level_selected
 
 func _ready() -> void:
-	var progress = preload("user://progression.tres") as Progression
+	var progress = Progression.res
 	_select_level(progress.current_location as Level)
 	map = $Control/Map/Panel/ScreenClip/Map
 	for button in map.buttons:
@@ -35,7 +35,7 @@ func _select_level(level : Level) -> void:
 		$Control/Map/Panel/Info/Title.text = "Lost"
 		$Control/Map/Panel/Info/Description.text = "scanning for nearby planets..."
 		return
-	if level.get_status() != level.VISITED:
+	if Progression.get_status(level) != Level.VISITED:
 		$Control/Map/Panel/Info/Title.text = "???"
 		$Control/Map/Panel/Info/Description.text = "A new object to investiage"
 	else:

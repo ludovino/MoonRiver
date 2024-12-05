@@ -1,12 +1,12 @@
 class_name FightState
 extends PlayerState
 
-var progress : Progression
+var progress : ProgressionRes
 var rs_bonus : float
 var reel_speed_mod : float
 
 func _ready() -> void:
-	progress = load("user://progression.tres") as Progression
+	progress = Progression.res
 
 func enter() -> void:
 	player.rod_tip.set_line(player.rod_tip.taut)

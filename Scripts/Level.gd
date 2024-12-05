@@ -13,19 +13,3 @@ export var ls_highlight : Texture
 export var pausable : bool
 
 enum { LOCKED, UNLOCKED, VISITED }
-
-onready var progression = load("user://progression.tres")
-
-func get_status() -> int:
-	var status = progression.level_status.get(progress_key, LOCKED)
-	if progression.planets_unlocked > progress_level && status == LOCKED:
-		set_status(UNLOCKED)
-		status = UNLOCKED
-	return status
-
-func set_status(status : int) -> void:
-	if not [LOCKED, UNLOCKED, VISITED].has(status):
-		push_error("incorrect status pushed: %d" % status)
-		return
-	progression.level_status[progress_key] = status
-	ResourceSaver.save("user://progression.tres", progression)

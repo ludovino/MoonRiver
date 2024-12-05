@@ -9,4 +9,4 @@ prog_name = "reels_level"
 display_name = "Spare Reels"
 description = "Additional spares."
 icon = ExtResource( 2 )
-costs = [ 100, 5000, 20000 ]
+costs = [ 500, 5000, 20000 ]

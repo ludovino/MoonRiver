@@ -7,7 +7,7 @@ signal exit_clicked
 
 func _ready() -> void:
 	level = level_resource as Level
-	level.set_status(level.VISITED)
+	Progression.set_status(Level.VISITED, level)
 	$Modify/Shop/Exit.connect("pressed", self, "_exit")
 
 func _exit() -> void:

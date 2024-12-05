@@ -9,4 +9,4 @@ prog_name = "decay_level"
 display_name = "Heatsink"
 description = "The tension will reduce faster when you are not reeling."
 icon = ExtResource( 2 )
-costs = [ 100, 200, 500, 1500, 3000, 10000 ]
+costs = [ 700, 1800, 2500, 5000, 10000, 20000 ]

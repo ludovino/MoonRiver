@@ -129,13 +129,18 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/PlayerStates/PlayerState.gd"
 }, {
+"base": "Node",
+"class": "Prog",
+"language": "GDScript",
+"path": "res://Scripts/ProgressionSingleton.gd"
+}, {
 "base": "HBoxContainer",
 "class": "ProgressDisplay",
 "language": "GDScript",
 "path": "res://Scripts/ProgressDisplay.gd"
 }, {
 "base": "Resource",
-"class": "Progression",
+"class": "ProgressionRes",
 "language": "GDScript",
 "path": "res://Scripts/Progression.gd"
 }, {
@@ -224,8 +229,9 @@ _global_script_class_icons={
 "PlanetButton": "",
 "Player": "",
 "PlayerState": "",
+"Prog": "",
 "ProgressDisplay": "",
-"Progression": "",
+"ProgressionRes": "",
 "ReelState": "",
 "ReelsDisplay": "",
 "River": "",
@@ -250,6 +256,7 @@ config/windows_native_icon="res://Sprites/icon.ico"
 [autoload]
 
 SceneChanger="*res://Scripts/SceneChanger.gd"
+Progression="*res://Scripts/ProgressionSingleton.gd"
 
 [display]
 

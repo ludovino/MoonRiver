@@ -507,6 +507,7 @@ scale = Vector2( 0.5, 0.5 )
 z_index = -1
 frames = ExtResource( 11 )
 animation = "booster"
+frame = 1
 playing = true
 offset = Vector2( -15, 0 )
 
@@ -518,6 +519,7 @@ scale = Vector2( 0.5, 0.5 )
 z_index = -1
 frames = ExtResource( 11 )
 animation = "booster"
+frame = 1
 playing = true
 offset = Vector2( -15, 0 )
 
@@ -527,7 +529,6 @@ position = Vector2( -24, 2 )
 scale = Vector2( 0.7, 0.7 )
 z_index = -1
 frames = ExtResource( 11 )
-frame = 2
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

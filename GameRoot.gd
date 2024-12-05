@@ -1,17 +1,11 @@
 extends Control
 
-var levels = [ 
-	preload("res://Levels/Rock.tscn"), 
-	preload("res://Levels/Pebbles.tscn"),
-	preload("res://Levels/Donut.tscn"),
-	preload("res://Levels/Cracked.tscn"),
-	preload("res://Levels/Blobs.tscn")
-	]
 var menu = preload("res://MainMenu.tscn")
 var game_over = preload("res://GameOverScene.tscn")
 var intro_scene = preload("res://Cutscene.tscn")
 var level_select = preload("res://PackedScenes/LevelSelect.tscn")
-var progress : Progression
+var first_level = preload("res://Resources/Levels/Rock.tres")
+var progress : ProgressionRes
 
 var current_level : Level
 var current: Node
@@ -20,10 +14,7 @@ var viewport: Viewport
 var can_pause = false
 
 func _ready() -> void:
-	progress = ResourceLoader.load("user://progression.tres") as Progression
-	if progress == null:
-		progress = Progression.new()
-		ResourceSaver.save("user://progression.tres", progress)
+	progress = Progression.res
 	randomize()
 	viewport = $ViewportContainer/Viewport
 	_to_main_menu()
@@ -34,7 +25,7 @@ func _ready() -> void:
 
 func _change_level(level : Level) -> void:
 	progress.current_location = level
-	level.set_status(level.VISITED)
+	Progression.set_status(Level.VISITED, level)
 	swap_scene_path(level.scene)
 	
 func _to_main_menu():
@@ -68,13 +59,16 @@ func _on_intro():
 	can_pause = true
 	var scene = intro_scene.instance()
 	swap_scene(scene)
-	scene.connect("finished", self, "_on_play", [0])
+	scene.connect("finished", self, "_intro_finished")
+
+func _intro_finished() -> void:
+	_change_level(first_level)
 	
 func _to_level_select(score: int):
 	$PauseMenu.hide()
 	progress.units += score
 	progress.first_play = false
-	if score > 0: ResourceSaver.save("user://progression.tres", progress)
+	Progression.save()
 	can_pause = false
 	var scene = level_select.instance()
 	swap_scene(scene)

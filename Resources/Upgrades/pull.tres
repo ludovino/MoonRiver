@@ -9,4 +9,4 @@ prog_name = "pull_level"
 display_name = "Reel Motor"
 description = "Reel in catches faster."
 icon = ExtResource( 2 )
-costs = [ 100, 200, 500, 1500, 3000, 10000 ]
+costs = [ 100, 600, 1200, 3000, 6000, 12000 ]

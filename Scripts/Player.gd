@@ -49,10 +49,10 @@ signal hook_lost
 signal star_caught
 
 
-var progress : Progression
+var progress : ProgressionRes
 
 func _ready() -> void:
-	progress = load("user://progression.tres") as Progression
+	progress = Progression.res
 	
 	aim_max += progress.cast_level * 40
 	

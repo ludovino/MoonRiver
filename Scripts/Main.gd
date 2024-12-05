@@ -2,7 +2,7 @@ extends Node
 
 enum state { move, cast, wait, fight, lose, land }
 enum Layers { DEFAULT = 0, STARS = 1, LURE = 2, EFFECTORS = 4 }
-var progress : Progression
+var progress : ProgressionRes
 export(Resource) var prog_res : Resource
 
 export(NodePath) var player_path : NodePath
@@ -52,9 +52,9 @@ var alert := false
 func _ready() -> void:
 	fade = load("res://PackedScenes/FadeOut.tscn")
 	if prog_res == null:
-		progress = load("user://progression.tres") as Progression
+		progress = Progression.res
 	else:
-		progress = prog_res as Progression
+		progress = prog_res as ProgressionRes
 	game_timer = $GameTime
 	game_timer.connect("timeout", self, "_out_of_time")
 	timer_display = $CanvasLayer/SideBar/VBoxContainer/Timer

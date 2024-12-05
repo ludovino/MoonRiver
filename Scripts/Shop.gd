@@ -1,18 +1,20 @@
 extends Panel
 
-var progress : Progression
+var progress : ProgressionRes
 export(Array, Resource) var resources : Array
 export var upgrade_scene : PackedScene
 export(NodePath) var upgrade_container_path : NodePath
 var upgrade_container : Control
 var units_label : Label
-var progression : Progression
+var progression : ProgressionRes
 
 signal unlock_purchased
 
 func _ready() -> void:
-	progression = load("user://progression.tres")
+	progression = Progression.res
 	upgrade_container = get_node(upgrade_container_path)
+	units_label = $Panel/Units
+	units_label.text = str(progression.units)
 	for res in resources:
 		var upg = res as Upgrade
 		var up_d = upgrade_scene.instance() as UpgradeDisplay
