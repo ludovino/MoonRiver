@@ -25,8 +25,12 @@ func _ready() -> void:
 
 func _change_level(level : Level) -> void:
 	progress.current_location = level
-	Progression.set_status(Level.VISITED, level)
-	swap_scene_path(level.scene)
+	var current_status = Progression.get_status(level)
+	if current_status != Level.VISITED and level.intro_scene.is_abs_path():
+		Progression.set_status(Level.VISITED, level)
+		swap_scene_path(level.intro_scene)
+	else:
+		swap_scene_path(level.scene)
 	
 func _to_main_menu():
 	get_tree().paused = false
