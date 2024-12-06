@@ -47,9 +47,9 @@ func unhook():
 func setup(color : Color, prog_level : int, starData : StarData) -> void:
 	_assign_data(starData)
 	modulate = color
-	if prog_level < min_level:
-		modulate.a = 0.1
-		monitorable = false
+	#if prog_level < min_level:
+	#	modulate.a = 0.1
+	#	monitorable = false
 	if starData.fx_scene != null:
 		add_child(data.fx_scene.instance())
 
