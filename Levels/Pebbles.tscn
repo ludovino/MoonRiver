@@ -1,10 +1,12 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://starfield_shader.tres" type="Shader" id=1]
 [ext_resource path="res://Sprites/TensionBar.png" type="Texture" id=2]
 [ext_resource path="res://PackedScenes/Player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://PackedScenes/Player/ShipShabby.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Sprites/Upgrades/cast_template.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/net.png" type="Texture" id=6]
+[ext_resource path="res://Scripts/OutlinedPolygon2D.gd" type="Script" id=7]
 [ext_resource path="res://Sprites/Reel.png" type="Texture" id=9]
 [ext_resource path="res://Scripts/Timerisplay.gd" type="Script" id=11]
 [ext_resource path="res://FadeIn.gd" type="Script" id=12]
@@ -203,6 +205,12 @@ texture = SubResource( 46 )
 [node name="Pebble2" type="Sprite" parent="Floor"]
 position = Vector2( 136, 313 )
 texture = ExtResource( 39 )
+
+[node name="Polygon2D" type="Polygon2D" parent="Floor"]
+position = Vector2( 283, 131 )
+texture = ExtResource( 6 )
+polygon = PoolVector2Array( -7, -30, 31, -22, 36, 14, 1, 37, -34, 21, -51, -9 )
+script = ExtResource( 7 )
 
 [node name="Orbit" type="Node2D" parent="."]
 position = Vector2( -47, 132 )
