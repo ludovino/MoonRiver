@@ -1,5 +1,5 @@
 class_name StarData
-extends Resource
+extends InventoryItem
 
 export var frames: SpriteFrames
 export var animation: String

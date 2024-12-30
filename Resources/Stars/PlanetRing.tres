@@ -8,6 +8,8 @@ _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.0714286, 0 ), 0.0, 0.0, 0,
 
 [resource]
 script = ExtResource( 1 )
+layout_string = "1110
+0111"
 frames = ExtResource( 2 )
 animation = "ring"
 radius = 4.5

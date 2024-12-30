@@ -8,6 +8,11 @@ _data = [ Vector2( 0.421053, 0 ), 0.0, 5.05062, 0, 1, Vector2( 0.619048, 1 ), 5.
 
 [resource]
 script = ExtResource( 1 )
+layout_string = "010
+010
+111
+010
+010"
 frames = ExtResource( 2 )
 animation = "pulsar"
 radius = 3.0

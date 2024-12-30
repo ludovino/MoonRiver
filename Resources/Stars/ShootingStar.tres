@@ -9,6 +9,7 @@ _data = [ Vector2( 0.316498, 0 ), 0.0, 0.156522, 0, 0, Vector2( 0.693603, 1 ), 7
 
 [resource]
 script = ExtResource( 1 )
+layout_string = "1"
 frames = ExtResource( 2 )
 animation = "shooting"
 fx_scene = ExtResource( 3 )

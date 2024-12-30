@@ -8,6 +8,7 @@ _data = [ Vector2( 0.231579, 0.0181818 ), 0.0, 0.0, 0, 0, Vector2( 0.733333, 0.8
 
 [resource]
 script = ExtResource( 1 )
+layout_string = "11"
 frames = ExtResource( 2 )
 animation = "medium"
 radius = 2.5
