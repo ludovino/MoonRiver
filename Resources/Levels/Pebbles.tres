@@ -1,26 +1,27 @@
-[gd_resource type="Resource" load_steps=6 format=2]
+[gd_resource type="Resource" script_class="Level" load_steps=7 format=3 uid="uid://c7btgpopo1pfj"]
 
-[ext_resource path="res://Scripts/Level.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/planet-sprite-focus-sheet.png" type="Texture" id=2]
-[ext_resource path="res://Sprites/planet-sprite-sheet.png" type="Texture" id=3]
+[ext_resource type="Script" path="res://Scripts/Level.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://bktxg5xujo74o" path="res://Sprites/planet-sprite-focus-sheet.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://pgfos2gdcxea" path="res://Sprites/planet-sprite-sheet.png" id="3"]
+[ext_resource type="Script" path="res://Scripts/StarData.gd" id="4_vdcc0"]
 
-[sub_resource type="AtlasTexture" id=11]
-atlas = ExtResource( 2 )
-region = Rect2( 64, 0, 64, 64 )
+[sub_resource type="AtlasTexture" id="11"]
+atlas = ExtResource("2")
+region = Rect2(64, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id=10]
-atlas = ExtResource( 3 )
-region = Rect2( 64, 0, 64, 64 )
+[sub_resource type="AtlasTexture" id="10"]
+atlas = ExtResource("3")
+region = Rect2(64, 0, 64, 64)
 
 [resource]
-script = ExtResource( 1 )
+script = ExtResource("1")
 display_name = "The Pebbles"
 progress_key = "pebbles"
 progress_level = 1
 scene = "res://Levels/Pebbles.tscn"
 intro_scene = ""
 description = "A belt of tumbling asteroids hurtling through space."
-stars = [  ]
-ls_texture = SubResource( 10 )
-ls_highlight = SubResource( 11 )
+stars = Array[ExtResource("4_vdcc0")]([])
+ls_texture = SubResource("10")
+ls_highlight = SubResource("11")
 pausable = true

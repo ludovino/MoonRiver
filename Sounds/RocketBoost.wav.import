@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/RocketBoost.wav-f0f647325c04980a4157d507a22e5ddf.sample"
+type="AudioStreamWAV"
+uid="uid://dyhptuf83jy37"
+path="res://.godot/imported/RocketBoost.wav-f0f647325c04980a4157d507a22e5ddf.sample"
 
 [deps]
 
 source_file="res://Sounds/RocketBoost.wav"
-dest_files=[ "res://.import/RocketBoost.wav-f0f647325c04980a4157d507a22e5ddf.sample" ]
+dest_files=["res://.godot/imported/RocketBoost.wav-f0f647325c04980a4157d507a22e5ddf.sample"]
 
 [params]
 

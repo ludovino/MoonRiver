@@ -1,7 +1,7 @@
 class_name ReelsDisplay
 extends GridContainer
 
-export(Texture) var texture: Texture
+@export var texture: Texture2D
 
 signal lose_reel
 
@@ -35,7 +35,7 @@ func remove_reels(count: int):
 	for i in range(0, count):
 		var reel = reels[high_index -i]
 		tween.tween_property(reel,"modulate", color, 0.2)
-		tween.parallel().tween_property(reel, "rect_scale", Vector2.ONE * 1.3, 0.3)
-		tween.tween_callback(reel, "queue_free")
+		tween.parallel().tween_property(reel, "scale", Vector2.ONE * 1.3, 0.3)
+		tween.tween_callback(Callable(reel, "queue_free"))
 		emit_signal("lose_reel")
 		

@@ -2,7 +2,7 @@ class_name Alert
 extends AudioStreamPlayer
 
 
-export var enabled : bool = false
+@export var enabled : bool = false
 var timer : Timer
 
 func _ready() -> void:
@@ -10,7 +10,7 @@ func _ready() -> void:
 	add_child(timer)
 	timer.one_shot = false
 	timer.start(1.2)
-	timer.connect("timeout", self, "play_if_enabled")
+	timer.connect("timeout", Callable(self, "play_if_enabled"))
 
 func play_if_enabled() -> void:
 	if enabled: play()

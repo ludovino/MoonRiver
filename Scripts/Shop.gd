@@ -1,9 +1,9 @@
 extends Panel
 
 var progress : ProgressionRes
-export(Array, Resource) var resources : Array
-export var upgrade_scene : PackedScene
-export(NodePath) var upgrade_container_path : NodePath
+@export var resources : Array # (Array, Resource)
+@export var upgrade_scene : PackedScene
+@export var upgrade_container_path: NodePath
 var upgrade_container : Control
 var units_label : Label
 var progression : ProgressionRes
@@ -17,10 +17,10 @@ func _ready() -> void:
 	units_label.text = str(progression.units)
 	for res in resources:
 		var upg = res as Upgrade
-		var up_d = upgrade_scene.instance() as UpgradeDisplay
+		var up_d = upgrade_scene.instantiate() as UpgradeDisplay
 		upgrade_container.add_child(up_d)
 		up_d.upgrade = upg
-		up_d.connect("purchased", self, "_update_all")
+		up_d.connect("purchased", Callable(self, "_update_all"))
 	_update_all()
 
 func _update_all() -> void:

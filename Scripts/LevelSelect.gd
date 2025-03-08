@@ -11,7 +11,7 @@ func _ready() -> void:
 	_select_level(progress.current_location as Level)
 	map = $Control/Map/Panel/ScreenClip/Map
 	for button in map.buttons:
-		button.connect("pressed", self, "_select_level", [button.level])
+		button.connect("pressed", Callable(self, "_select_level").bind(button.level))
 
 func _after_intro() -> void:
 	map.set_focus(next_level)

@@ -2,14 +2,14 @@
 
 [ext_resource path="res://Scripts/UpgradeDisplay.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/ProgressDisplay.gd" type="Script" id=2]
-[ext_resource path="res://Sprites/Upgrades/escape.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Upgrades/escape.png" type="Texture2D" id=3]
 [ext_resource path="res://PackedScenes/Progress.tres" type="Theme" id=4]
 [ext_resource path="res://PackedScenes/ShopTheme.tres" type="Theme" id=5]
 
 [node name="Upgrade" type="Control"]
-margin_right = 377.0
-margin_bottom = 58.0
-rect_min_size = Vector2( 0, 58 )
+offset_right = 377.0
+offset_bottom = 58.0
+custom_minimum_size = Vector2( 0, 58 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 5 )
@@ -23,35 +23,35 @@ anchor_bottom = 1.0
 anchor_left = 0.05
 anchor_right = 0.95
 anchor_bottom = 1.0
-margin_left = 0.0349998
-margin_top = 1.0
-margin_right = -0.334991
+offset_left = 0.0349998
+offset_top = 1.0
+offset_right = -0.334991
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
 [node name="Icon" type="TextureRect" parent="Panel/HBoxContainer"]
-margin_top = 17.0
-margin_right = 23.0
-margin_bottom = 40.0
+offset_top = 17.0
+offset_right = 23.0
+offset_bottom = 40.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource( 3 )
 stretch_mode = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer"]
-margin_left = 27.0
-margin_top = 19.0
-margin_right = 107.0
-margin_bottom = 38.0
-rect_min_size = Vector2( 80, 0 )
+offset_left = 27.0
+offset_top = 19.0
+offset_right = 107.0
+offset_bottom = 38.0
+custom_minimum_size = Vector2( 80, 0 )
 size_flags_horizontal = 5
 size_flags_vertical = 4
 alignment = 1
 
 [node name="Title" type="Label" parent="Panel/HBoxContainer/VBoxContainer"]
-margin_right = 80.0
-margin_bottom = 13.0
+offset_right = 80.0
+offset_bottom = 13.0
 size_flags_horizontal = 3
 text = "Tractor Beam"
 align = 1
@@ -60,90 +60,90 @@ autowrap = true
 uppercase = true
 
 [node name="Progress" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer"]
-margin_left = 13.0
-margin_top = 14.0
-margin_right = 67.0
-margin_bottom = 19.0
-rect_min_size = Vector2( 54, 5 )
+offset_left = 13.0
+offset_top = 14.0
+offset_right = 67.0
+offset_bottom = 19.0
+custom_minimum_size = Vector2( 54, 5 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource( 4 )
 script = ExtResource( 2 )
 
 [node name="Panel" type="Panel" parent="Panel/HBoxContainer/VBoxContainer/Progress"]
-margin_right = 9.0
-margin_bottom = 5.0
+offset_right = 9.0
+offset_bottom = 5.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Panel2" type="Panel" parent="Panel/HBoxContainer/VBoxContainer/Progress"]
-margin_left = 9.0
-margin_right = 18.0
-margin_bottom = 5.0
+offset_left = 9.0
+offset_right = 18.0
+offset_bottom = 5.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Panel3" type="Panel" parent="Panel/HBoxContainer/VBoxContainer/Progress"]
-margin_left = 18.0
-margin_right = 27.0
-margin_bottom = 5.0
+offset_left = 18.0
+offset_right = 27.0
+offset_bottom = 5.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Panel4" type="Panel" parent="Panel/HBoxContainer/VBoxContainer/Progress"]
-margin_left = 27.0
-margin_right = 36.0
-margin_bottom = 5.0
+offset_left = 27.0
+offset_right = 36.0
+offset_bottom = 5.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Panel5" type="Panel" parent="Panel/HBoxContainer/VBoxContainer/Progress"]
-margin_left = 36.0
-margin_right = 45.0
-margin_bottom = 5.0
+offset_left = 36.0
+offset_right = 45.0
+offset_bottom = 5.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Panel6" type="Panel" parent="Panel/HBoxContainer/VBoxContainer/Progress"]
-margin_left = 45.0
-margin_right = 54.0
-margin_bottom = 5.0
+offset_left = 45.0
+offset_right = 54.0
+offset_bottom = 5.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = "Empty"
 
 [node name="Description" type="RichTextLabel" parent="Panel/HBoxContainer"]
-margin_left = 111.0
-margin_top = 7.0
-margin_right = 283.0
-margin_bottom = 49.0
-rect_min_size = Vector2( 130, 0 )
+offset_left = 111.0
+offset_top = 7.0
+offset_right = 283.0
+offset_bottom = 49.0
+custom_minimum_size = Vector2( 130, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "Lorem ipsum dolor sit amet, requiescat im pace por tutti de frutti"
 fit_content_height = true
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Panel/HBoxContainer"]
-margin_left = 287.0
-margin_right = 338.0
-margin_bottom = 57.0
+offset_left = 287.0
+offset_right = 338.0
+offset_bottom = 57.0
 size_flags_horizontal = 5
 size_flags_vertical = 5
 alignment = 1
 
 [node name="Price" type="Label" parent="Panel/HBoxContainer/VBoxContainer2"]
 visible = false
-margin_top = 11.0
-margin_right = 51.0
-margin_bottom = 24.0
+offset_top = 11.0
+offset_right = 51.0
+offset_bottom = 24.0
 text = "12000"
 align = 1
 valign = 1
 
 [node name="Button" type="Button" parent="Panel/HBoxContainer/VBoxContainer2"]
-margin_top = 18.0
-margin_right = 51.0
-margin_bottom = 39.0
+offset_top = 18.0
+offset_right = 51.0
+offset_bottom = 39.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
 text = "Upgrade"

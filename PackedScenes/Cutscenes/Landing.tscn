@@ -2,11 +2,11 @@
 
 [ext_resource path="res://Sounds/RocketBoostConstant.wav" type="AudioStream" id=1]
 [ext_resource path="res://Sounds/Afterburner.wav" type="AudioStream" id=2]
-[ext_resource path="res://Sprites/ship-shabby-flying.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/ship-shabby-flying.png" type="Texture2D" id=3]
 [ext_resource path="res://Sprites/Animations/Jets.tres" type="SpriteFrames" id=4]
 [ext_resource path="res://Sounds/Steam.wav" type="AudioStream" id=5]
-[ext_resource path="res://Sprites/Intro/Screen3/Rock.png" type="Texture" id=6]
-[ext_resource path="res://Sprites/Intro/Screen3/Shadow.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Intro/Screen3/Rock.png" type="Texture2D" id=6]
+[ext_resource path="res://Sprites/Intro/Screen3/Shadow.png" type="Texture2D" id=7]
 [ext_resource path="res://Scripts/Cutscene.gd" type="Script" id=8]
 
 [sub_resource type="Animation" id=1]
@@ -19,8 +19,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( -1.3, 2.4, 6.4 ),
-"transitions": PoolRealArray( 0.659754, 0.784584, 1 ),
+"times": PackedFloat32Array( -1.3, 2.4, 6.4 ),
+"transitions": PackedFloat32Array( 0.659754, 0.784584, 1 ),
 "update": 0,
 "values": [ Vector2( -32, -28 ), Vector2( 111, 102 ), Vector2( 177, 148 ) ]
 }
@@ -31,8 +31,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( -1.3, 1, 2.3, 2.9, 4.9, 6.4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array( -1.3, 1, 2.3, 2.9, 4.9, 6.4 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, true, false, true, false ]
 }
@@ -43,8 +43,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( -1.3, 1, 2.3, 2.9, 4.9, 6.4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array( -1.3, 1, 2.3, 2.9, 4.9, 6.4 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, true, false, true, false ]
 }
@@ -55,8 +55,8 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 2.3, 2.9, 4.9, 6.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 2.3, 2.9, 4.9, 6.3 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( -44, -73 ), Vector2( -35, -73 ), Vector2( 4, -71 ), Vector2( 22, -71 ) ]
 }
@@ -67,8 +67,8 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 2.3, 2.9, 4.9, 6.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 2.3, 2.9, 4.9, 6.3 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 0.6, 0.6 ), Vector2( 1, 1 ), Vector2( 1.4, 1 ) ]
 }
@@ -79,8 +79,8 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( -1.3, 2.3, 2.9, 4.9, 6.4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array( -1.3, 2.3, 2.9, 4.9, 6.4 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ false, true, false, true, false ]
 }
@@ -112,7 +112,7 @@ tracks/6/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 5 )
 } ],
-"times": PoolRealArray( -1.3, 2.3, 2.5, 4.9, 6 )
+"times": PackedFloat32Array( -1.3, 2.3, 2.5, 4.9, 6 )
 }
 
 [sub_resource type="Animation" id=2]
@@ -124,8 +124,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( 116, 77 ) ]
 }
@@ -136,8 +136,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( -44, -73 ) ]
 }
@@ -148,8 +148,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( 0.5, 1 ) ]
 }
@@ -160,8 +160,8 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ false ]
 }
@@ -170,23 +170,23 @@ tracks/3/keys = {
 position = Vector2( 149, 3 )
 script = ExtResource( 8 )
 
-[node name="Rock" type="Sprite" parent="."]
+[node name="Rock" type="Sprite2D" parent="."]
 position = Vector2( 155, 228 )
 texture = ExtResource( 6 )
 
-[node name="Shadow" type="Sprite" parent="Rock"]
+[node name="Shadow" type="Sprite2D" parent="Rock"]
 visible = false
 modulate = Color( 0.392157, 0.211765, 0.294118, 1 )
 position = Vector2( -44, -73 )
 scale = Vector2( 0.5, 1 )
 texture = ExtResource( 7 )
 
-[node name="Ship" type="Sprite" parent="."]
+[node name="Ship" type="Sprite2D" parent="."]
 position = Vector2( 116, 77 )
 z_index = 3
 texture = ExtResource( 3 )
 
-[node name="Boost1" type="AnimatedSprite" parent="Ship"]
+[node name="Boost1" type="AnimatedSprite2D" parent="Ship"]
 position = Vector2( -11.8722, 14.4623 )
 rotation = -0.785398
 scale = Vector2( 0.5, 0.5 )
@@ -196,7 +196,7 @@ animation = "booster"
 frame = 1
 playing = true
 
-[node name="Boost2" type="AnimatedSprite" parent="Ship"]
+[node name="Boost2" type="AnimatedSprite2D" parent="Ship"]
 position = Vector2( 13.1278, 14.4623 )
 rotation = -2.35619
 scale = Vector2( 0.5, 0.5 )

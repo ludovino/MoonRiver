@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/Alert.wav-e89f18357d3d907eae5ceae829f7aca1.sample"
+type="AudioStreamWAV"
+uid="uid://cfnmi0s1gs07j"
+path="res://.godot/imported/Alert.wav-e89f18357d3d907eae5ceae829f7aca1.sample"
 
 [deps]
 
 source_file="res://Sounds/Alert.wav"
-dest_files=[ "res://.import/Alert.wav-e89f18357d3d907eae5ceae829f7aca1.sample" ]
+dest_files=["res://.godot/imported/Alert.wav-e89f18357d3d907eae5ceae829f7aca1.sample"]
 
 [params]
 

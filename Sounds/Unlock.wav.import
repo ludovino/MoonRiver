@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/Unlock.wav-a1a89f389474c176a05de7b9c1b8f37b.sample"
+type="AudioStreamWAV"
+uid="uid://dopha0kb7klj1"
+path="res://.godot/imported/Unlock.wav-a1a89f389474c176a05de7b9c1b8f37b.sample"
 
 [deps]
 
 source_file="res://Sounds/Unlock.wav"
-dest_files=[ "res://.import/Unlock.wav-a1a89f389474c176a05de7b9c1b8f37b.sample" ]
+dest_files=["res://.godot/imported/Unlock.wav-a1a89f389474c176a05de7b9c1b8f37b.sample"]
 
 [params]
 

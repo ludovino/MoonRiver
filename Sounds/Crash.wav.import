@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/Crash.wav-e56cf25be19d69401f5db8d1d8460da3.sample"
+type="AudioStreamWAV"
+uid="uid://5ughanapveiq"
+path="res://.godot/imported/Crash.wav-e56cf25be19d69401f5db8d1d8460da3.sample"
 
 [deps]
 
 source_file="res://Sounds/Crash.wav"
-dest_files=[ "res://.import/Crash.wav-e56cf25be19d69401f5db8d1d8460da3.sample" ]
+dest_files=["res://.godot/imported/Crash.wav-e56cf25be19d69401f5db8d1d8460da3.sample"]
 
 [params]
 

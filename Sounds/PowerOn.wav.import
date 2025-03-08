@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/PowerOn.wav-5ebd6a1c08a0d668ce4107957a00fdf5.sample"
+type="AudioStreamWAV"
+uid="uid://b5sxttk2o2uct"
+path="res://.godot/imported/PowerOn.wav-5ebd6a1c08a0d668ce4107957a00fdf5.sample"
 
 [deps]
 
 source_file="res://Sounds/PowerOn.wav"
-dest_files=[ "res://.import/PowerOn.wav-5ebd6a1c08a0d668ce4107957a00fdf5.sample" ]
+dest_files=["res://.godot/imported/PowerOn.wav-5ebd6a1c08a0d668ce4107957a00fdf5.sample"]
 
 [params]
 

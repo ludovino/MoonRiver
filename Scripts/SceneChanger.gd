@@ -2,7 +2,7 @@ extends Node
 
 signal scene_queued
 signal level_queued
-signal level_select
+signal level_selected
 signal game_finished
 
 func queue_scene_path(path : String) -> void:
@@ -16,7 +16,7 @@ func queue_level(level : Level) -> void:
 	emit_signal("level_queued", level)
 
 func level_select() -> void:
-	emit_signal("level_select")
+	emit_signal("level_selected")
 
 func game_finish(score : int) -> void:
 	emit_signal("game_finished", score)

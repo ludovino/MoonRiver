@@ -1,41 +1,41 @@
 class_name Player
-extends KinematicBody2D
+extends CharacterBody2D
 
-export var cast_curve_x: Curve
-export var cast_curve_y: Curve
-export var cast_height: float
-export var cast_speed: float
+@export var cast_curve_x: Curve
+@export var cast_curve_y: Curve
+@export var cast_height: float
+@export var cast_speed: float
 
-export var walk_speed: float
-export(float, EASE) var aim_lerp_curve: float
-export var aim_min: float
-export var aim_max: float
-export var aim_speed: float
-export var reel_speed: float
-export var can_cast: bool
-export var max_tension: float
-export var tension_multiplier: float
-export var tension_decay: float
-export var fight_speed_mod: float
-export var escape_speed_mod: float
+@export var walk_speed: float
+@export var aim_lerp_curve: float # (float, EASE)
+@export var aim_min: float
+@export var aim_max: float
+@export var aim_speed: float
+@export var reel_speed: float
+@export var can_cast: bool
+@export var max_tension: float
+@export var tension_multiplier: float
+@export var tension_decay: float
+@export var fight_speed_mod: float
+@export var escape_speed_mod: float
 
 var casting = false
 var wind_up = false
 var casting_time = 0
 var origin_pos: Vector2
-var tension : float = 0 setget set_tension, get_tension
+var tension : float = 0: get = get_tension, set = set_tension
 
 
-export(NodePath) var lure_path : NodePath
-onready var lure : Lure = $Lure
-onready var target : Node2D = $Target
-onready var lure_origin : Node2D = $LureOrigin
-onready var rod_tip : RodTip = $RodTip
-onready var anim : AnimationPlayer = $AnimationPlayer
-onready var icon : Sprite = $InteractIcon
-onready var interact_area = $InteractArea
-onready var state_machine = $SM
-var inter_tween : SceneTreeTween
+@export var lure_path: NodePath
+@onready var lure : Lure = $Lure
+@onready var target : Node2D = $Target
+@onready var lure_origin : Node2D = $LureOrigin
+@onready var rod_tip : RodTip = $RodTip
+@onready var anim : AnimationPlayer = $AnimationPlayer
+@onready var icon : Sprite2D = $InteractIcon
+@onready var interact_area = $InteractArea
+@onready var state_machine = $SM
+var inter_tween : Tween
 
 var dir_input : Vector2 = Vector2.ZERO
 var dir_move : Vector2 = Vector2.ZERO
@@ -61,7 +61,7 @@ func _ready() -> void:
 	if lure_path:
 		lure.queue_free()
 		lure = get_node(lure_path)
-	lure.connect("area_entered", self, "_lure_area_entered")
+	lure.connect("area_entered", Callable(self, "_lure_area_entered"))
 	lure.disable()
 	lure.hide()
 	rod_tip.lure = lure.get_node("Offset")
@@ -80,7 +80,8 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	if not state_machine.current_state.name == "Move": return
-	move_and_slide(dir_move * walk_speed)
+	set_velocity(dir_move * walk_speed)
+	move_and_slide()
 
 func set_tension(val: float) -> void:
 	tension = clamp(val, 0, max_tension + 1.0);
@@ -91,8 +92,8 @@ func get_tension() -> float:
 	return tension
 
 func lure_pos(weight: float, start: Vector2, end: Vector2) -> void:
-	var x = lerp(start.x, end.x, cast_curve_x.interpolate_baked(weight))
-	var y = lerp(start.y, end.y, weight) - cast_curve_y.interpolate(weight) * cast_height
+	var x = lerp(start.x, end.x, cast_curve_x.sample_baked(weight))
+	var y = lerp(start.y, end.y, weight) - cast_curve_y.sample_baked(weight) * cast_height
 	lure.global_position = Vector2(x, y)
 	rod_tip._do_line()
 
@@ -106,7 +107,7 @@ func show_cancel() -> void:
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT_IN)
 	tween.set_trans(Tween.TRANS_LINEAR)
-	tween.tween_method(self, "lure_pos", 1.0, 0.0, 1.05, [global_position, start])
+	tween.tween_method(Callable(self, "lure_pos").bind(global_position, start), 1.0, 0.0, 1.05)
 
 func check_act() -> bool:
 	if can_interact && Input.is_action_just_pressed("action"):

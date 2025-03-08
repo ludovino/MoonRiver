@@ -1,6 +1,6 @@
 extends Node2D
 
-export(Array, PackedScene) var scenes
+@export var scenes : Array[PackedScene]
 
 var index = 0
 var current: Node
@@ -24,7 +24,7 @@ func _next():
 		return
 	if(current):
 		current.queue_free()
-	current = scenes[index].instance()
-	current.connect("finished", self, "_next")
+	current = scenes[index].instantiate()
+	current.connect("finished", Callable(self, "_next"))
 	add_child(current)
 	index += 1

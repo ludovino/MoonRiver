@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/BlipPlanet.wav-0b62d59c60078662a3ba7dc805c608a5.sample"
+type="AudioStreamWAV"
+uid="uid://bg8rq7e44w2y"
+path="res://.godot/imported/BlipPlanet.wav-0b62d59c60078662a3ba7dc805c608a5.sample"
 
 [deps]
 
 source_file="res://Sounds/BlipPlanet.wav"
-dest_files=[ "res://.import/BlipPlanet.wav-0b62d59c60078662a3ba7dc805c608a5.sample" ]
+dest_files=["res://.godot/imported/BlipPlanet.wav-0b62d59c60078662a3ba7dc805c608a5.sample"]
 
 [params]
 

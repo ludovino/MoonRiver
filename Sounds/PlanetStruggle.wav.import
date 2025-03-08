@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/PlanetStruggle.wav-5dcddd1bde1b81f70fb6092fa7d5bec6.sample"
+type="AudioStreamWAV"
+uid="uid://bnm02f760ow1y"
+path="res://.godot/imported/PlanetStruggle.wav-5dcddd1bde1b81f70fb6092fa7d5bec6.sample"
 
 [deps]
 
 source_file="res://Sounds/PlanetStruggle.wav"
-dest_files=[ "res://.import/PlanetStruggle.wav-5dcddd1bde1b81f70fb6092fa7d5bec6.sample" ]
+dest_files=["res://.godot/imported/PlanetStruggle.wav-5dcddd1bde1b81f70fb6092fa7d5bec6.sample"]
 
 [params]
 

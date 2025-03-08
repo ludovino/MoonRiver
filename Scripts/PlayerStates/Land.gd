@@ -11,8 +11,8 @@ func enter() -> void:
 	player.highlight(star)
 	player.emit_signal("fight_ended")
 	player.emit_signal("star_caught", star)
-	player.anim.connect("animation_finished", self, "animation_ended")
+	player.anim.connect("animation_finished", Callable(self, "animation_ended"))
 
 func animation_ended(name: String) -> void:
-	player.anim.disconnect("animation_finished", self, "animation_ended")
+	player.anim.disconnect("animation_finished", Callable(self, "animation_ended"))
 	player.change_state("Idle")

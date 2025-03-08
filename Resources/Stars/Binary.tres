@@ -1,23 +1,24 @@
-[gd_resource type="Resource" load_steps=4 format=2]
+[gd_resource type="Resource" script_class="StarData" load_steps=4 format=3 uid="uid://brn7g8hj6xbu7"]
 
-[ext_resource path="res://Scripts/StarData.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/Animations/Star.tres" type="SpriteFrames" id=2]
+[ext_resource type="Script" path="res://Scripts/StarData.gd" id="1"]
+[ext_resource type="SpriteFrames" uid="uid://cnv0dk8qblrh2" path="res://Sprites/Animations/Star.tres" id="2"]
 
-[sub_resource type="Curve" id=1]
-_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.265993, 0 ), 0.0, 2.2, 1, 1, Vector2( 0.720539, 1 ), 2.2, -143.113, 1, 1, Vector2( 0.723906, 0.518182 ), -143.113, 1.74512, 1, 1, Vector2( 1, 1 ), 1.74512, 0.0, 1, 0 ]
+[sub_resource type="Curve" id="1"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.265993, 0), 0.0, 2.2, 1, 1, Vector2(0.720539, 1), 2.2, -143.113, 1, 1, Vector2(0.723906, 0.518182), -143.113, 1.74512, 1, 1, Vector2(1, 1), 1.74512, 0.0, 1, 0]
+point_count = 5
 
 [resource]
-script = ExtResource( 1 )
-layout_string = "10
-01"
-frames = ExtResource( 2 )
+script = ExtResource("1")
+frames = ExtResource("2")
 animation = "binary"
 radius = 5.5
 pulse_speed = 0.6
-pulse_graph = SubResource( 1 )
+pulse_graph = SubResource("1")
 score = 150
 escape_speed = 40.0
 magnitude = 5.0
 min_level = 6
 audio_pitch_modulate = 0.65
 reel_speed_mod = 0.8
+layout_string = "10
+01"

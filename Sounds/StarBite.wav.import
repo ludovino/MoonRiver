@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/StarBite.wav-82aad322a53d67e2ace191234785320f.sample"
+type="AudioStreamWAV"
+uid="uid://ycl45vyviwxx"
+path="res://.godot/imported/StarBite.wav-82aad322a53d67e2ace191234785320f.sample"
 
 [deps]
 
 source_file="res://Sounds/StarBite.wav"
-dest_files=[ "res://.import/StarBite.wav-82aad322a53d67e2ace191234785320f.sample" ]
+dest_files=["res://.godot/imported/StarBite.wav-82aad322a53d67e2ace191234785320f.sample"]
 
 [params]
 

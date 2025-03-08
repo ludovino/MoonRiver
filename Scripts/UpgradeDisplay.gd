@@ -1,15 +1,15 @@
 class_name UpgradeDisplay
 extends Control
 
-export var upgrade_resource : Resource
+@export var upgrade_resource : Resource
 var upgrade : Upgrade
 
-onready var title : Label = $Panel/HBoxContainer/VBoxContainer/HBoxContainer/Title
-onready var description : RichTextLabel = $Panel/HBoxContainer/VBoxContainer2/Description
-onready var icon : TextureRect = $Panel/HBoxContainer/VBoxContainer/HBoxContainer/Icon
+@onready var title : Label = $Panel/HBoxContainer/VBoxContainer/HBoxContainer/Title
+@onready var description : RichTextLabel = $Panel/HBoxContainer/VBoxContainer2/Description
+@onready var icon : TextureRect = $Panel/HBoxContainer/VBoxContainer/HBoxContainer/Icon
 #onready var price : Label = $Panel/HBoxContainer/VBoxContainer2/Price
-onready var progress : ProgressDisplay = $Panel/HBoxContainer/VBoxContainer/Progress
-onready var button : Button = $Panel/HBoxContainer/VBoxContainer2/Button
+@onready var progress : ProgressDisplay = $Panel/HBoxContainer/VBoxContainer/Progress
+@onready var button : Button = $Panel/HBoxContainer/VBoxContainer2/Button
 
 var progression : ProgressionRes
 
@@ -26,7 +26,7 @@ func update_display() -> void:
 	var cost = _current_cost()
 	button.text = str(cost) if cost > 0 else "MAX"
 	button.disabled = cost > progression.units or cost < 0
-	button.connect("pressed", self, "purchase")
+	button.connect("pressed", Callable(self, "purchase"))
 	progress.setup(upgrade_level, upgrade.costs.size())
 
 func _current_cost() -> int:

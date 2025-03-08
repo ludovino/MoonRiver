@@ -1,10 +1,10 @@
 class_name PlanetButton
 extends TextureButton
 
-export var level_resource : Resource
+@export var level_resource : Resource
 var level : Level
-var unlocked_tex : Texture = preload("res://Sprites/Map/mystery.png")
-var unlocked_highlighted_tex: Texture = preload("res://Sprites/Map/mysteryHL.png")
+var unlocked_tex : Texture2D = preload("res://Sprites/Map/mystery.png")
+var unlocked_highlighted_tex: Texture2D = preload("res://Sprites/Map/mysteryHL.png")
 
 func _ready() -> void:
 	level = level_resource as Level

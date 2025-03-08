@@ -1,26 +1,27 @@
-[gd_resource type="Resource" load_steps=6 format=2]
+[gd_resource type="Resource" script_class="Level" load_steps=7 format=3 uid="uid://b8shlhyakgv3t"]
 
-[ext_resource path="res://Scripts/Level.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/planet-sprite-focus-sheet.png" type="Texture" id=2]
-[ext_resource path="res://Sprites/planet-sprite-sheet.png" type="Texture" id=3]
+[ext_resource type="Script" path="res://Scripts/Level.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://bktxg5xujo74o" path="res://Sprites/planet-sprite-focus-sheet.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://pgfos2gdcxea" path="res://Sprites/planet-sprite-sheet.png" id="3"]
+[ext_resource type="Script" path="res://Scripts/StarData.gd" id="4_or8h5"]
 
-[sub_resource type="AtlasTexture" id=23]
-atlas = ExtResource( 2 )
-region = Rect2( 128, 64, 64, 64 )
+[sub_resource type="AtlasTexture" id="23"]
+atlas = ExtResource("2")
+region = Rect2(128, 64, 64, 64)
 
-[sub_resource type="AtlasTexture" id=22]
-atlas = ExtResource( 3 )
-region = Rect2( 128, 64, 64, 64 )
+[sub_resource type="AtlasTexture" id="22"]
+atlas = ExtResource("3")
+region = Rect2(128, 64, 64, 64)
 
 [resource]
-script = ExtResource( 1 )
+script = ExtResource("1")
 display_name = "Three Sisters"
 progress_key = "blobs"
 progress_level = 4
 scene = "res://Levels/Blobs.tscn"
 intro_scene = ""
 description = "Three planets in close orbit with each other, causing unpredictable gravitational fields."
-stars = [  ]
-ls_texture = SubResource( 22 )
-ls_highlight = SubResource( 23 )
+stars = Array[ExtResource("4_or8h5")]([])
+ls_texture = SubResource("22")
+ls_highlight = SubResource("23")
 pausable = true

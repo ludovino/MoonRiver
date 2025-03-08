@@ -1,10 +1,10 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Sprites/Upgrades/engine.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/Upgrades/engine.png" type="Texture2D" id=1]
 
 [node name="EnginePower" type="Button"]
-margin_right = 90.0
-margin_bottom = 37.0
-hint_tooltip = "unlock the next planet"
+offset_right = 90.0
+offset_bottom = 37.0
+tooltip_text = "unlock the next planet"
 text = "15000"
 icon = ExtResource( 1 )

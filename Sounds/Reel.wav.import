@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/Reel.wav-243a1fe727173d004ce1c8a15292b192.sample"
+type="AudioStreamWAV"
+uid="uid://bgms56v1elqq3"
+path="res://.godot/imported/Reel.wav-243a1fe727173d004ce1c8a15292b192.sample"
 
 [deps]
 
 source_file="res://Sounds/Reel.wav"
-dest_files=[ "res://.import/Reel.wav-243a1fe727173d004ce1c8a15292b192.sample" ]
+dest_files=["res://.godot/imported/Reel.wav-243a1fe727173d004ce1c8a15292b192.sample"]
 
 [params]
 

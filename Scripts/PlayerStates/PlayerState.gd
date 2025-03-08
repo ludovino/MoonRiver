@@ -1,7 +1,7 @@
 class_name PlayerState
 extends Node
 
-onready var player = get_parent().get_parent()
+@onready var player = get_parent().get_parent()
 
 func enter() -> void:
 	pass

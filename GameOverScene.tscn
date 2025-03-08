@@ -3,7 +3,7 @@
 [ext_resource path="res://menu_theme.tres" type="Theme" id=1]
 [ext_resource path="res://TitleText.tres" type="Theme" id=2]
 [ext_resource path="res://GameOverScene.gd" type="Script" id=3]
-[ext_resource path="res://Sprites/Intro/Screen3/Ship.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Intro/Screen3/Ship.png" type="Texture2D" id=5]
 [ext_resource path="res://Sprites/Animations/Jets.tres" type="SpriteFrames" id=6]
 [ext_resource path="res://Sounds/RocketBoostConstant.wav" type="AudioStream" id=7]
 [ext_resource path="res://Sounds/Afterburner.wav" type="AudioStream" id=8]
@@ -17,44 +17,44 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( -75, 157 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("CenterContainer:rect_position")
+tracks/1/path = NodePath("CenterContainer:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( 0, -30 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Node2D/Ship/AnimatedSprite:scale")
+tracks/2/path = NodePath("Node2D/Ship/AnimatedSprite2D:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( 2, 2 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Node2D/Ship/AnimatedSprite:visible")
+tracks/3/path = NodePath("Node2D/Ship/AnimatedSprite2D:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ true ]
 }
@@ -65,8 +65,8 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ true ]
 }
@@ -77,8 +77,8 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ true ]
 }
@@ -93,8 +93,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 3.1, 10 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 3.1, 10 ),
+"transitions": PackedFloat32Array( 1, 1, 1 ),
 "update": 0,
 "values": [ 0.5, 1.0, 3.0 ]
 }
@@ -105,8 +105,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 4.8, 5.3, 9 ),
-"transitions": PoolRealArray( 0.5, -2, 1.18921, 1 ),
+"times": PackedFloat32Array( 0, 4.8, 5.3, 9 ),
+"transitions": PackedFloat32Array( 0.5, -2, 1.18921, 1 ),
 "update": 0,
 "values": [ Vector2( -73, 113 ), Vector2( 147, 113 ), Vector2( 126, 113 ), Vector2( 800, 113 ) ]
 }
@@ -117,8 +117,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ "You win!" ]
 }
@@ -129,20 +129,20 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 5.6, 6.6 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 5.6, 6.6 ),
+"transitions": PackedFloat32Array( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("CenterContainer:rect_position")
+tracks/4/path = NodePath("CenterContainer:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 5.6, 6.6 ),
-"transitions": PoolRealArray( -2, 1 ),
+"times": PackedFloat32Array( 5.6, 6.6 ),
+"transitions": PackedFloat32Array( -2, 1 ),
 "update": 0,
 "values": [ Vector2( 0, -30 ), Vector2( 0, 0 ) ]
 }
@@ -153,8 +153,8 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0, 4.8, 5.6, 8.6 ),
-"transitions": PoolRealArray( 1, 1, 2, 1 ),
+"times": PackedFloat32Array( 0, 4.8, 5.6, 8.6 ),
+"transitions": PackedFloat32Array( 1, 1, 2, 1 ),
 "update": 0,
 "values": [ -15.0, -11.0, -4.0, -80.0 ]
 }
@@ -186,29 +186,29 @@ tracks/6/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 7 )
 } ],
-"times": PoolRealArray( 0, 2.1, 3.3, 5.5, 7.7 )
+"times": PackedFloat32Array( 0, 2.1, 3.3, 5.5, 7.7 )
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("Node2D/Ship/AnimatedSprite:scale")
+tracks/7/path = NodePath("Node2D/Ship/AnimatedSprite2D:scale")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 0, 5.3 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 5.3 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ Vector2( 1, 1 ), Vector2( 2, 2 ) ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("Node2D/Ship/AnimatedSprite:visible")
+tracks/8/path = NodePath("Node2D/Ship/AnimatedSprite2D:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
 tracks/8/enabled = true
 tracks/8/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ true ]
 }
@@ -219,8 +219,8 @@ tracks/9/loop_wrap = true
 tracks/9/imported = false
 tracks/9/enabled = true
 tracks/9/keys = {
-"times": PoolRealArray( 0, 6.8 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 6.8 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
 }
@@ -231,8 +231,8 @@ tracks/10/loop_wrap = true
 tracks/10/imported = false
 tracks/10/enabled = true
 tracks/10/keys = {
-"times": PoolRealArray( 0, 6.8 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 6.8 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
 }
@@ -247,8 +247,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 10 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 10 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ 0.05, 0.01 ]
 }
@@ -259,8 +259,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 4, 5, 10 ),
-"transitions": PoolRealArray( 0.5, 2, 2, 2 ),
+"times": PackedFloat32Array( 0, 4, 5, 10 ),
+"transitions": PackedFloat32Array( 0.5, 2, 2, 2 ),
 "update": 0,
 "values": [ Vector2( -73, 113 ), Vector2( 147, 113 ), Vector2( 147, 113 ), Vector2( -70, 113 ) ]
 }
@@ -271,8 +271,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ "Game Over" ]
 }
@@ -283,32 +283,32 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 5.6, 6.6 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 5.6, 6.6 ),
+"transitions": PackedFloat32Array( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("CenterContainer:rect_position")
+tracks/4/path = NodePath("CenterContainer:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 5.6, 6.6 ),
-"transitions": PoolRealArray( -2, 1 ),
+"times": PackedFloat32Array( 5.6, 6.6 ),
+"transitions": PackedFloat32Array( -2, 1 ),
 "update": 0,
 "values": [ Vector2( 0, -30 ), Vector2( 0, 0 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Node2D/Ship/AnimatedSprite:visible")
+tracks/5/path = NodePath("Node2D/Ship/AnimatedSprite2D:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 1, 1.4, 2, 2.1, 2.3, 2.5, 2.9, 3.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 1, 1.4, 2, 2.1, 2.3, 2.5, 2.9, 3.3 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, true, false, true, false, true, false ]
 }
@@ -319,8 +319,8 @@ tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0, 1.6 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 1.6 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ -11.0, 0.0 ]
 }
@@ -352,7 +352,7 @@ tracks/7/keys = {
 "start_offset": 0.1,
 "stream": ExtResource( 8 )
 } ],
-"times": PoolRealArray( -1.7, 0.9, 1.9, 2.2, 2.9 )
+"times": PackedFloat32Array( -1.7, 0.9, 1.9, 2.2, 2.9 )
 }
 tracks/8/type = "value"
 tracks/8/path = NodePath("CenterContainer/VBoxContainer/CenterContainer/PlayAgain:disabled")
@@ -361,8 +361,8 @@ tracks/8/loop_wrap = true
 tracks/8/imported = false
 tracks/8/enabled = true
 tracks/8/keys = {
-"times": PoolRealArray( 0, 6.1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 6.1 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
 }
@@ -373,8 +373,8 @@ tracks/9/loop_wrap = true
 tracks/9/imported = false
 tracks/9/enabled = true
 tracks/9/keys = {
-"times": PoolRealArray( 0, 6.1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 6.1 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
 }
@@ -389,8 +389,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 3.1, 10 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 3.1, 10 ),
+"transitions": PackedFloat32Array( 1, 1, 1 ),
 "update": 0,
 "values": [ 0.5, 0.5, 1.0 ]
 }
@@ -401,8 +401,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 4.8 ),
-"transitions": PoolRealArray( 0.5, 2 ),
+"times": PackedFloat32Array( 0, 4.8 ),
+"transitions": PackedFloat32Array( 0.5, 2 ),
 "update": 0,
 "values": [ Vector2( -73, 113 ), Vector2( 147, 113 ) ]
 }
@@ -413,8 +413,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ "You win" ]
 }
@@ -425,32 +425,32 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 5.6, 6.6 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 5.6, 6.6 ),
+"transitions": PackedFloat32Array( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("CenterContainer:rect_position")
+tracks/4/path = NodePath("CenterContainer:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 5.6, 6.6 ),
-"transitions": PoolRealArray( -2, 1 ),
+"times": PackedFloat32Array( 5.6, 6.6 ),
+"transitions": PackedFloat32Array( -2, 1 ),
 "update": 0,
 "values": [ Vector2( 0, -30 ), Vector2( 0, 0 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Node2D/Ship/AnimatedSprite:visible")
+tracks/5/path = NodePath("Node2D/Ship/AnimatedSprite2D:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 1, 1.4, 2, 2.1, 2.3, 2.5, 2.9, 3.2, 3.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 1, 1.4, 2, 2.1, 2.3, 2.5, 2.9, 3.2, 3.3 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, true, false, true, false, true, false, true ]
 }
@@ -461,8 +461,8 @@ tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0, 1.6, 9.8 ),
-"transitions": PoolRealArray( 1, 2, 1 ),
+"times": PackedFloat32Array( 0, 1.6, 9.8 ),
+"transitions": PackedFloat32Array( 1, 2, 1 ),
 "update": 0,
 "values": [ -11.0, 0.0, -80.0 ]
 }
@@ -506,7 +506,7 @@ tracks/7/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 7 )
 } ],
-"times": PoolRealArray( -1.7, 0.9, 1.9, 2.2, 2.9, 3.3, 5.5, 7.7 )
+"times": PackedFloat32Array( -1.7, 0.9, 1.9, 2.2, 2.9, 3.3, 5.5, 7.7 )
 }
 tracks/8/type = "value"
 tracks/8/path = NodePath("CenterContainer/VBoxContainer/CenterContainer2/MainMenu:disabled")
@@ -515,8 +515,8 @@ tracks/8/loop_wrap = true
 tracks/8/imported = false
 tracks/8/enabled = true
 tracks/8/keys = {
-"times": PoolRealArray( 0, 6.2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 6.2 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
 }
@@ -527,8 +527,8 @@ tracks/9/loop_wrap = true
 tracks/9/imported = false
 tracks/9/enabled = true
 tracks/9/keys = {
-"times": PoolRealArray( 0, 6.2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 6.2 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
 }
@@ -556,11 +556,11 @@ initial_velocity_random = 0.57
 scale_amount = 2.0
 scale_amount_random = 1.0
 
-[node name="Ship" type="Sprite" parent="Node2D"]
+[node name="Ship" type="Sprite2D" parent="Node2D"]
 position = Vector2( -75, 157 )
 texture = ExtResource( 5 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Node2D/Ship"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D/Ship"]
 position = Vector2( -57, 2 )
 scale = Vector2( 2, 2 )
 frames = ExtResource( 6 )
@@ -570,19 +570,19 @@ offset = Vector2( -16, 0 )
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 modulate = Color( 1, 1, 1, 0.6 )
-margin_top = -30.0
-margin_right = 640.0
-margin_bottom = 330.0
+offset_top = -30.0
+offset_right = 640.0
+offset_bottom = 330.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 244.0
-margin_top = 84.0
-margin_right = 396.0
-margin_bottom = 276.0
+offset_left = 244.0
+offset_top = 84.0
+offset_right = 396.0
+offset_bottom = 276.0
 
 [node name="BigText" type="Label" parent="CenterContainer/VBoxContainer"]
-margin_right = 152.0
-margin_bottom = 114.0
+offset_right = 152.0
+offset_bottom = 114.0
 theme = ExtResource( 2 )
 text = "You win"
 align = 1
@@ -590,38 +590,38 @@ valign = 1
 autowrap = true
 
 [node name="ScoreCtn" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
-margin_top = 118.0
-margin_right = 152.0
-margin_bottom = 132.0
+offset_top = 118.0
+offset_right = 152.0
+offset_bottom = 132.0
 
 [node name="Score" type="Label" parent="CenterContainer/VBoxContainer/ScoreCtn"]
-margin_right = 152.0
-margin_bottom = 14.0
+offset_right = 152.0
+offset_bottom = 14.0
 text = "Fuel Units Gathered: 69"
 valign = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
-margin_top = 136.0
-margin_right = 152.0
-margin_bottom = 162.0
+offset_top = 136.0
+offset_right = 152.0
+offset_bottom = 162.0
 
 [node name="PlayAgain" type="Button" parent="CenterContainer/VBoxContainer/CenterContainer"]
-margin_left = 40.0
-margin_right = 112.0
-margin_bottom = 26.0
+offset_left = 40.0
+offset_right = 112.0
+offset_bottom = 26.0
 theme = ExtResource( 1 )
 disabled = true
 text = "Play Again"
 
 [node name="CenterContainer2" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
-margin_top = 166.0
-margin_right = 152.0
-margin_bottom = 192.0
+offset_top = 166.0
+offset_right = 152.0
+offset_bottom = 192.0
 
 [node name="MainMenu" type="Button" parent="CenterContainer/VBoxContainer/CenterContainer2"]
-margin_left = 39.0
-margin_right = 112.0
-margin_bottom = 26.0
+offset_left = 39.0
+offset_right = 112.0
+offset_bottom = 26.0
 theme = ExtResource( 1 )
 disabled = true
 text = "Main Menu"

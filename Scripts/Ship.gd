@@ -1,20 +1,20 @@
 class_name Ship
-extends Sprite
+extends Sprite2D
 
 enum { CLOSED, OPENING, OPEN }
 enum { ALERT, OK }
 var alert_state := OK
 var door_state := CLOSED
 var timer : Timer
-export var alert_color : Color
-export var ok_color : Color
+@export var alert_color : Color
+@export var ok_color : Color
 
 signal player_boarded
 
 func _ready() -> void:
 	timer = Timer.new()
 	add_child(timer)
-	timer.connect("timeout", self, "close_door")
+	timer.connect("timeout", Callable(self, "close_door"))
 	timer.one_shot = true
 
 func alert() -> void:
@@ -46,7 +46,7 @@ func _start_open_door():
 	$Button.modulate = alert_color
 	var tween = create_tween()
 	tween.tween_interval(0.7)
-	tween.tween_callback(self,"_open_door")
+	tween.tween_callback(Callable(self, "_open_door"))
 
 func _open_door() -> void:
 	$DoorTrigger.monitorable = true

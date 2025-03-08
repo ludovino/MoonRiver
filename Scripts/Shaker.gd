@@ -1,9 +1,9 @@
 extends Node2D
 
 
-var noise = OpenSimplexNoise.new()
-export var frequency = 64.0
-export var magnitude = 10.0
+var noise = FastNoiseLite.new()
+@export var frequency = 64.0
+@export var magnitude = 10.0
 var time = 0.0
 var origin: Vector2
 func _ready() -> void:

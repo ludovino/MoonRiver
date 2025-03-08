@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/LightOn.wav-b4ce088a9fe9a69277618cbebc9b51ea.sample"
+type="AudioStreamWAV"
+uid="uid://b6gyt2al78uw1"
+path="res://.godot/imported/LightOn.wav-b4ce088a9fe9a69277618cbebc9b51ea.sample"
 
 [deps]
 
 source_file="res://Sounds/LightOn.wav"
-dest_files=[ "res://.import/LightOn.wav-b4ce088a9fe9a69277618cbebc9b51ea.sample" ]
+dest_files=["res://.godot/imported/LightOn.wav-b4ce088a9fe9a69277618cbebc9b51ea.sample"]
 
 [params]
 

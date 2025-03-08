@@ -10,23 +10,23 @@ var progress : ProgressionRes
 var current_level : Level
 var current: Node
 
-var viewport: Viewport
+var viewport: SubViewport
 var can_pause = false
 
 func _ready() -> void:
 	progress = Progression.res
 	randomize()
-	viewport = $ViewportContainer/Viewport
+	viewport = $SubViewportContainer/SubViewport
 	_to_main_menu()
-	SceneChanger.connect("scene_queued", self, "swap_scene_path")
-	SceneChanger.connect("level_queued", self, "_change_level")
-	SceneChanger.connect("level_select", self, "_to_level_select", [0])
-	SceneChanger.connect("game_finished", self, "_to_level_select")
+	SceneChanger.connect("scene_queued", Callable(self, "swap_scene_path"))
+	SceneChanger.connect("level_queued", Callable(self, "_change_level"))
+	SceneChanger.connect("level_select", Callable(self, "_to_level_select").bind(0))
+	SceneChanger.connect("game_finished", Callable(self, "_to_level_select"))
 
 func _change_level(level : Level) -> void:
 	progress.current_location = level
 	var current_status = Progression.get_status(level)
-	if current_status != Level.VISITED and level.intro_scene.is_abs_path():
+	if current_status != Level.VISITED and level.intro_scene.is_absolute_path():
 		swap_scene_path(level.intro_scene)
 	else:
 		swap_scene_path(level.scene)
@@ -36,17 +36,17 @@ func _to_main_menu():
 	get_tree().paused = false
 	$PauseMenu.hide()
 	can_pause = false
-	var scene = menu.instance()
+	var scene = menu.instantiate()
 	swap_scene(scene)
 	if progress.first_play:
-		scene.connect("play", self, "_on_intro")
+		scene.connect("play", Callable(self, "_on_intro"))
 	else:
-		scene.connect("play", self, "_to_level_select", [0])
-	scene.connect("quit", self, "_on_quit")
+		scene.connect("play", Callable(self, "_to_level_select").bind(0))
+	scene.connect("quit", Callable(self, "_on_quit"))
 
 func swap_scene_path(path: String):
 	var packed = load(path) as PackedScene
-	swap_scene(packed.instance())
+	swap_scene(packed.instantiate())
 
 func swap_scene(scene: Node):
 	if current:
@@ -61,9 +61,9 @@ func _on_quit():
 func _on_intro():
 	$PauseMenu.hide()
 	can_pause = true
-	var scene = intro_scene.instance()
+	var scene = intro_scene.instantiate()
 	swap_scene(scene)
-	scene.connect("finished", self, "_intro_finished")
+	scene.connect("finished", Callable(self, "_intro_finished"))
 
 func _intro_finished() -> void:
 	_change_level(first_level)
@@ -74,10 +74,10 @@ func _to_level_select(score: int):
 	progress.first_play = false
 	Progression.save()
 	can_pause = false
-	var scene = level_select.instance()
+	var scene = level_select.instantiate()
 	swap_scene(scene)
 	scene._move_ship()
-	scene.connect("level_selected", self, "_on_play")
+	scene.connect("level_selected", Callable(self, "_on_play"))
 
 func _input(event: InputEvent) -> void:
 	if not can_pause:

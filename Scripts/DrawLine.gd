@@ -1,22 +1,22 @@
 class_name RodTip
 extends Node2D
 
-export var taut: Curve
-export var slack: Curve
-export var flying: Curve
-export var line_color: Color
+@export var taut: Curve
+@export var slack: Curve
+@export var flying: Curve
+@export var line_color: Color
 
 var current_line: Curve 
 var previous_line: Curve
-export var line_swap_speed: float
+@export var line_swap_speed: float
 
 var line_weight: float
 var to_be_visible: bool = false
 
 var lure : Node2D
 
-export var y_displacement: float
-export var sample: int
+@export var y_displacement: float
+@export var sample: int
 var division: float
 var points: Array = []
 
@@ -36,19 +36,19 @@ func _get_line_pos(weight: float) -> Vector2:
 	if current_line == flying:
 		t = 1.0 - fmod(t + Time.get_ticks_msec() * 0.0007, 1.0)
 		y_mod = -4 * weight * weight + 4 * weight
-	var current = current_line.interpolate_baked(t)
+	var current = current_line.sample_baked(t)
 	pos.y -= current * y_displacement * y_mod
 	return to_local(pos)
 	
 func _process(delta: float) -> void:
-	line_weight += stepify(delta, 0.1) * line_swap_speed
+	line_weight += snapped(delta, 0.1) * line_swap_speed
 	line_weight = clamp(line_weight, 0.0, 1.0)
-	_do_line()
+	call_deferred("_do_line")
 
 func _do_line() -> void:
 	for i in range(0, points.size()):
 		points[i] = _get_line_pos(i * division)
-	update()
+	queue_redraw()
 	visible = to_be_visible
 
 func set_line(line: Curve):

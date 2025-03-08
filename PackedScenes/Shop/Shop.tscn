@@ -1,660 +1,641 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=27 format=3 uid="uid://d3nx8ds16lb13"]
 
-[ext_resource path="res://Resources/Upgrades/cast.tres" type="Resource" id=1]
-[ext_resource path="res://Resources/Upgrades/planet_unlock.tres" type="Resource" id=2]
-[ext_resource path="res://Resources/Upgrades/decay.tres" type="Resource" id=3]
-[ext_resource path="res://Resources/Upgrades/oxygen.tres" type="Resource" id=4]
-[ext_resource path="res://Resources/Upgrades/catch.tres" type="Resource" id=5]
-[ext_resource path="res://Resources/Upgrades/reel.tres" type="Resource" id=6]
-[ext_resource path="res://Resources/Upgrades/fill.tres" type="Resource" id=7]
-[ext_resource path="res://Resources/Upgrades/escape.tres" type="Resource" id=8]
-[ext_resource path="res://Resources/Upgrades/pull.tres" type="Resource" id=9]
-[ext_resource path="res://Sounds/Steam.wav" type="AudioStream" id=10]
-[ext_resource path="res://Sprites/Animations/Jets.tres" type="SpriteFrames" id=11]
-[ext_resource path="res://Sprites/ship-shabby-flying.png" type="Texture" id=12]
-[ext_resource path="res://PackedScenes/Shop/UpgradeGrid.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Sounds/BlipSelect.wav" type="AudioStream" id=14]
-[ext_resource path="res://Resources/Levels/Shop.tres" type="Resource" id=15]
-[ext_resource path="res://Scripts/Shop.gd" type="Script" id=16]
-[ext_resource path="res://Sprites/Map/shop-2.png" type="Texture" id=17]
-[ext_resource path="res://PackedScenes/ShopTheme.tres" type="Theme" id=19]
-[ext_resource path="res://Sounds/Success.wav" type="AudioStream" id=21]
-[ext_resource path="res://Sounds/LightOn.wav" type="AudioStream" id=22]
-[ext_resource path="res://Scripts/ShopMainScene.gd" type="Script" id=25]
+[ext_resource type="Resource" path="res://Resources/Upgrades/cast.tres" id="1"]
+[ext_resource type="Resource" path="res://Resources/Upgrades/planet_unlock.tres" id="2"]
+[ext_resource type="Resource" path="res://Resources/Upgrades/decay.tres" id="3"]
+[ext_resource type="Resource" path="res://Resources/Upgrades/oxygen.tres" id="4"]
+[ext_resource type="Resource" path="res://Resources/Upgrades/catch.tres" id="5"]
+[ext_resource type="Resource" path="res://Resources/Upgrades/reel.tres" id="6"]
+[ext_resource type="Resource" path="res://Resources/Upgrades/fill.tres" id="7"]
+[ext_resource type="Resource" path="res://Resources/Upgrades/escape.tres" id="8"]
+[ext_resource type="Resource" path="res://Resources/Upgrades/pull.tres" id="9"]
+[ext_resource type="AudioStream" uid="uid://bx806xu48dqj5" path="res://Sounds/Steam.wav" id="10"]
+[ext_resource type="SpriteFrames" uid="uid://brqx8mhkov44v" path="res://Sprites/Animations/Jets.tres" id="11"]
+[ext_resource type="Texture2D" uid="uid://cyyn77enlfcsv" path="res://Sprites/ship-shabby-flying.png" id="12"]
+[ext_resource type="PackedScene" path="res://PackedScenes/Shop/UpgradeGrid.tscn" id="13"]
+[ext_resource type="AudioStream" uid="uid://tp26va8bqnl8" path="res://Sounds/BlipSelect.wav" id="14"]
+[ext_resource type="Resource" path="res://Resources/Levels/Shop.tres" id="15"]
+[ext_resource type="Script" path="res://Scripts/Shop.gd" id="16"]
+[ext_resource type="Texture2D" uid="uid://dbeh4vwtgscvg" path="res://Sprites/Map/shop-2.png" id="17"]
+[ext_resource type="Theme" uid="uid://bthmildjok6uk" path="res://PackedScenes/ShopTheme.tres" id="19"]
+[ext_resource type="AudioStream" uid="uid://dfp4w3a4l77nw" path="res://Sounds/Success.wav" id="21"]
+[ext_resource type="AudioStream" uid="uid://b6gyt2al78uw1" path="res://Sounds/LightOn.wav" id="22"]
+[ext_resource type="Script" path="res://Scripts/ShopMainScene.gd" id="25"]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id="1"]
 length = 0.001
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Floor/Generator:region_rect")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Rect2( 2, 89, 12, 17 ) ]
+"values": [Rect2(2, 89, 12, 17)]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Floor/GenLights:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ false ]
+"values": [false]
 }
 tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath("Floor/WelcomeLights:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ false ]
+"values": [false]
 }
 tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
 tracks/3/path = NodePath("Floor/SignLights:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ false ]
+"values": [false]
 }
 tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
 tracks/4/path = NodePath("Floor/InteriorLights:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ false ]
+"values": [false]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Modify:rect_position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
+tracks/5/path = NodePath("Modify:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Vector2( 16, 10 ) ]
+"values": [Vector2(16, 10)]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Modify:rect_scale")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
+tracks/6/path = NodePath("Modify:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Vector2( 1, 1 ) ]
+"values": [Vector2(1, 1)]
 }
 tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
 tracks/7/path = NodePath("Modify:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ false ]
+"values": [false]
 }
 
-[sub_resource type="Animation" id=36]
+[sub_resource type="Animation" id="36"]
 resource_name = "launch"
 length = 5.0
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Ship:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.4, 2.4, 3.2, 4.5 ),
-"transitions": PoolRealArray( 1, 2, 1, 0.277392 ),
+"times": PackedFloat32Array(0.4, 2.4, 3.2, 4.5),
+"transitions": PackedFloat32Array(1, 2, 1, 0.277392),
 "update": 0,
-"values": [ Vector2( 577, 231 ), Vector2( 578, 229 ), Vector2( 590, 153 ), Vector2( 777, 89 ) ]
+"values": [Vector2(577, 231), Vector2(578, 229), Vector2(590, 153), Vector2(777, 89)]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Ship/Jet:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 3.2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array(0, 3.2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [ false, true ]
+"values": [false, true]
 }
 tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath("Ship/Boost1:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.4, 0.6, 2.4, 2.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.4, 0.6, 2.4, 2.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [ false, true, false, true, false ]
+"values": [false, true, false, true, false]
 }
 tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
 tracks/3/path = NodePath("Ship/Boost2:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.4, 0.6, 2.4, 2.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.4, 0.6, 2.4, 2.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [ false, true, false, true, false ]
+"values": [false, true, false, true, false]
 }
 
-[sub_resource type="Animation" id=37]
+[sub_resource type="Animation" id="37"]
 resource_name = "off"
 length = 4.5
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Floor/Generator:region_rect")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [ Rect2( 2, 89, 12, 17 ), Rect2( 14, 89, 12, 17 ), Rect2( 27, 89, 12, 17 ), Rect2( 2, 89, 12, 17 ), Rect2( 14, 89, 12, 17 ), Rect2( 2, 89, 12, 17 ), Rect2( 14, 89, 12, 17 ), Rect2( 27, 89, 12, 17 ), Rect2( 2, 89, 12, 17 ), Rect2( 14, 89, 12, 17 ) ]
+"values": [Rect2(2, 89, 12, 17), Rect2(14, 89, 12, 17), Rect2(27, 89, 12, 17), Rect2(2, 89, 12, 17), Rect2(14, 89, 12, 17), Rect2(2, 89, 12, 17), Rect2(14, 89, 12, 17), Rect2(27, 89, 12, 17), Rect2(2, 89, 12, 17), Rect2(14, 89, 12, 17)]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Floor/GenLights:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 1.3, 1.4, 1.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 1.3, 1.4, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [ true, false, true, false ]
+"values": [true, false, true, false]
 }
 tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath("Floor/WelcomeLights:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 1.3, 1.4, 1.7 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 1.3, 1.4, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [ true, false, true, false ]
+"values": [true, false, true, false]
 }
 tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
 tracks/3/path = NodePath("Floor/SignLights:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 1.3, 1.5, 1.9 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 1.3, 1.5, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [ true, false, true, false ]
+"values": [true, false, true, false]
 }
 tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
 tracks/4/path = NodePath("Floor/InteriorLights:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.8 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [ true, false ]
+"values": [true, false]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Modify:rect_position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
+tracks/5/path = NodePath("Modify:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PoolRealArray( 3.5, 4.5 ),
-"transitions": PoolRealArray( 0.148651, 1 ),
+"times": PackedFloat32Array(3.5, 4.5),
+"transitions": PackedFloat32Array(0.148651, 1),
 "update": 0,
-"values": [ Vector2( 551, 79 ), Vector2( 16, 10 ) ]
+"values": [Vector2(551, 79), Vector2(16, 10)]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Modify:rect_scale")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
+tracks/6/path = NodePath("Modify:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PoolRealArray( 0, 3.5, 4.5 ),
-"transitions": PoolRealArray( 1, 0.148651, 1 ),
+"times": PackedFloat32Array(0, 3.5, 4.5),
+"transitions": PackedFloat32Array(1, 0.148651, 1),
 "update": 0,
-"values": [ Vector2( 0.01, 0.01 ), Vector2( 0.01, 0.01 ), Vector2( 1, 1 ) ]
+"values": [Vector2(0.01, 0.01), Vector2(0.01, 0.01), Vector2(1, 1)]
 }
 tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
 tracks/7/path = NodePath("Modify:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 0, 3.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array(0, 3.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [ false, true ]
+"values": [false, true]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id="3"]
 resource_name = "on"
 length = 2.1
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Floor/Generator:region_rect")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
 "update": 1,
-"values": [  ]
+"values": []
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Floor/GenLights:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
 "update": 1,
-"values": [  ]
+"values": []
 }
 tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath("Floor/WelcomeLights:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
 "update": 1,
-"values": [  ]
+"values": []
 }
 tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
 tracks/3/path = NodePath("Floor/SignLights:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.1, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.1, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [ true, false, true ]
+"values": [true, false, true]
 }
 tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
 tracks/4/path = NodePath("Floor/InteriorLights:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.1, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.1, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [ true, false, true ]
+"values": [true, false, true]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Modify:rect_position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
+tracks/5/path = NodePath("Modify:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PoolRealArray( 1, 2 ),
-"transitions": PoolRealArray( 0.148651, 1 ),
+"times": PackedFloat32Array(1, 2),
+"transitions": PackedFloat32Array(0.148651, 1),
 "update": 0,
-"values": [ Vector2( 551, 79 ), Vector2( 16, 10 ) ]
+"values": [Vector2(551, 79), Vector2(16, 10)]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Modify:rect_scale")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
+tracks/6/path = NodePath("Modify:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PoolRealArray( 1, 2 ),
-"transitions": PoolRealArray( 0.148651, 1 ),
+"times": PackedFloat32Array(1, 2),
+"transitions": PackedFloat32Array(0.148651, 1),
 "update": 0,
-"values": [ Vector2( 0.01, 0.01 ), Vector2( 1, 1 ) ]
+"values": [Vector2(0.01, 0.01), Vector2(1, 1)]
 }
 tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
 tracks/7/path = NodePath("Modify:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [ false, true ]
+"values": [false, true]
 }
 tracks/8/type = "audio"
+tracks/8/imported = false
+tracks/8/enabled = true
 tracks/8/path = NodePath("Power")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
-tracks/8/imported = false
-tracks/8/enabled = true
 tracks/8/keys = {
-"clips": [ {
+"clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource( 22 )
+"stream": ExtResource("22")
 }, {
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource( 22 )
+"stream": ExtResource("22")
 }, {
 "end_offset": 0.0,
 "start_offset": 0.2,
-"stream": ExtResource( 21 )
-} ],
-"times": PoolRealArray( 0, 0.6, 0.8 )
+"stream": ExtResource("21")
+}],
+"times": PackedFloat32Array(0, 0.6, 0.8)
 }
+tracks/8/use_blend = true
 tracks/9/type = "audio"
+tracks/9/imported = false
+tracks/9/enabled = true
 tracks/9/path = NodePath("Landing")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
-tracks/9/imported = false
-tracks/9/enabled = true
 tracks/9/keys = {
-"clips": [ {
+"clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource( 10 )
-} ],
-"times": PoolRealArray( 0 )
+"stream": ExtResource("10")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/9/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hbg8o"]
+_data = {
+"RESET": SubResource("1"),
+"launch": SubResource("36"),
+"off": SubResource("37"),
+"on": SubResource("3")
 }
 
-[sub_resource type="Shader" id=5]
-code = "// NOTE: Shader automatically converted from Godot Engine 3.5.3.stable's CanvasItemMaterial.
-
-shader_type canvas_item;
-render_mode blend_mix,unshaded;
-
-uniform float lod: hint_range(0.0, 5) = 0.0;
-
-void fragment(){
-	vec4 color = vec4(.0);
-	for(int i = 0; i < 3; i++){
-		for(int j = 0; j < 3; j++){
-			vec2 offset = SCREEN_PIXEL_SIZE * (vec2(float(i), float(j)) - 1.0) * lod;
-			color += textureLod(SCREEN_TEXTURE, SCREEN_UV + offset, lod) * 0.1111111;
-		}
-	}
-	COLOR = mix(color, COLOR, 0.7);
-}"
-
-[sub_resource type="ShaderMaterial" id=35]
-shader = SubResource( 5 )
-shader_param/lod = 5.0
-
 [node name="Shop" type="Node2D"]
-script = ExtResource( 25 )
-level_resource = ExtResource( 15 )
+script = ExtResource("25")
+level_resource = ExtResource("15")
 
-[node name="Floor" type="Sprite" parent="."]
-position = Vector2( 553, 248 )
-texture = ExtResource( 17 )
+[node name="Floor" type="Sprite2D" parent="."]
+position = Vector2(553, 248)
+texture = ExtResource("17")
 region_enabled = true
-region_rect = Rect2( 0, 147, 128, 24 )
+region_rect = Rect2(0, 147, 128, 24)
 
-[node name="BuildingBG" type="Sprite" parent="Floor"]
-position = Vector2( -7, -18 )
-texture = ExtResource( 17 )
+[node name="BuildingBG" type="Sprite2D" parent="Floor"]
+position = Vector2(-7, -18)
+texture = ExtResource("17")
 region_enabled = true
-region_rect = Rect2( 4, 4, 41, 18 )
+region_rect = Rect2(4, 4, 41, 18)
 
-[node name="Interior" type="Sprite" parent="Floor"]
-position = Vector2( -7, -18 )
-texture = ExtResource( 17 )
+[node name="Interior" type="Sprite2D" parent="Floor"]
+position = Vector2(-7, -18)
+texture = ExtResource("17")
 region_enabled = true
-region_rect = Rect2( 1, 24, 41, 18 )
+region_rect = Rect2(1, 24, 41, 18)
 
-[node name="InteriorLights" type="Sprite" parent="Floor"]
+[node name="InteriorLights" type="Sprite2D" parent="Floor"]
 visible = false
-position = Vector2( -7, -18 )
-texture = ExtResource( 17 )
+position = Vector2(-7, -18)
+texture = ExtResource("17")
 region_enabled = true
-region_rect = Rect2( 2, 113, 36, 20 )
+region_rect = Rect2(2, 113, 36, 20)
 
-[node name="Building" type="Sprite" parent="Floor"]
-position = Vector2( 6, -30 )
-texture = ExtResource( 17 )
+[node name="Building" type="Sprite2D" parent="Floor"]
+position = Vector2(6, -30)
+texture = ExtResource("17")
 region_enabled = true
-region_rect = Rect2( 0, 43, 128, 47 )
+region_rect = Rect2(0, 43, 128, 47)
 
-[node name="Generator" type="Sprite" parent="Floor"]
-position = Vector2( 39, -15 )
-texture = ExtResource( 17 )
+[node name="Generator" type="Sprite2D" parent="Floor"]
+position = Vector2(39, -15)
+texture = ExtResource("17")
 region_enabled = true
-region_rect = Rect2( 2, 89, 12, 17 )
+region_rect = Rect2(2, 89, 12, 17)
 
-[node name="GenLights" type="Sprite" parent="Floor"]
+[node name="GenLights" type="Sprite2D" parent="Floor"]
 visible = false
-position = Vector2( 39, -14 )
-texture = ExtResource( 17 )
+position = Vector2(39, -14)
+texture = ExtResource("17")
 region_enabled = true
-region_rect = Rect2( 93, 136, 3, 11 )
+region_rect = Rect2(93, 136, 3, 11)
 
-[node name="WelcomeLights" type="Sprite" parent="Floor"]
+[node name="WelcomeLights" type="Sprite2D" parent="Floor"]
 visible = false
-position = Vector2( -51, -16 )
-texture = ExtResource( 17 )
+position = Vector2(-51, -16)
+texture = ExtResource("17")
 region_enabled = true
-region_rect = Rect2( 3, 135, 3, 9 )
+region_rect = Rect2(3, 135, 3, 9)
 
-[node name="SignLights" type="Sprite" parent="Floor"]
+[node name="SignLights" type="Sprite2D" parent="Floor"]
 visible = false
-position = Vector2( -7, -30 )
-texture = ExtResource( 17 )
+position = Vector2(-7, -30)
+texture = ExtResource("17")
 region_enabled = true
-region_rect = Rect2( 4, 107, 29, 7 )
+region_rect = Rect2(4, 107, 29, 7)
 
-[node name="Ship" type="Sprite" parent="."]
-position = Vector2( 577, 231 )
+[node name="Ship" type="Sprite2D" parent="."]
 z_index = 3
-texture = ExtResource( 12 )
+position = Vector2(577, 231)
+texture = ExtResource("12")
 
-[node name="Boost1" type="AnimatedSprite" parent="Ship"]
+[node name="Boost1" type="AnimatedSprite2D" parent="Ship"]
 visible = false
-position = Vector2( -6.8826, 8 )
+z_index = -1
+position = Vector2(-6.8826, 8)
 rotation = -0.785398
-scale = Vector2( 0.5, 0.5 )
-z_index = -1
-frames = ExtResource( 11 )
-animation = "booster"
+scale = Vector2(0.5, 0.5)
+sprite_frames = ExtResource("11")
+animation = &"booster"
 frame = 1
-playing = true
-offset = Vector2( -15, 0 )
+offset = Vector2(-15, 0)
 
-[node name="Boost2" type="AnimatedSprite" parent="Ship"]
+[node name="Boost2" type="AnimatedSprite2D" parent="Ship"]
 visible = false
-position = Vector2( 8, 8 )
+z_index = -1
+position = Vector2(8, 8)
 rotation = -2.35619
-scale = Vector2( 0.5, 0.5 )
-z_index = -1
-frames = ExtResource( 11 )
-animation = "booster"
+scale = Vector2(0.5, 0.5)
+sprite_frames = ExtResource("11")
+animation = &"booster"
 frame = 1
-playing = true
-offset = Vector2( -15, 0 )
+offset = Vector2(-15, 0)
 
-[node name="Jet" type="AnimatedSprite" parent="Ship"]
+[node name="Jet" type="AnimatedSprite2D" parent="Ship"]
 visible = false
-position = Vector2( -24, 2 )
-scale = Vector2( 0.7, 0.7 )
 z_index = -1
-frames = ExtResource( 11 )
-playing = true
+position = Vector2(-24, 2)
+scale = Vector2(0.7, 0.7)
+sprite_frames = ExtResource("11")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hbg8o")
+}
 autoplay = "on"
-anims/RESET = SubResource( 1 )
-anims/launch = SubResource( 36 )
-anims/off = SubResource( 37 )
-anims/on = SubResource( 3 )
-next/launch = "on"
-next/off = "launch"
+next/launch = &"on"
+next/off = &"launch"
 
 [node name="Landing" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 10 )
 volume_db = -8.0
-bus = "Sfx"
+bus = &"Sfx"
 
 [node name="Power" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 21 )
 volume_db = -8.0
-bus = "Sfx"
+bus = &"Sfx"
 
 [node name="StarsL" type="CPUParticles2D" parent="."]
-position = Vector2( 154, 325 )
 z_index = -1
+position = Vector2(154, 325)
 amount = 16
 lifetime = 20.0
 preprocess = 10.0
 emission_shape = 2
-emission_rect_extents = Vector2( 640, 1 )
-direction = Vector2( 0, -1 )
+emission_sphere_radius = 1.0
+direction = Vector2(0, -1)
 spread = 0.0
-gravity = Vector2( 0, 0 )
-initial_velocity = 32.0
-initial_velocity_random = 0.5
-scale_amount = 2.0
-scale_amount_random = 1.0
+gravity = Vector2(0, 0)
 
 [node name="Modify" type="ColorRect" parent="."]
 visible = false
-material = SubResource( 35 )
-margin_left = 16.0
-margin_top = 10.0
-margin_right = 416.0
-margin_bottom = 370.0
-rect_pivot_offset = Vector2( 0, 150 )
-theme = ExtResource( 19 )
-color = Color( 0, 0, 0, 0.784314 )
+offset_left = 16.0
+offset_top = 10.0
+offset_right = 416.0
+offset_bottom = 370.0
+pivot_offset = Vector2(0, 150)
+theme = ExtResource("19")
+color = Color(0, 0, 0, 0.784314)
 
 [node name="Shop" type="Panel" parent="Modify"]
+layout_mode = 0
 anchor_left = -0.013
 anchor_right = 1.189
 anchor_bottom = 1.0
-margin_left = 0.2
-margin_top = -8.0
-margin_right = 0.399994
-margin_bottom = -11.0
-script = ExtResource( 16 )
-resources = [ ExtResource( 2 ), ExtResource( 1 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 9 ), ExtResource( 6 ) ]
-upgrade_scene = ExtResource( 13 )
+offset_left = 0.2
+offset_top = -8.0
+offset_right = 0.399994
+offset_bottom = -11.0
+script = ExtResource("16")
+resources = [ExtResource("2"), ExtResource("1"), ExtResource("5"), ExtResource("3"), ExtResource("8"), ExtResource("7"), ExtResource("4"), ExtResource("9"), ExtResource("6")]
+upgrade_scene = ExtResource("13")
 upgrade_container_path = NodePath("Panel2/ScrollContainer/GridContainer")
 
 [node name="Exit" type="Button" parent="Modify/Shop"]
-margin_left = 442.0
-margin_top = 16.0
-margin_right = 476.0
-margin_bottom = 37.0
+layout_mode = 0
+offset_left = 442.0
+offset_top = 16.0
+offset_right = 476.0
+offset_bottom = 37.0
 text = "EXIT"
 
 [node name="Title" type="Label" parent="Modify/Shop"]
-margin_left = 2.0
-margin_top = 2.0
-margin_right = 479.0
-margin_bottom = 52.0
-rect_min_size = Vector2( 0, 35 )
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 479.0
+offset_bottom = 52.0
 text = "WORKSHOP NUMERICAL CONTROL TERMINAL"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ShopBoop" type="AudioStreamPlayer" parent="Modify/Shop"]
-stream = ExtResource( 14 )
+stream = ExtResource("14")
 
 [node name="Panel" type="Panel" parent="Modify/Shop"]
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 96.0
-margin_bottom = 50.0
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 96.0
+offset_bottom = 50.0
 
 [node name="UnitsTitle" type="Label" parent="Modify/Shop/Panel"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 0.1
-margin_top = 8.0
-margin_bottom = 16.4
+offset_top = 8.0
+offset_bottom = 16.4
 text = "CURRENT UNITS"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Units" type="Label" parent="Modify/Shop/Panel"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 0.1
-margin_left = 1.0
-margin_top = 23.0
-margin_right = 1.0
-margin_bottom = 31.4
+offset_left = 1.0
+offset_top = 23.0
+offset_right = 1.0
+offset_bottom = 31.4
 text = "1200000000000"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Panel2" type="Panel" parent="Modify/Shop"]
-margin_left = 4.0
-margin_top = 52.0
-margin_right = 477.0
-margin_bottom = 353.0
+layout_mode = 0
+offset_left = 4.0
+offset_top = 52.0
+offset_right = 477.0
+offset_bottom = 353.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Modify/Shop/Panel2"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 2.0
-margin_top = 2.0
-margin_right = -2.0
-margin_bottom = -2.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = -2.0
 
 [node name="GridContainer" type="GridContainer" parent="Modify/Shop/Panel2/ScrollContainer"]
-margin_left = 2.0
-margin_top = 2.0
-margin_right = 465.0
-margin_bottom = 295.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 2

@@ -1,19 +1,19 @@
-[gd_resource type="Resource" load_steps=4 format=2]
+[gd_resource type="Resource" script_class="StarData" load_steps=4 format=3 uid="uid://bkt5cyaym4t0o"]
 
-[ext_resource path="res://Scripts/StarData.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/Animations/Star.tres" type="SpriteFrames" id=2]
+[ext_resource type="Script" path="res://Scripts/StarData.gd" id="1"]
+[ext_resource type="SpriteFrames" uid="uid://cnv0dk8qblrh2" path="res://Sprites/Animations/Star.tres" id="2"]
 
-[sub_resource type="Curve" id=2]
-_data = [ Vector2( 0.463158, 0.0272727 ), 0.0, 0.0, 0, 0, Vector2( 0.796491, 0.827273 ), -1.45091, -1.45091, 0, 0, Vector2( 1, 0.0363636 ), 0.0, 0.0, 0, 0 ]
+[sub_resource type="Curve" id="2"]
+_data = [Vector2(0.463158, 0.0272727), 0.0, 0.0, 0, 0, Vector2(0.796491, 0.827273), -1.45091, -1.45091, 0, 0, Vector2(1, 0.0363636), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [resource]
-script = ExtResource( 1 )
-layout_string = "1"
-frames = ExtResource( 2 )
+script = ExtResource("1")
+frames = ExtResource("2")
 animation = "small"
 radius = 1.5
 pulse_speed = 0.4
-pulse_graph = SubResource( 2 )
+pulse_graph = SubResource("2")
 score = 10
 escape_speed = 40.0
 magnitude = 9.0

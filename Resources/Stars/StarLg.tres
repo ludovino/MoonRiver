@@ -1,24 +1,23 @@
-[gd_resource type="Resource" load_steps=4 format=2]
+[gd_resource type="Resource" script_class="StarData" load_steps=4 format=3 uid="uid://cf5lfm5jqknnl"]
 
-[ext_resource path="res://Scripts/StarData.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/Animations/Star.tres" type="SpriteFrames" id=2]
+[ext_resource type="Script" path="res://Scripts/StarData.gd" id="1"]
+[ext_resource type="SpriteFrames" uid="uid://cnv0dk8qblrh2" path="res://Sprites/Animations/Star.tres" id="2"]
 
-[sub_resource type="Curve" id=2]
-_data = [ Vector2( 0.147619, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.528571, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.87619, 0 ), 0.0, 0.0, 0, 0 ]
+[sub_resource type="Curve" id="2"]
+_data = [Vector2(0.147619, 0), 0.0, 0.0, 0, 0, Vector2(0.528571, 1), 0.0, 0.0, 0, 0, Vector2(0.87619, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [resource]
-script = ExtResource( 1 )
-layout_string = "010
-111
-010"
-frames = ExtResource( 2 )
+script = ExtResource("1")
+frames = ExtResource("2")
 animation = "large"
 radius = 3.0
 pulse_speed = 0.6
-pulse_graph = SubResource( 2 )
+pulse_graph = SubResource("2")
 score = 50
 escape_speed = 30.0
 magnitude = 4.0
 min_level = 0
 audio_pitch_modulate = 0.8
 reel_speed_mod = 0.811
+layout_string = ""

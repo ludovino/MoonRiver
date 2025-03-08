@@ -7,10 +7,10 @@ func _ready() -> void:
 	res = ResourceLoader.load("user://progression.tres") as ProgressionRes
 	if res == null:
 		res = ProgressionRes.new()
-		ResourceSaver.save("user://progression.tres", res, ResourceSaver.FLAG_CHANGE_PATH)
+		ResourceSaver.save(res, "user://progression.tres", ResourceSaver.FLAG_CHANGE_PATH)
 
 func save():
-	ResourceSaver.save("user://progression.tres", res, ResourceSaver.FLAG_CHANGE_PATH)
+	ResourceSaver.save(res, "user://progression.tres", ResourceSaver.FLAG_CHANGE_PATH)
 
 func get_status(level : Level) -> int:
 	var status = res.level_status.get(level.progress_key, Level.LOCKED)

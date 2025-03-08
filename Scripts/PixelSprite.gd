@@ -1,5 +1,5 @@
 class_name PixelSprite
-extends Sprite
+extends Sprite2D
 
 
 func _process(delta: float) -> void:

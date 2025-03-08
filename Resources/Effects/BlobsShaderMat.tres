@@ -3,15 +3,15 @@
 [ext_resource path="res://blobs.gdshader" type="Shader" id=1]
 
 [sub_resource type="Gradient" id=50]
-offsets = PoolRealArray( 0, 0.721739, 1 )
-colors = PoolColorArray( 0, 0, 0, 1, 0.930435, 0.930435, 0.930435, 1, 1, 1, 1, 1 )
+offsets = PackedFloat32Array( 0, 0.721739, 1 )
+colors = PackedColorArray( 0, 0, 0, 1, 0.930435, 0.930435, 0.930435, 1, 1, 1, 1, 1 )
 
 [sub_resource type="GradientTexture2D" id=51]
 gradient = SubResource( 50 )
 fill_to = Vector2( 0, 0.497917 )
 repeat = 2
 
-[sub_resource type="OpenSimplexNoise" id=56]
+[sub_resource type="FastNoiseLite" id=56]
 octaves = 6
 period = 2.9
 persistence = 0.572
@@ -24,8 +24,8 @@ seamless = true
 noise = SubResource( 56 )
 
 [sub_resource type="Gradient" id=52]
-offsets = PoolRealArray( 0.373913, 1 )
-colors = PoolColorArray( 1, 1, 1, 1, 0, 0, 0, 1 )
+offsets = PackedFloat32Array( 0.373913, 1 )
+colors = PackedColorArray( 1, 1, 1, 1, 0, 0, 0, 1 )
 
 [sub_resource type="GradientTexture2D" id=53]
 gradient = SubResource( 52 )

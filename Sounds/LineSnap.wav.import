@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/LineSnap.wav-9ee5c075904e75a11ad53fb383fbd986.sample"
+type="AudioStreamWAV"
+uid="uid://swlmq2psdetw"
+path="res://.godot/imported/LineSnap.wav-9ee5c075904e75a11ad53fb383fbd986.sample"
 
 [deps]
 
 source_file="res://Sounds/LineSnap.wav"
-dest_files=[ "res://.import/LineSnap.wav-9ee5c075904e75a11ad53fb383fbd986.sample" ]
+dest_files=["res://.godot/imported/LineSnap.wav-9ee5c075904e75a11ad53fb383fbd986.sample"]
 
 [params]
 

@@ -1,17 +1,17 @@
 class_name Star
 extends Area2D
 
-export var pulse_speed: float
-export var pulse_graph: Curve
-export var score: int
-export var escape_speed: float
-export var magnitude: float
-export var min_level: int = 0 
-export(AudioStreamSample) var catch: AudioStreamSample
-export(AudioStreamSample) var struggle: AudioStreamSample
-export(float, 0.5, 2) var audio_pitch_modulate: float = 1.0
+@export var pulse_speed: float
+@export var pulse_graph: Curve
+@export var score: int
+@export var escape_speed: float
+@export var magnitude: float
+@export var min_level: int = 0 
+@export var catch: AudioStreamWAV
+@export var struggle: AudioStreamWAV
+@export var audio_pitch_modulate: float = 1.0 # (float, 0.5, 2)
 
-export(float, 0, 1.0) var reel_speed_mod: float = 0.9
+@export var reel_speed_mod: float = 0.9 # (float, 0, 1.0)
 
 var time: float
 var intensity: float
@@ -51,7 +51,7 @@ func setup(color : Color, prog_level : int, starData : StarData) -> void:
 	#	modulate.a = 0.1
 	#	monitorable = false
 	if starData.fx_scene != null:
-		add_child(data.fx_scene.instance())
+		add_child(data.fx_scene.instantiate())
 
 func _assign_data(starData : StarData):
 	data = starData
@@ -63,8 +63,8 @@ func _assign_data(starData : StarData):
 	min_level = data.min_level
 	audio_pitch_modulate = data.audio_pitch_modulate
 	reel_speed_mod = data.reel_speed_mod
-	$Sprite.frames = data.frames
-	$Sprite.animation = data.animation
+	$Sprite2D.frames = data.frames
+	$Sprite2D.play(data.animation)
 	$CollisionShape2D.shape.radius = data.radius
 
 func _process(delta: float) -> void:
@@ -75,5 +75,5 @@ func _process(delta: float) -> void:
 		time -= 1.0
 		audio_source.stream = struggle
 		audio_source.play(0)
-	intensity = pulse_graph.interpolate(time)
+	intensity = pulse_graph.sample(time)
 	audio_source.volume_db = (intensity * 30) - 30

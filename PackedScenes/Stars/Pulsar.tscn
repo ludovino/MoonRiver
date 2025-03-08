@@ -29,7 +29,7 @@ reel_speed_mod = 0.8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="Sprite" type="AnimatedSprite" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 frames = ExtResource( 1 )
 animation = "pulsar"
 frame = 1

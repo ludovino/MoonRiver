@@ -1,24 +1,25 @@
-[gd_resource type="Resource" load_steps=5 format=2]
+[gd_resource type="Resource" script_class="StarData" load_steps=5 format=3 uid="uid://cdhnbp1wrnk7y"]
 
-[ext_resource path="res://Scripts/StarData.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/Animations/Star.tres" type="SpriteFrames" id=2]
-[ext_resource path="res://PackedScenes/Stars/ShootingStarTrail.tscn" type="PackedScene" id=3]
+[ext_resource type="Script" path="res://Scripts/StarData.gd" id="1"]
+[ext_resource type="SpriteFrames" uid="uid://cnv0dk8qblrh2" path="res://Sprites/Animations/Star.tres" id="2"]
+[ext_resource type="PackedScene" path="res://PackedScenes/Stars/ShootingStarTrail.tscn" id="3"]
 
-[sub_resource type="Curve" id=1]
-_data = [ Vector2( 0.316498, 0 ), 0.0, 0.156522, 0, 0, Vector2( 0.693603, 1 ), 7.0875, -14.4529, 0, 1, Vector2( 0.750842, 0.172727 ), -14.4529, 13.65, 1, 1, Vector2( 0.811448, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.888889, 0.145455 ), -11.0348, 25.38, 1, 1, Vector2( 0.922559, 1 ), 25.38, -12.913, 1, 1, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+[sub_resource type="Curve" id="1"]
+_data = [Vector2(0.316498, 0), 0.0, 0.156522, 0, 0, Vector2(0.693603, 1), 7.0875, -14.4529, 0, 1, Vector2(0.750842, 0.172727), -14.4529, 13.65, 1, 1, Vector2(0.811448, 1), 0.0, 0.0, 0, 0, Vector2(0.888889, 0.145455), -11.0348, 25.38, 1, 1, Vector2(0.922559, 1), 25.38, -12.913, 1, 1, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 7
 
 [resource]
-script = ExtResource( 1 )
-layout_string = "1"
-frames = ExtResource( 2 )
+script = ExtResource("1")
+frames = ExtResource("2")
 animation = "shooting"
-fx_scene = ExtResource( 3 )
+fx_scene = ExtResource("3")
 radius = 3.0
 pulse_speed = 0.6
-pulse_graph = SubResource( 1 )
+pulse_graph = SubResource("1")
 score = 500
 escape_speed = 50.0
 magnitude = 5.0
 min_level = 3
 audio_pitch_modulate = 1.5
 reel_speed_mod = 0.5
+layout_string = ""

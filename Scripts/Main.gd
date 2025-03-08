@@ -3,28 +3,28 @@ extends Node
 enum state { move, cast, wait, fight, lose, land }
 enum Layers { DEFAULT = 0, STARS = 1, LURE = 2, EFFECTORS = 4 }
 var progress : ProgressionRes
-export(Resource) var prog_res : Resource
+@export var prog_res: Resource
 
-export(NodePath) var player_path : NodePath
-export(NodePath) var ship_path : NodePath
+@export var player_path: NodePath
+@export var ship_path: NodePath
 
-export var player_speed: float
+@export var player_speed: float
 
-export var aim_min: float
-export var aim_max: float
-export var aim_speed: float
+@export var aim_min: float
+@export var aim_max: float
+@export var aim_speed: float
 
-export var reel_speed: float
-export var escape_speed_mod: float
-export var fight_speed_mod: float
+@export var reel_speed: float
+@export var escape_speed_mod: float
+@export var fight_speed_mod: float
 var cast_time: float
 
-export var max_tension: float
-export var tension_decay: float
-export var tension_multiplier: float
-export var score_multiplier: int
+@export var max_tension: float
+@export var tension_decay: float
+@export var tension_multiplier: float
+@export var score_multiplier: int
 
-export var hooks: int
+@export var hooks: int
 
 signal score_change
 signal tension_change
@@ -56,17 +56,17 @@ func _ready() -> void:
 	else:
 		progress = prog_res as ProgressionRes
 	game_timer = $GameTime
-	game_timer.connect("timeout", self, "_out_of_time")
+	game_timer.connect("timeout", Callable(self, "_out_of_time"))
 	timer_display = $CanvasLayer/SideBar/VBoxContainer/Timer
 	player = $Player if is_instance_valid($Player) else get_node(player_path)
 	ship = $Ship if is_instance_valid($Ship) else get_node(ship_path)
-	ship.connect("player_boarded", self, "_launch")
-	player.connect("tension_changed", self, "_on_tension_changed")
-	player.connect("fight_started", self, "_on_fight_started")
-	player.connect("fight_ended", self, "_on_fight_ended")
-	player.connect("hook_lost", self, "_on_hook_lost")
-	player.connect("star_caught", self, "_on_star_caught")
-	player.connect("danger_changed", self, "_on_danger_changed")
+	ship.connect("player_boarded", Callable(self, "_launch"))
+	player.connect("tension_changed", Callable(self, "_on_tension_changed"))
+	player.connect("fight_started", Callable(self, "_on_fight_started"))
+	player.connect("fight_ended", Callable(self, "_on_fight_ended"))
+	player.connect("hook_lost", Callable(self, "_on_hook_lost"))
+	player.connect("star_caught", Callable(self, "_on_star_caught"))
+	player.connect("danger_changed", Callable(self, "_on_danger_changed"))
 	player.tension_multiplier = tension_multiplier
 	player.tension_decay = tension_decay
 	player.escape_speed_mod = escape_speed_mod
@@ -98,8 +98,8 @@ func _launch() -> void:
 
 func _ending_anim_start() -> void:
 	$Timer.start(2)
-	$Timer.connect("timeout", self, "_ending_anim_finished")
-	$CanvasLayer.add_child(fade.instance())
+	$Timer.connect("timeout", Callable(self, "_ending_anim_finished"))
+	$CanvasLayer.add_child(fade.instantiate())
 	player.change_state("NoControl")
 	current_state = null
 

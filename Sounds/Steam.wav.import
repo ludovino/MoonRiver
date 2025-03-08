@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/Steam.wav-5fedfa159fa34436ef10eb5fdabbad71.sample"
+type="AudioStreamWAV"
+uid="uid://bx806xu48dqj5"
+path="res://.godot/imported/Steam.wav-5fedfa159fa34436ef10eb5fdabbad71.sample"
 
 [deps]
 
 source_file="res://Sounds/Steam.wav"
-dest_files=[ "res://.import/Steam.wav-5fedfa159fa34436ef10eb5fdabbad71.sample" ]
+dest_files=["res://.godot/imported/Steam.wav-5fedfa159fa34436ef10eb5fdabbad71.sample"]
 
 [params]
 

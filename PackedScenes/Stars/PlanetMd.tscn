@@ -29,7 +29,7 @@ reel_speed_mod = 0.75
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="Sprite" type="AnimatedSprite" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 frames = ExtResource( 1 )
 animation = "small"
 speed_scale = 0.3

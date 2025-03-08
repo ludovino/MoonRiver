@@ -1,24 +1,23 @@
-[gd_resource type="Resource" load_steps=4 format=2]
+[gd_resource type="Resource" script_class="StarData" load_steps=4 format=3 uid="uid://44826g7s8lvu"]
 
-[ext_resource path="res://Scripts/StarData.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/Animations/Planet.tres" type="SpriteFrames" id=2]
+[ext_resource type="Script" path="res://Scripts/StarData.gd" id="1"]
+[ext_resource type="SpriteFrames" uid="uid://ck5vb450i0hrs" path="res://Sprites/Animations/Planet.tres" id="2"]
 
-[sub_resource type="Curve" id=2]
-_data = [ Vector2( 0.312281, 0.0454545 ), 0.0, 5.02156, 0, 1, Vector2( 0.50237, 1 ), 5.02156, -1.79952, 1, 1, Vector2( 0.680095, 0.68018 ), 0.0, 0.0, 0, 0, Vector2( 0.880702, 0.0363636 ), -3.20935, 0.0, 1, 0 ]
+[sub_resource type="Curve" id="2"]
+_data = [Vector2(0.312281, 0.0454545), 0.0, 5.02156, 0, 1, Vector2(0.50237, 1), 5.02156, -1.79952, 1, 1, Vector2(0.680095, 0.68018), 0.0, 0.0, 0, 0, Vector2(0.880702, 0.0363636), -3.20935, 0.0, 1, 0]
+point_count = 4
 
 [resource]
-script = ExtResource( 1 )
-layout_string = "111
-111
-111"
-frames = ExtResource( 2 )
+script = ExtResource("1")
+frames = ExtResource("2")
 animation = "large"
 radius = 5.5
 pulse_speed = 0.3
-pulse_graph = SubResource( 2 )
+pulse_graph = SubResource("2")
 score = 250
 escape_speed = 30.0
 magnitude = 7.0
 min_level = 4
 audio_pitch_modulate = 1.0
 reel_speed_mod = 0.6
+layout_string = ""

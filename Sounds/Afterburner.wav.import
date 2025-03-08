@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/Afterburner.wav-d38cc7eb7288ca07f35081655f4469b1.sample"
+type="AudioStreamWAV"
+uid="uid://b2gk4ixd851b3"
+path="res://.godot/imported/Afterburner.wav-d38cc7eb7288ca07f35081655f4469b1.sample"
 
 [deps]
 
 source_file="res://Sounds/Afterburner.wav"
-dest_files=[ "res://.import/Afterburner.wav-d38cc7eb7288ca07f35081655f4469b1.sample" ]
+dest_files=["res://.godot/imported/Afterburner.wav-d38cc7eb7288ca07f35081655f4469b1.sample"]
 
 [params]
 

@@ -1,13 +1,13 @@
 extends Area2D
 
 
-export var direction : Vector2
-export var magnitude : float
-export var local : bool
-export var point : bool
-export(float, EASE) var falloff : float
-export(float) var min_distance : float
-export(float) var max_distance : float
+@export var direction : Vector2
+@export var magnitude : float
+@export var local : bool
+@export var point : bool
+@export var falloff : float # (float, EASE)
+@export var min_distance: float
+@export var max_distance: float
 
 func _process(delta: float) -> void:
 	var areas = get_overlapping_areas()
