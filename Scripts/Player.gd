@@ -25,7 +25,6 @@ var casting_time = 0
 var origin_pos: Vector2
 var tension : float = 0: get = get_tension, set = set_tension
 
-
 @export var lure_path: NodePath
 @onready var lure : Lure = $Lure
 @onready var target : Node2D = $Target
@@ -35,10 +34,14 @@ var tension : float = 0: get = get_tension, set = set_tension
 @onready var icon : Sprite2D = $InteractIcon
 @onready var interact_area = $InteractArea
 @onready var state_machine = $SM
+@onready var rod : Sprite2D = $Body/Rod
+
 var inter_tween : Tween
 
 var dir_input : Vector2 = Vector2.ZERO
 var dir_move : Vector2 = Vector2.ZERO
+var dir_aim : Vector2 = Vector2.ZERO
+var dir_look : Vector2 = Vector2.RIGHT
 var can_interact : bool
 
 signal tension_changed
@@ -77,6 +80,7 @@ func _process(delta: float) -> void:
 		_interact_on()
 	elif can_interact && interact_area.get_overlapping_areas().size() == 0:
 		_interact_off()
+	state_machine.tick(delta)
 
 func _physics_process(delta: float) -> void:
 	if not state_machine.current_state.name == "Move": return
@@ -97,7 +101,6 @@ func lure_pos(weight: float, start: Vector2, end: Vector2) -> void:
 	lure.global_position = Vector2(x, y)
 	rod_tip._do_line()
 
-
 func show_cancel() -> void:
 	rod_tip.set_line(rod_tip.flying)
 	anim.play("cancel")
@@ -115,7 +118,7 @@ func check_act() -> bool:
 		if inter:
 			inter.trigger()
 	elif can_cast && Input.is_action_just_pressed("action"):
-		change_state("Aim")
+		change_state("Fishing")
 		return true
 	return false
 
@@ -123,6 +126,7 @@ func cancel() -> void:
 	lure.hide()
 	lure.disable()
 	target.visible = false
+	rod.visible = false
 	rod_tip.disable()
 
 func highlight(catch : Node2D) -> void:
@@ -174,3 +178,17 @@ func get_interactable() -> Interactable:
 		if area is Interactable:
 			return area
 	return null
+
+func _cardinal_string(direction : Vector2) -> String:
+	var a_x = abs(direction.x)
+	var a_y = abs(direction.y)
+	
+	if direction.x > a_y:
+		return "right"
+	elif direction.x < -a_y:
+		return "left"
+	elif direction.y > 0.0:
+		return "down"
+	elif direction.y <= -a_x:
+		return "up"
+	return "right"

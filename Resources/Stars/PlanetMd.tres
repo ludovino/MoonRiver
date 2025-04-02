@@ -20,4 +20,3 @@ magnitude = 5.0
 min_level = 1
 audio_pitch_modulate = 1.25
 reel_speed_mod = 0.75
-layout_string = ""

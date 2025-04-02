@@ -18,6 +18,8 @@ func randomize_pitch() -> void:
 		return
 	var offset = random_range * 0.5
 	parent.pitch_scale = initial_pitch + randf_range(-offset , offset)
+	print("offset: ", offset)
+	print("pitch scale: ", parent.pitch_scale)
 	
 func _get_configuration_warnings() -> PackedStringArray:
 	var parent = get_parent()

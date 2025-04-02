@@ -15,4 +15,4 @@ func enter() -> void:
 
 func animation_ended(name: String) -> void:
 	player.anim.disconnect("animation_finished", Callable(self, "animation_ended"))
-	player.change_state("Idle")
+	state_machine.exit()

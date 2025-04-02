@@ -20,6 +20,6 @@ void fragment() {
 	col = floor(col * 5.) * 0.2;
 	col = clamp(col, 0.0, 1.0);
 	col.a = col.r;
-	col = vec4(MODULATE.rgb, col.a);
-	COLOR = col.rgba;
+	//col = vec4(MODULATE.rgb, col.a);
+	COLOR = COLOR * col.rgba;
 }

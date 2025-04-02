@@ -3,7 +3,8 @@ extends PlayerState
 
 func enter() -> void:
 	player.rod_tip.set_line(player.rod_tip.flying)
-	player.anim.play("cancel")
+	var current_dir = player._cardinal_string(player.dir_aim)
+	player.anim.play("cancel-" + current_dir)
 	var start = player.lure.global_position
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT_IN)
@@ -12,4 +13,4 @@ func enter() -> void:
 	tween.connect("finished", Callable(self, "animation_ended"))
 
 func animation_ended() -> void:
-	player.change_state("Idle")
+	state_machine.exit()

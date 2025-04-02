@@ -8,7 +8,11 @@ func enter() -> void:
 	var star = player.lure.remove_star()
 	star.queue_free()
 	player.rod_tip.set_line(player.rod_tip.flying)
-	player.anim.play("loss")
+	var vec = player.global_position - player.lure.global_position
+	var look_dir = player._cardinal_string(-
+	vec)
+	player.anim.play("cancel-" + look_dir) #directionize
+	player.anim.queue("loss")
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_LINEAR)
@@ -16,6 +20,8 @@ func enter() -> void:
 	player.anim.connect("animation_finished", Callable(self, "animation_ended"))
 
 func animation_ended(name: String) -> void:
+	if name != "loss":
+		return
 	player.anim.disconnect("animation_finished", Callable(self, "animation_ended"))
 	player.emit_signal("hook_lost")
-	player.change_state("Idle")
+	state_machine.exit()

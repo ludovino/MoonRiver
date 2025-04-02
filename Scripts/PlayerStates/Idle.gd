@@ -2,7 +2,8 @@ class_name IdleState
 extends PlayerState
 
 func enter() -> void:
-	player.anim.play("idle")
+	var dir = player._cardinal_string(player.dir_move)
+	player.anim.play("idle-" + dir)
 	print("idle entered")
 	player.lure.hide()
 	player.lure.disable()
@@ -11,6 +12,6 @@ func enter() -> void:
 
 func tick(delta: float) -> void:
 	if not is_zero_approx(player.dir_input.length()):
-		player.change_state("Move")
+		state_machine.change_state("Move")
 		return
 	player.check_act()
